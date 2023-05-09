@@ -1,0 +1,122 @@
+
+.Topchart{
+    background-color: black;
+    grid-column: 1/13;
+    grid-row: 2/8;
+
+    display: grid;
+}
+
+#top-list {
+    display: grid;
+    grid-column: 3/10;
+    grid-row: 3/8;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 2px;
+}
+
+#song-list::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+#song-list::-webkit-scrollbar-track {
+    background: rgb(15, 23, 42);
+}
+
+/* Handle */
+#song-list::-webkit-scrollbar-thumb {
+    background: rgb(148, 163, 184);
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+#song-list::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+
+@media (max-width: 760px) {
+    #song-list {
+        grid-column: 1/13;
+    }
+}
+
+.song-item.header:hover {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: initial;
+}
+
+.song-item.header > * {
+    /* color: #eee !important; */
+    color: black !important;
+}
+
+.ChartHeader {
+    
+    
+    display: grid;
+    font-size: 50px;
+    grid-column: 1/12;
+    text-align: center;
+    grid-row: 2/3;
+    border-bottom: 1px solid #94a3b8;
+    
+  font-family: 'Cafe24Ssurround';
+
+  
+}
+
+
+
+@font-face {
+    display: table-cell;  font-family: neon;
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
+  
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .neon {
+    font-family: neon;
+    
+    color: #426DFB;
+    font-size: 9vw;
+    line-height: 9vw;
+    text-shadow: 0 0 3vw #426DFB;
+
+    font-size: 50px;
+    grid-column: 1/12;
+    text-align: center;
+    grid-row: 2/3;
+  }
+  
+  .flux {
+    font-family: neon;
+    color: #426DFB;
+    font-size: 9vw;
+    line-height: 9vw;
+    text-shadow: 0 0 3vw #2356FF;
+  }
+  
+  .neon {
+    animation: neon 1s ease infinite;
+    -moz-animation: neon 1s ease infinite;
+    -webkit-animation: neon 1s ease infinite;
+  }
+  
+  @keyframes neon {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+      color: #28D7FE;
+    }
+    50% {
+      text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+      color: #146C80;
+    }
+  }
+  
+  
+  

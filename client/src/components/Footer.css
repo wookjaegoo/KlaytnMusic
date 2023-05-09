@@ -1,0 +1,146 @@
+
+
+@font-face {
+  font-family: 'Cafe24Ssurround';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-o-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+.Deploys
+{
+  
+display: grid;
+grid-column: 1/13;
+grid-row: 2/8;
+background: rgba( 0, 0, 255, 0.3 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 0px );
+-webkit-backdrop-filter: blur( 0px );
+background: linear-gradient(-45deg,#97084b, #420858, #4616b8, #c4055e);
+animation: AnimationName 15s ease infinite;
+
+background-size: 400% 400%;
+
+font-family: "Montserrat", sans-serif;
+
+
+}
+
+.Procedure
+{
+
+  
+  font-family: 'Cafe24Ssurround';
+  background: rgba( 12, 12, 13, 0.75 );
+  
+  color: white;
+  
+  background-image:url("../../public/hoverpc.png");
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 0px );
+  -webkit-backdrop-filter: blur( 0px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+height: 500px;
+width: 500px;
+
+display: grid;
+grid-column: 7/13;
+grid-row: 2/8;
+align-content: center;
+text-align: center;
+
+box-sizing: border-box;
+
+}
+.Procedure2
+{
+
+  
+  color: #38bdf8;
+  background: rgba( 12, 12, 13, 0.75 );
+  
+  background-image:url("../../public/hoverpc.png");
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 0px );
+  -webkit-backdrop-filter: blur( 0px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+height: 500px;
+width: 200px;
+
+display: grid;
+grid-column: 8/13;
+grid-row: 2/8;
+align-content: center;
+text-align: center;
+
+box-sizing: border-box;
+font-family: 'Cafe24Ssurround';
+  
+}
+
+.Procedure:hover{
+
+  background-image: none;
+  
+}
+
+.custom-btn {
+
+  font-family: 'Cafe24Ssurround';
+  
+  font-weight: bold;
+  width: 140px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-weight: 500;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.custom-btn2 {
+
+  font-family: 'Cafe24Ssurround';
+  
+  font-weight: bold;
+  width: 140px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-weight: 500;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
