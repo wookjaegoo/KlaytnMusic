@@ -14,7 +14,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <Remoter songs={songs} />   
+      <Remoter />   
          
       <Player songs={{songs}} contract={contract} accounts={account} />
     </React.Fragment>

@@ -13,7 +13,7 @@ const Player = ({
     selectedSongId,
     defaultSong,
     playerState,
-    songs=[],
+    songs,
     selectSongById,
     volume,
     contract,
@@ -26,19 +26,20 @@ const Player = ({
     //처음 트랜잭션을 진행하는 계정에 대해서는 진행이 안되는 문제가있음
     //hashed트랜잭션도 마찬가지고 unsigned트랜잭션도 마찬가지인데 전자함수 nonce를 바꾸면 해결이될지도
     //이런식의 메소드를 쓰면 존나 조잡해짐 오류가 많아진다고
-
-
-  
-
     const dispatch = useDispatch();
     const [shuffled, setShuffled] = useState(false);
     const audioRef = useRef();
     let clicked = false;
-    selectedSongId=0
-    console.log(songs)
-    if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
+
+    
+//     if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
+//   {
+//        src= songs[selectedSongId].url;      
+//   }
+
+  if(songs.songs !== 'undefined' && songs.songs != null)
   {
-       src= songs[selectedSongId].url;      
+       src= songs.songs[selectedSongId].url;      
   }
 
     const spaceDownFunc = (event) => {
@@ -129,9 +130,8 @@ const Player = ({
 
     useEffect(() => {
         dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
-        audioRef.current.play();
-       
         
+        audioRef.current.play();
         // tryInit();
         // console.log(audioRef.current.duration);
         document.getElementById("focus-link").click();

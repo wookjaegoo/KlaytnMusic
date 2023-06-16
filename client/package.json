@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@ethereumjs/tx": "^3.5.2",
-    "@openzeppelin/contracts": "^4.8.2",
+    "@openzeppelin/contracts": "^4.9.1",
     "@solana/solidity": "^0.0.25",
     "@solana/web3.js": "^1.73.3",
     "@testing-library/jest-dom": "^5.16.4",

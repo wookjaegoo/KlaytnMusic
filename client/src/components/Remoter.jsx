@@ -6,10 +6,9 @@ import Main from './Main';
 import Profile from './Profile'
 import Topchart from './Topchart';
 
-function Remoter({songs=[]})
+function Remoter()
 {
  
-  console.log(songs)
         
     return(
       //etheprovider 태그로 감싸야 state 값 정의가된다. 지금은 리모터에서 감은게 main 
@@ -21,7 +20,7 @@ function Remoter({songs=[]})
           <Route path='/Topchart' element={<Topchart />} /> 
           
           <Route path='/Footer' element={<Footer/>}/> 
-          <Route path='/' element={<Main songs={songs} />}/>
+          <Route path='/' element={<Main/>}/>
           <Route path='/Profile' element={<Profile />}/>
         </Routes>
     </BrowserRouter>

@@ -9,12 +9,14 @@ var src1=''
 var src2=''
 const SongDetail = ({
   selectedSongId = -1,
-  // defaultSong,
+  defaultSong,
   selectSong,
-  songs=[],
+  songs=[]
 }) => {
   //이게 메인에서 넘겨줄대 배열json songs로 넘겨주면 songs=[]로 받으셈
-  var defaultSong=songs[0];
+  
+  // var defaultSong=''
+  console.log(songs.songs)
 
   if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
   {
@@ -22,11 +24,17 @@ const SongDetail = ({
       //  src2= songs[selectedSongId].links.images[1].url;
      
   }
+  if(songs.songs !== 'undefined' && songs.songs!= null)
+  {
+    defaultSong=songs.songs[0]
+  }
+  
+
 
   
   //if문으로 null리턴 예외 처리 안해주면 오류뱉음 필수적으로 써줘야함
   songs=JSON.stringify(songs)
-  
+
   //JSON배열이아닌 객체로 접근하면 STRING 인덱스 리턴해주네.. 이래서 undefined오류뜨던거임.
   //객체 접근하려는데 오류뜨는 상황 ㅋㅋㅆ발
   const songData = () => {

@@ -4,10 +4,11 @@ import SongListHeader from "./SongListHeader";
 import SongList from "./SongList";
 // import songs from "../data/songs.json"
 import useEth from "../contexts/EthContext/useEth";
+import songs from "../data/songs.json"
 
 
 
-function Main(songs1,{songs=[]})
+function Main()
 {
   
 
@@ -17,9 +18,10 @@ function Main(songs1,{songs=[]})
   //songdetail 은 {{songs}}로 prop주면 오류안남 근데 songlist가 지랄중 ㅋㅋ
   //그냥 컨트랙트 다시 배포해보고 0번 1번 제대로 찍어서 실험해봐야할듯 json id 때문에 생기는걸수도잇음
   
-  let songss=songs
-  console.log(songss[0])
-  console.log(songs[0])
+
+const{state: {contract,account,songs,songdata} } = useEth();
+
+console.log(songs)
 
      return(
     <React.Fragment>

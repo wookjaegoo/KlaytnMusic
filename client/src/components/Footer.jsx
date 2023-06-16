@@ -85,7 +85,7 @@ async function deployNFT(e)
   //tokenid call function 임 등록할때는 num+1이겠지
   //근데 다수가 이 트랜잭션을 진행한다고 하면.. 같은 num으로 tr 발생하는 가능성이 존재해서 이걸 배제하려면 그냥 음원 자체의 tokenid를 파싱해서리스트에 박는게 나음
   try {
-  let json = `{"name":"${song}","author":"${writer}","url":"${fileUrl}","id":"${num}",
+  let json = `{"name":"${song}","author":"${writer}","url":"${fileUrl}","id":${num},
   "links":{
     "images":[
       {

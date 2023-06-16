@@ -1,12 +1,12 @@
 // SPDX-License-Identifier:MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "./token/ERC721/ERC721.sol";
+import "./token/ERC721/extensions/ERC721Enumerable.sol";
+import "./token/ERC721/extensions/ERC721URIStorage.sol";
+import "./token/ERC721/extensions/ERC721Burnable.sol";
+import "./access/Ownable.sol";
+import "./utils/Counters.sol";
 
 contract ArtGrowNFT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
@@ -83,7 +83,7 @@ contract ArtGrowNFT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnabl
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Enumerable)
+        override(ERC721, ERC721Enumerable,ERC721URIStorage)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);

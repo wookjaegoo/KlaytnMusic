@@ -74,8 +74,9 @@ export function EthProvider({ children }) {
         try {
 
            
-          contract = new caver.klay.Contract(abi,'0xe6360db3b1119209b88dc09fbadca9652c6e8d83');
+          contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
           const num = await contract.methods.totalSupply().call();
+          
 
           for (let i = 0; i < num ; i++) {
 
@@ -91,8 +92,11 @@ export function EthProvider({ children }) {
 
           }
           songdata=JSON.stringify(songs)
+          console.log(songs)
+
 
           //player 한테는 songs를 넘겨주고 songdata 는 리스트니까 songlist한테 넘겨줘야함
+          //songslist는 토큰아이디 집합으로 이루어진 json이어야해
 
         } catch (err) {
           console.error(err);
