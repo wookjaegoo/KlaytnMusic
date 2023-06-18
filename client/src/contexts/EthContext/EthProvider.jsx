@@ -65,6 +65,7 @@ export function EthProvider({ children }) {
         // const networkID = await web3.eth.net.getId();
         
         const account = await window.klaytn.enable();
+        console.log(account)
 
 
         const { abi } = artifact;
@@ -73,15 +74,20 @@ export function EthProvider({ children }) {
 
         try {
 
-           
-          contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
+          
+          contract = new caver.klay.Contract(abi,'0xfbb92bf30d685385d2f1d160242e66350482816a');
+          const count = await contract.methods.howmanyListen(1).call();
+          console.log(count)
+
+
+
+          // contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
           const num = await contract.methods.totalSupply().call();
           
 
           for (let i = 0; i < num ; i++) {
 
             const Writer = await contract.methods.tokenURI(i).call();
-
 
             const response = await fetch(Writer);
             if (!response.ok)
@@ -107,34 +113,32 @@ export function EthProvider({ children }) {
           data: { artifact,web3,contract,account,songs,songdata}
         });
       }
-    }, []);
+    },[]);
 
 
-    // const init2 = useCallback(
-    //   async artifact2 =>
-    //   {
-    //     if(artifact2)
-    //     {
-    //       const web3 = new Web3(Web3.givenProvider || "ws://127.0.0.1:7545");
-    //       const {abi} = artifact2;
-    //       const networkID = await web3.eth.net.getId();
-    //       let address2, contract2;
-    //       try{
-    //         address2 = artifact2.networks[networkID].address;
-    //         contract2 = new web3.eth.Contract(abi, address2);
-        
+    const init2 = useCallback(
+      async artifact2 =>
+      {
+        if(artifact2)
+        {
+          const {abi} = artifact2;
+          let address2, contract2;
+          try{
+            contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
             
-    //       }
-    //       catch (err) {
-    //         console.error(err);
-    //       }
-    //       dispatch({
-    //         type: actions.init,
-    //         data: {artifact2, contract2}
-    //       });
+            console.log(contract2)
+            
+          }
+          catch (err) {
+            console.error(err);
+          }
+          dispatch({
+            type: actions.init,
+            data: {artifact2, contract2}
+          });
   
-    //     }
-    //   },[])
+        }
+      },[])
     
     
     
@@ -163,33 +167,35 @@ export function EthProvider({ children }) {
     };
 
     tryInit();
+    
   }, [init]);
 
   
-  // useEffect(() => {
-  //   const tryInit = async () => {
-  //     try {
-  //       const artifact2= require("../../contracts/Amaranthus.json")
-  //       init2(artifact2);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
+  useEffect(() => {
+    const tryInit = async () => {
+      try {
+        const artifact2= require("../../contracts/Amaranthus.json")
+        init2(artifact2);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  //   tryInit();
-  // }, [init2]);
+    tryInit();
+  }, [init2]);
 
   useEffect(() => {
     const events = ["chainChanged", "accountsChanged"];
     const handleChange = () => {
       init(state.artifact);
+      init(state.artifact2);
 
     };
     events.forEach(e => window.ethereum.on(e, handleChange));
     return () => {
       events.forEach(e => window.ethereum.removeListener(e, handleChange));
     };
-  }, [init,state.artifact]);
+  }, [init,state.artifact,state.artifact2]);
 
   // useEffect(() => {
   //   const events = ["chainChanged", "accountsChanged"];

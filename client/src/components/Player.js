@@ -16,6 +16,7 @@ const Player = ({
     songs,
     selectSongById,
     volume,
+    account,
     contract,
     contract2,
     accounts,
@@ -30,6 +31,12 @@ const Player = ({
     const [shuffled, setShuffled] = useState(false);
     const audioRef = useRef();
     let clicked = false;
+    console.log()
+
+    if(songs.songs !== 'undefined' && songs.songs != null)
+    {
+         src= songs.songs[selectedSongId].url;      
+    }
 
     
 //     if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
@@ -76,6 +83,10 @@ const Player = ({
 
             audioRef.current.play();
             dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
+            // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
+
+            const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
+            console.log(output)
             
             //const isexist1=await contract2.methods.playerList(1).call();
             //console.log(isexist1);

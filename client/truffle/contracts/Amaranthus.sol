@@ -8,6 +8,18 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 
 
+interface PlayCounter{
+
+struct tokenInfo{
+        uint256 listenCount;
+        uint256 tokenId; 
+        address owner;
+
+    }
+
+    function listen(uint256 _tokenId) external ;
+}
+
 contract Amaranthus is ERC20{
         using Counters for Counters.Counter;
 
@@ -27,15 +39,16 @@ contract Amaranthus is ERC20{
 
     mapping(address => uint256) private lockedUntil;
 
-    function sendTransaction(address to, uint256 value) public {
+    function sendTransaction(address to, uint256 value,address _counter,uint256 _tokenId) external {
         require(block.timestamp >= lockedUntil[msg.sender], "Transaction is locked.");
+
         // Lock the sender's account for 4 minutes
         lockedUntil[msg.sender] = block.timestamp + 240;
-
         // Send the transaction
         transfer(to,value);
+        PlayCounter(_counter).listen(_tokenId);  
     }
 
- 
+
 
 }

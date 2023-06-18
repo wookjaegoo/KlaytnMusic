@@ -11,7 +11,7 @@ const SongDetail = ({
   selectedSongId = -1,
   defaultSong,
   selectSong,
-  songs=[]
+  songs
 }) => {
   //이게 메인에서 넘겨줄대 배열json songs로 넘겨주면 songs=[]로 받으셈
   
@@ -22,6 +22,7 @@ const SongDetail = ({
   {
       //  src1= songs[selectedSongId].links.images[0].url;
       //  src2= songs[selectedSongId].links.images[1].url;
+      defaultSong=songs[0]
      
   }
   if(songs.songs !== 'undefined' && songs.songs!= null)
