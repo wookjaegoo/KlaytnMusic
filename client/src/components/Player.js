@@ -5,7 +5,7 @@ import { forwardsSvg, backwardsSvg, shuffleSvg } from "../svg";
 import { setPlayerState, selectSongById } from "../actions";
 import Progress from "./ProgressBar";
 import SongTime from "./SongTime";
-
+import caver from "../klaytn/caver";
 
 var src=''
 
@@ -20,7 +20,8 @@ const Player = ({
     contract,
     contract2,
     accounts,
-    web3
+    web3,
+    artifact2
 }) => {
 
     //대안임 이함수는 solidity에서 ㄴ정의한 transfer이하의 setaddr 이하메소드가 
@@ -31,7 +32,8 @@ const Player = ({
     const [shuffled, setShuffled] = useState(false);
     const audioRef = useRef();
     let clicked = false;
-    console.log()
+
+    
 
     if(songs.songs !== 'undefined' && songs.songs != null)
     {
@@ -84,33 +86,61 @@ const Player = ({
             audioRef.current.play();
             dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
+             const txobject=caver.abi.encodeFunctionCall(
+                {
+                    "inputs": [
+                      {
+                        "internalType": "address",
+                        "name": "to",
+                        "type": "address"
+                      },
+                      {
+                        "internalType": "uint256",
+                        "name": "value",
+                        "type": "uint256"
+                      },
+                      {
+                        "internalType": "address",
+                        "name": "_counter",
+                        "type": "address"
+                      },
+                      {
+                        "internalType": "uint256",
+                        "name": "_tokenId",
+                        "type": "uint256"
+                      }
+                    ],
+                    "name": "sendTransaction",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                  }
+                ,["0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1])
+             console.log(txobject)
+             const tx=caver.transaction.smartContractExecution.create({
+                from:account[0],
+                to: contract2._address,
+                input:txobject,
+                gas: 1000000000,
+             })
+             console.log(tx)
 
-            const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
-            console.log(output)
-            
+             let test=await caver.wallet.sign(account[0],tx);
+             console.log(test)
+             const encoded=tx.getRLPEncoding();
+             console.log(encoded)
+             caver.rpc.klay.sendRawTransaction(test).then(console.log);
+
+
+
+            //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
+            // console.log(output)
+            //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).sign({from:account[0], gas: 1000000000});
+            //  console.log(output)
+
             //const isexist1=await contract2.methods.playerList(1).call();
             //console.log(isexist1);
             
-
-            //const isexist2=await contract2.methods._exists(isexist1).call({from:accounts[0]});
-            //console.log(isexist2);
-           // var hash=await contract2.methods.transferTimeLockedTokensAfterTimePeriod("0x9419a21D360493f35452F65b58127f6AFa630cCb",10000000000000,1).send({from:accounts[0]});
-           // console.log(hash);
-
-        //    var i=""
-        //     for(i=0; i<10; i++)
-        // {
-
-        //     try{
-        //         contract2.methods.playerList(i).call();
-                
-        //     }
-        //     catch (err) {
-        //         console.log(i);
-        //         return i;
-                
-        //       }
-        // }
 
            
          

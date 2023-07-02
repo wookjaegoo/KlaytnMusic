@@ -9,7 +9,7 @@ import songs from "./data/songs.json"
 
 function App() {
   
-  const{state: {contract,account,songs,contract2} } = useEth();
+  const{state: {contract,account,songs,contract2,artifact2} } = useEth();
   console.log(account)
  
 
@@ -17,7 +17,7 @@ function App() {
     <React.Fragment>
       <Remoter />   
          
-      <Player songs={{songs}} contract={contract} account={account} contract2={contract2}  />
+      <Player songs={{songs}} contract={contract} account={account} contract2={contract2} artifact2={artifact2} />
     </React.Fragment>
     
   );
