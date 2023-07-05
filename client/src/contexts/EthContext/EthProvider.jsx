@@ -212,6 +212,8 @@ export function EthProvider({ children }) {
   //   };
   // }, [init2, state.artifact2]);
 
+
+
   return (
     <EthContext.Provider value={{
       state,

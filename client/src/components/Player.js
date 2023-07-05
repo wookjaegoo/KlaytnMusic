@@ -21,7 +21,6 @@ const Player = ({
     contract2,
     accounts,
     web3,
-    artifact2
 }) => {
 
     //대안임 이함수는 solidity에서 ㄴ정의한 transfer이하의 setaddr 이하메소드가 
@@ -115,7 +114,7 @@ const Player = ({
                     "stateMutability": "nonpayable",
                     "type": "function"
                   }
-                ,["0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1])
+                ,["0x500425D26A121c9b1Ad64343f9651B3f70937C3b",100000000000000,contract._address,1])
              console.log(txobject)
              const tx=caver.transaction.smartContractExecution.create({
                 from:account[0],
@@ -130,6 +129,7 @@ const Player = ({
              const encoded=tx.getRLPEncoding();
              console.log(encoded)
              caver.rpc.klay.sendRawTransaction(test).then(console.log);
+             //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
 
 
 
