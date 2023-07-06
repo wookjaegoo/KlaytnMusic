@@ -10,15 +10,19 @@ import { useEffect } from "react";
 
 function App() {
   
-  const{state: {contract,account,songs,contract2} } = useEth();
 
   const callApi = async()=>{
-    axios.get("/api").then((res)=>{console.log(res.data.test)});
+    axios.get("/api")
+    .then((res)=>{console.log(res.data.test)})
+    .catch(error=>{console.error('요청실패',error)});
   };
 
   useEffect(()=>{
     callApi();
   }, []);
+
+
+  const{state: {contract,account,songs,contract2} } = useEth();
 
   
  

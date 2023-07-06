@@ -3,7 +3,7 @@ const router = express.Router();
 var readlineSync = require('readline-sync');
 
 router.get('/', (req, res)=>{
-  res.send({ test: "hi"});
+  res.send({ test: "bye"});
 });
 
 function getPrivateKey() {
