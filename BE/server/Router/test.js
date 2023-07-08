@@ -8,7 +8,11 @@ router.get('/', (req, res)=>{
   res.send({ test: "bye"});
 });
 
-router.post('play-transaction',sendTransaction)
+router.get('/play-transaction', (req, res)=>{
+  res.send({ test: "ptr"});
+});
+
+router.post('/play-transaction',sendTransaction)
 
 // function getPrivateKey() {
 //   const privateKey = readlineSync.question('개인 키를 입력하세요:', {

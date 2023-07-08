@@ -6,6 +6,8 @@ import { setPlayerState, selectSongById } from "../actions";
 import Progress from "./ProgressBar";
 import SongTime from "./SongTime";
 import caver from "../klaytn/caver";
+import axios from "axios"
+
 
 var src=''
 
@@ -85,55 +87,69 @@ const Player = ({
             audioRef.current.play();
             dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
-             const txobject=caver.abi.encodeFunctionCall(
-                {
-                    "inputs": [
-                      {
-                        "internalType": "address",
-                        "name": "to",
-                        "type": "address"
-                      },
-                      {
-                        "internalType": "uint256",
-                        "name": "value",
-                        "type": "uint256"
-                      },
-                      {
-                        "internalType": "address",
-                        "name": "_counter",
-                        "type": "address"
-                      },
-                      {
-                        "internalType": "uint256",
-                        "name": "_tokenId",
-                        "type": "uint256"
-                      }
-                    ],
-                    "name": "sendTransaction",
-                    "outputs": [],
-                    "stateMutability": "nonpayable",
-                    "type": "function"
-                  }
-                ,["0x500425D26A121c9b1Ad64343f9651B3f70937C3b",100000000000000,contract._address,1])
-             console.log(txobject)
-             const tx=caver.transaction.smartContractExecution.create({
-                from:account[0],
-                to: contract2._address,
-                input:txobject,
-                gas: 1000000000,
-             })
-             console.log(tx)
 
-             let test=await caver.wallet.sign(account[0],tx);
-             console.log(test)
-             const encoded=tx.getRLPEncoding();
-             console.log(encoded)
-             caver.rpc.klay.sendRawTransaction(test).then(console.log);
+            //여기서 axios 로직 7/9
+            axios({
+                url:`http://localhost:3001/api/play-transaction`,
+                method:"POST",
+                data:{
+                    receiver_address:"0x500425D26A121c9b1Ad64343f9651B3f70937C3b",
+                    amount:100000000000000,
+                    tokenId:1,
+                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
+
+                },
+                withCredentials:true,
+            })
+            //  const txobject=caver.abi.encodeFunctionCall(
+            //     {
+            //         "inputs": [
+            //           {
+            //             "internalType": "address",
+            //             "name": "to",
+            //             "type": "address"
+            //           },
+            //           {
+            //             "internalType": "uint256",
+            //             "name": "value",
+            //             "type": "uint256"
+            //           },
+            //           {
+            //             "internalType": "address",
+            //             "name": "_counter",
+            //             "type": "address"
+            //           },
+            //           {
+            //             "internalType": "uint256",
+            //             "name": "_tokenId",
+            //             "type": "uint256"
+            //           }
+            //         ],
+            //         "name": "sendTransaction",
+            //         "outputs": [],
+            //         "stateMutability": "nonpayable",
+            //         "type": "function"
+            //       }
+            //     ,["0x500425D26A121c9b1Ad64343f9651B3f70937C3b",100000000000000,contract._address,1])
+            //  console.log(txobject)
+            //  const tx=caver.transaction.smartContractExecution.create({
+            //     from:account[0],
+            //     to: contract2._address,
+            //     input:txobject,
+            //     gas: 1000000000,
+            //  })
+            //  console.log(tx)
+
+            //  let test=await caver.wallet.sign(account[0],tx);
+            //  console.log(test)
+            //  const encoded=tx.getRLPEncoding();
+            //  console.log(encoded)
+            //  caver.rpc.klay.sendRawTransaction(test).then(console.log);
              //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
 
 
 
-             const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
+            //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
             // console.log(output)
 
             //const isexist1=await contract2.methods.playerList(1).call();
