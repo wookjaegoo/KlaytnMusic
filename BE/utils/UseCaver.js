@@ -3,16 +3,17 @@ const BAOBAB_TESTNET_RPC_URL = 'https://api.baobab.klaytn.net:8651/'
 const rpcURL = BAOBAB_TESTNET_RPC_URL
 const caver = new Caver(rpcURL)
 
-const dotenv= require("dotenv")
-dotenv.config();
+const dotenv= require("dotenv").config();
+console.log(dotenv)
 
 
-const NFT_ADDRESS=process.env.NFT_ADDRESS
-const AMARANTH_ADDRESS=process.env.AMARANTH_ADDRESS
-const PRIVATE_KEY_KIAKAS=process.env;
+const NFT_ADDRESS=process.env.REACT_APP_NFT_ADDRESS
+const AMARANTH_ADDRESS=process.env.REACT_APP_PRIVATE_KEY_KIAKAS
 
 
-const newkey=caver.wallet.keyring.createFromPrivateKey("0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56")
+// const newkey=caver.wallet.keyring.createFromPrivateKey("0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56");
+
+const newkey=caver.wallet.keyring.createFromPrivateKey(process.env.REACT_APP_PRIVATE_KEY_KIAKAS);
 //여기오류남 7/8
 caver.wallet.add(newkey)
 
