@@ -15,6 +15,9 @@ function App() {
     axios.get("/api")
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
+    axios.get("/api/play-transaction")
+    .then((res)=>{console.log(res.data.test)})
+    .catch(error=>{console.error('요청실패',error)});
   };
 
   useEffect(()=>{

@@ -34,6 +34,24 @@ const Player = ({
     const audioRef = useRef();
     let clicked = false;
 
+    const [nftData,setNftInfo]= useState({
+        receiver_address:"",
+        amount:0,
+        tokenId:0,
+        signKey:"",
+    })
+
+    useEffect(()=>{
+
+        setNftInfo({
+            ...nftData,
+            receiver_address:"0x500425D26A121c9b1Ad64343f9651B3f70937C3b",
+            amount:100000000000000,
+            tokenId:1,
+            signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
+          });
+        console.log(nftData)
+    },[])
     
 
     if(songs.songs !== 'undefined' && songs.songs != null)
@@ -51,6 +69,7 @@ const Player = ({
   {
        src= songs.songs[selectedSongId].url;      
   }
+
 
     const spaceDownFunc = (event) => {
         if (event.keyCode === 32 && !clicked) {
@@ -93,13 +112,15 @@ const Player = ({
                 url:`http://localhost:3001/api/play-transaction`,
                 method:"POST",
                 data:{
-                    receiver_address:"0x500425D26A121c9b1Ad64343f9651B3f70937C3b",
-                    amount:100000000000000,
-                    tokenId:1,
-                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
-
+                    receiver_address:nftData.receiver_address,
+                    amount:nftData.amount,
+                    tokenId:nftData.tokenId,
+                    signKey:nftData.signKey
                 },
                 withCredentials:true,
+            }).catch((error)=>
+            {
+                console.log(error)
             })
             //  const txobject=caver.abi.encodeFunctionCall(
             //     {

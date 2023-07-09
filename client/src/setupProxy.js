@@ -1,25 +1,29 @@
-const {createProxyMiddleware} = require('http-proxy-middleware');
+// const {createProxyMiddleware} = require('http-proxy-middleware');
+
+// // module.exports = (app) => {
+// //   app.use('/api',
+// //     createProxyMiddleware({  //도메인 api로 호출
+// //       target: 'http://localhost:3001/', //통신할 서버의 도메인주소
+// //       changeOrigin: true,
+// //       // pathRewrite: {
+// //       //   '^/play-transaction': '',
+// //       // },
+// //     })
+// //   )
+// // }
 
 // module.exports = (app) => {
-//   app.use('/api',
-//     createProxyMiddleware({  //도메인 api로 호출
+//   app.use(
+//     createProxyMiddleware(['/api'],{  //도메인 api로 호출
 //       target: 'http://localhost:3001/', //통신할 서버의 도메인주소
 //       changeOrigin: true,
+//       // headers: {
+//       //   'Access-Control-Allow-Origin': 'http://localhost:3000',
+//       //   // 다른 필요한 CORS 헤더도 추가할 수 있습니다.
+//       // }
 //       // pathRewrite: {
 //       //   '^/play-transaction': '',
 //       // },
 //     })
 //   )
 // }
-
-module.exports = (app) => {
-  app.use(
-    createProxyMiddleware(['/api'],{  //도메인 api로 호출
-      target: 'http://localhost:3001/', //통신할 서버의 도메인주소
-      changeOrigin: true,
-      // pathRewrite: {
-      //   '^/play-transaction': '',
-      // },
-    })
-  )
-}

@@ -8,7 +8,7 @@ console.log(dotenv)
 
 
 const NFT_ADDRESS=process.env.REACT_APP_NFT_ADDRESS
-const AMARANTH_ADDRESS=process.env.REACT_APP_PRIVATE_KEY_KIAKAS
+const AMARANTH_ADDRESS=process.env.REACT_APP_AMARANTH_ADDRESS
 
 
 // const newkey=caver.wallet.keyring.createFromPrivateKey("0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56");
