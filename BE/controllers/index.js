@@ -1,4 +1,4 @@
-const {genWallet,sendTransaction} = require("../utils/UseCaver");
+const {genWallet,sendTransaction,songDataSender} = require("../utils/UseCaver");
 
 
 
@@ -15,11 +15,24 @@ const sendTokenTransaction = async(req,res,next)=>
       .catch((error) => {
         console.log(error)
       });
+
+};
+
+const requestSongData = async(req,res,next)=>
+{
+  try {
+    const songList=await songDataSender();
     
+
+    res.status(200).json(songList)
+  } catch (error) {
+    next(error)
+  }
 
 };
 
 module.exports={
-    sendTokenTransaction
+    sendTokenTransaction,
+    requestSongData
 }
 

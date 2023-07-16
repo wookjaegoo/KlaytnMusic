@@ -17,8 +17,10 @@ const newkey=caver.wallet.keyring.createFromPrivateKey(process.env.REACT_APP_PRI
 //여기오류남 7/8
 caver.wallet.add(newkey)
 
-const ArtGrowNFT= require("./ArtGrowNFT")
-const Amaranthus= require("./Amaranthus")
+// const ArtGrowNFT= require("./ArtGrowNFT")
+const Amaranthus= require("./Amaranthus");
+const artifact = require("./ArtGrowNFT.json");
+
 
 //did 문서 참고해서 로직짜보셈 금방할듯
 
@@ -86,7 +88,33 @@ const genWallet = () => {
   };
 };
 
+const songDataSender =async ()=>
+{
+  const {abi} = artifact;
+
+  const contractInstance = new caver.contract(abi,NFT_ADDRESS)
+  const num = await contractInstance.methods.totalSupply().call();
+  let songList=[]
+
+  for (let i = 0; i < num ; i++) {
+
+    const Writer = await contractInstance.methods.tokenURI(i).call();
+
+    const response = await fetch(Writer);
+    if (!response.ok)
+      throw new Error(response.statusText);
+    let songs = await response.json();
+    
+    songList.push(songs);
+
+  }
+
+  return songList;
+
+}
+
 module.exports={
     sendTransaction,
     genWallet,
+    songDataSender,
 }

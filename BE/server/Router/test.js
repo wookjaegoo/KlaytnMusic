@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 var readlineSync = require('readline-sync');
 
-// const{sendTransaction}=require("../../utils/UseCaver")
-const {sendTokenTransaction}=require("../../controllers")
+const {sendTokenTransaction,requestSongData}=require("../../controllers")
 
 router.get('/', (req, res)=>{
   res.send({ test: "bye"});
@@ -12,6 +11,9 @@ router.get('/', (req, res)=>{
 router.get('/play-transaction', (req, res)=>{
   res.send({ test: "ptr"});
 });
+
+router.get('/songList',requestSongData);
+
 
 router.post('/play-transaction',sendTokenTransaction)
 
