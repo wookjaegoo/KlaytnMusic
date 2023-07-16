@@ -12,10 +12,10 @@ function App() {
   
 
   const callApi = async()=>{
-    axios.get("/api")
+    axios.get("http://localhost:3001/api")
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
-    axios.get("/api/play-transaction")
+    axios.get("http://localhost:3001/api/play-transaction")
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
   };

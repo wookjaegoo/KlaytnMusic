@@ -20,11 +20,11 @@ app.use('/api', test);
 
 
 
-// app.get('/', (req, res) => {
-//     // 클라이언트에게 응답 데이터를 전송
-//     const responseData = { message: 'Hello from the server!' };
-//     res.json(responseData);
-//   });
+app.get('/', (req, res) => {
+    // 클라이언트에게 응답 데이터를 전송
+    const responseData = { message: 'Hello from the server!' };
+    res.json(responseData);
+  });
   
 
 
