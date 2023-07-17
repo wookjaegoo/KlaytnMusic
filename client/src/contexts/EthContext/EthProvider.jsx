@@ -101,7 +101,6 @@ export function EthProvider({ children }) {
 
           }
           songdata=JSON.stringify(songs)
-          console.log(songs)
 
 
           //player 한테는 songs를 넘겨주고 songdata 는 리스트니까 songlist한테 넘겨줘야함
@@ -129,7 +128,6 @@ export function EthProvider({ children }) {
           try{
             contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
             
-            console.log(contract2)
             
           }
           catch (err) {
