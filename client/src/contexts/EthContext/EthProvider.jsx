@@ -79,6 +79,9 @@ export function EthProvider({ children }) {
           //pvkey 입력받고 caver.wallet에 모두 추가한뒤에 signedtr결제로직으로 구성해야함
           //이거로 클레이튼 계정만들기는 가능 signedtr할때 개인키 입력 부분이 문제 
           contract = new caver.klay.Contract(abi,'0xfbb92bf30d685385d2f1d160242e66350482816a');
+          const counts = await contract.methods.owner(1).call();
+          console.log(counts)
+          
           const count = await contract.methods.howmanyListen(1).call();
           console.log(count)
 

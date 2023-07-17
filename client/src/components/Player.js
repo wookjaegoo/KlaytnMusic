@@ -40,36 +40,56 @@ const Player = ({
         tokenId:0,
         signKey:"",
     })
-
-    useEffect(()=>{
-
-        setNftInfo({
-            ...nftData,
-            receiver_address:"0x500425D26A121c9b1Ad64343f9651B3f70937C3b",
-            amount:100000000000000,
-            tokenId:1,
-            signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
-          });
-        console.log(nftData)
-    },[])
-    
+   
+    // if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
+    // {
+    //      src= songs[selectedSongId].url;      
+    // }
 
     if(songs.songs !== 'undefined' && songs.songs != null)
     {
          src= songs.songs[selectedSongId].url;      
     }
 
+    const songOwnerSender =async (tokenId) =>
+    {
+      const owner_Address = await contract.methods.owner(tokenId).call();
+      setNftInfo({
+        ...nftData,
+        receiver_address:owner_Address,
+      });      
+    }
+
+    useEffect(()=>{
+        
+        if(songs.songs !== 'undefined' && songs.songs != null)
+        {        
+        setNftInfo({
+            ...nftData,
+            receiver_address:nftData.receiver_address,
+            amount:100000000000000,
+            tokenId:songs.songs[selectedSongId].id,
+            signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
+            
+          });
+          songOwnerSender(nftData.tokenId)
+          console.log(nftData.receiver_address)
+          //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
+        
+        }
     
-//     if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
-//   {
-//        src= songs[selectedSongId].url;      
-//   }
+    },[selectedSongId])
 
-  if(songs.songs !== 'undefined' && songs.songs != null)
-  {
-       src= songs.songs[selectedSongId].url;      
-  }
 
+    // if(songs.songs !== 'undefined' && songs.songs != null)
+    // {
+    //      src= songs.songs[selectedSongId].url;      
+    // }
+
+
+    
+
+  
 
     const spaceDownFunc = (event) => {
         if (event.keyCode === 32 && !clicked) {
@@ -108,20 +128,22 @@ const Player = ({
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
 
             //여기서 axios 로직 7/9
-            axios({
-                url:`http://localhost:3001/api/play-transaction`,
-                method:"POST",
-                data:{
-                    receiver_address:nftData.receiver_address,
-                    amount:nftData.amount,
-                    tokenId:nftData.tokenId,
-                    signKey:nftData.signKey
-                },
-                withCredentials:true,
-            }).catch((error)=>
-            {
-                console.log(error)
-            })
+            console.log( selectedSongId)
+           
+            // axios({
+            //     url:`http://localhost:3001/api/play-transaction`,
+            //     method:"POST",
+            //     data:{
+            //         receiver_address:nftData.receiver_address,
+            //         amount:nftData.amount,
+            //         tokenId:nftData.tokenId,
+            //         signKey:nftData.signKey
+            //     },
+            //     withCredentials:true,
+            // }).catch((error)=>
+            // {
+            //     console.log(error)
+            // })
             //  const txobject=caver.abi.encodeFunctionCall(
             //     {
             //         "inputs": [

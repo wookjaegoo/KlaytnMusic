@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 var readlineSync = require('readline-sync');
 
-const {sendTokenTransaction,requestSongData}=require("../../controllers")
+const {sendTokenTransaction,
+  requestSongData,
+  requestSongOwner}=require("../../controllers")
 
 router.get('/', (req, res)=>{
   res.send({ test: "bye"});
@@ -16,6 +18,8 @@ router.get('/songList',requestSongData);
 
 
 router.post('/play-transaction',sendTokenTransaction)
+
+router.post('/songOwner',requestSongOwner)
 
 // router.post('/play-transaction', (req, res) => {
 //   console.log(req.body)
