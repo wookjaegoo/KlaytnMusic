@@ -113,19 +113,9 @@ const songDataSender =async ()=>
 
 }
 
-const songOwnerSender =async (tokenId) =>
-{
-  
-  const {abi} = artifact;
-  const contractInstance = new caver.contract(abi,NFT_ADDRESS)
-  const owner_Address = await contractInstance.methods.owner(tokenId).call();
-  return owner_Address;
-
-}
 
 module.exports={
     sendTransaction,
     genWallet,
     songDataSender,
-    songOwnerSender
 }

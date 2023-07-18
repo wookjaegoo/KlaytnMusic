@@ -27,7 +27,7 @@ console.log(songs)
     <React.Fragment>
     
             <SongListHeader />
-            <SongList songs={songs} />
+            <SongList songs={songs} contract={contract}/>
             <SongDetail songs={{songs}} />
             {/* <Player /> */}
             <a href="#focused" id="focus-link" hidden>

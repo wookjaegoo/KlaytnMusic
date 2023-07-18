@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import "./SongItem.css";
 import { connect, useDispatch } from "react-redux";
-import { selectSong } from "../actions";
+import { selectSong,setNftData } from "../actions";
+import axios from "axios";
 
-const SongItem = ({ song, index, selectSong, selectedSongId, playerState }) => {
+const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftData,contract}) => {
     const [, setHovered] = useState(false);
     const dispatch = useDispatch();
-    //songs 파일을 여기서넘겨받는건 아닌거같고..song을 어디서 props으로 던져주는지
 
     const selector = () => {
         return (
@@ -29,6 +29,33 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState }) => {
 
     // Set song as active
     const now_selected = selectedSongId === song.id ? "active" : "";
+
+
+    const songOwnerSender =async (tokenId) =>
+    {
+        if(tokenId!=='undefined')
+        {
+            const owner_Address = await contract.methods.owner(tokenId).call();  
+            nftData.receiver_address=owner_Address;
+            dispatch({ type: "SET_NFT_DATA", payload:nftData });
+        }
+    }
+
+    useEffect(()=>{
+        
+        if(song !== 'undefined' && song != null)
+        {       
+          nftData.tokenId=selectedSongId
+          songOwnerSender(nftData.tokenId)
+          console.log(nftData)
+          dispatch({ type: "SET_NFT_DATA", payload:nftData });
+
+          //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
+        
+        }
+    
+    },[selectedSongId,dispatch])
+
 
     // set the gif
     const phaser = () => {
@@ -55,7 +82,25 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState }) => {
             onMouseLeave={() => setHovered(false)}
             onClick={() => {
                 selectSong(song);
+                //노래 songitem클릭하면 시작하는 부분 player.js의 play버튼과 똑같은부분 여기서도 tr처리해주어야함
+                
                 dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
+                axios({
+                    url:`http://localhost:3001/api/play-transaction`,
+                    method:"POST",
+                    data:{
+                        receiver_address:nftData.receiver_address,
+                        amount:nftData.amount,
+                        tokenId:nftData.tokenId,
+                        signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56"
+                    },
+                    withCredentials:true,
+                }).catch((error)=>
+                {
+                    console.log(error)
+                })
+                
+
             }}
         >
             {phaser()}
@@ -70,7 +115,8 @@ const mapStateToProps = (state) => {
     return {
         selectedSongId: state.selectedSongId,
         playerState: state.playerState,
+        nftData:state.nftData
     };
 };
 
-export default connect(mapStateToProps, { selectSong })(SongItem);
+export default connect(mapStateToProps, { selectSong,setNftData })(SongItem);

@@ -13,7 +13,26 @@ import { combineReducers } from "redux";
    
 //     return songs;
 // };
+const initialNftData = {
+    receiver_address: "",
+    amount: 100000000000000,
+    tokenId: 0,
+    signKey: "",
+};
 
+const nftDataReducer = (nftData = initialNftData, action) => {
+    if (action.type === "SET_NFT_DATA") {
+        return {
+            ...nftData,
+            receiver_address: action.payload.receiver_address,
+            amount: action.payload.amount,
+            tokenId: action.payload.tokenId,
+            signKey: action.payload.signKey,
+        };
+    }
+    // 다른 액션들에 대한 처리 추가 가능
+    return nftData;
+};
 
 
 const selectedSongIdReducer = (selectedSongId = 0, action) => {
@@ -65,6 +84,7 @@ export default combineReducers({
     volume: volumeReducer,
     duration: durationReducer,
     currentLocation: currentLocationReducer,
+    nftData:nftDataReducer,
     
 });
 

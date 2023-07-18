@@ -19,7 +19,6 @@ router.get('/songList',requestSongData);
 
 router.post('/play-transaction',sendTokenTransaction)
 
-router.post('/songOwner',requestSongOwner)
 
 // router.post('/play-transaction', (req, res) => {
 //   console.log(req.body)

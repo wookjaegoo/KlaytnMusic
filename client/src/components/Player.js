@@ -2,7 +2,7 @@ import "./Player.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { forwardsSvg, backwardsSvg, shuffleSvg } from "../svg";
-import { setPlayerState, selectSongById } from "../actions";
+import { setPlayerState, selectSongById,setNftData } from "../actions";
 import Progress from "./ProgressBar";
 import SongTime from "./SongTime";
 import caver from "../klaytn/caver";
@@ -23,6 +23,7 @@ const Player = ({
     contract2,
     accounts,
     web3,
+    nftData
 }) => {
 
     //대안임 이함수는 solidity에서 ㄴ정의한 transfer이하의 setaddr 이하메소드가 
@@ -34,13 +35,6 @@ const Player = ({
     const audioRef = useRef();
     let clicked = false;
 
-    const [nftData,setNftInfo]= useState({
-        receiver_address:"",
-        amount:0,
-        tokenId:0,
-        signKey:"",
-    })
-   
     // if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
     // {
     //      src= songs[selectedSongId].url;      
@@ -53,29 +47,21 @@ const Player = ({
 
     const songOwnerSender =async (tokenId) =>
     {
-      const owner_Address = await contract.methods.owner(tokenId).call();
-      setNftInfo({
-        ...nftData,
-        receiver_address:owner_Address,
-      });      
+      const owner_Address = await contract.methods.owner(tokenId).call();  
+      nftData.receiver_address=owner_Address;
+      dispatch({ type: "SET_NFT_DATA", payload:nftData });
+   
     }
 
     useEffect(()=>{
         
         if(songs.songs !== 'undefined' && songs.songs != null)
-        {        
-        setNftInfo({
-            ...nftData,
-            receiver_address:nftData.receiver_address,
-            amount:100000000000000,
-            tokenId:songs.songs[selectedSongId].id,
-            signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
-            
-          });
+        {    
+          nftData.tokenId=selectedSongId
           songOwnerSender(nftData.tokenId)
-          console.log(nftData.receiver_address)
+          dispatch({ type: "SET_NFT_DATA", payload:nftData });
+
           //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
-        
         }
     
     },[selectedSongId])
@@ -130,20 +116,20 @@ const Player = ({
             //여기서 axios 로직 7/9
             console.log( selectedSongId)
            
-            // axios({
-            //     url:`http://localhost:3001/api/play-transaction`,
-            //     method:"POST",
-            //     data:{
-            //         receiver_address:nftData.receiver_address,
-            //         amount:nftData.amount,
-            //         tokenId:nftData.tokenId,
-            //         signKey:nftData.signKey
-            //     },
-            //     withCredentials:true,
-            // }).catch((error)=>
-            // {
-            //     console.log(error)
-            // })
+            axios({
+                url:`http://localhost:3001/api/play-transaction`,
+                method:"POST",
+                data:{
+                    receiver_address:nftData.receiver_address,
+                    amount:nftData.amount,
+                    tokenId:nftData.tokenId,
+                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
+                },
+                withCredentials:true,
+            }).catch((error)=>
+            {
+                console.log(error)
+            })
             //  const txobject=caver.abi.encodeFunctionCall(
             //     {
             //         "inputs": [
@@ -231,7 +217,6 @@ const Player = ({
         
         audioRef.current.play();
         // tryInit();
-        // console.log(audioRef.current.duration);
         document.getElementById("focus-link").click();
         window.history.pushState({}, "", "/");
 
@@ -313,9 +298,10 @@ const mapStateToProps = (state) => {
         playerState: state.playerState,
         // songs: state.songs,
         volume: state.volume,
+        nftData:state.nftData
     };
 };
 
-export default connect(mapStateToProps, { setPlayerState, selectSongById })(
+export default connect(mapStateToProps, { setPlayerState, selectSongById,setNftData })(
     Player
 );

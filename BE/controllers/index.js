@@ -29,23 +29,9 @@ const requestSongData = async(req,res,next)=>
 
 };
 
-const requestSongOwner = async(req,res,next)=>
-{
-  console.log(req.body.tokenId)
-  const tokenId=req.body.tokenId
-  songOwnerSender(tokenId).then((result) => {
-    res.json(result);
-    console.log(result)
-  })
-  .catch((error) => {
-    console.log(error)
-  });
-
-};
 
 module.exports={
     sendTokenTransaction,
     requestSongData,
-    requestSongOwner
 }
 

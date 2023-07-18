@@ -39,3 +39,11 @@ export const setCurrentLocation = (val) => {
         payload: val,
     };
 };
+
+
+export const setNftData = (nftData) => {
+    return {
+        type: "SET_NFT_DATA",
+        payload: nftData,
+    };
+};
