@@ -3,8 +3,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 const test = require('./Router/test');
-const cors = require("cors")
-
+const cors = require("cors");
+const connect = require("../DB/index")
 
 app.use(cors(
     {
@@ -25,7 +25,9 @@ app.get('/', (req, res) => {
     const responseData = { message: 'Hello from the server!' };
     res.json(responseData);
   });
-  
+
+  connect(); 
+
 
 
 const port=3001; //React가 3000번 포트를 사용하기 때문에 node 서버가 사용할 포트넘버는 다른 넘버로 지정해준다.
