@@ -81,6 +81,12 @@ const NavBar = () => {
                             Topchart
                         </Link>
                     </li>
+
+                    <li className='nav-item'>
+                        <Link to='/Register' className='nav-links' onClick ={closeMobileMenu}>
+                        Register
+                        </Link>
+                    </li>
                 </ul>
         
 

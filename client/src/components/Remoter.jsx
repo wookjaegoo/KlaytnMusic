@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 import Main from './Main';
 import Profile from './Profile'
 import Topchart from './Topchart';
-
+import ClientSignup from './ClientSignUp';
 function Remoter()
 {
  
@@ -17,6 +17,8 @@ function Remoter()
     <BrowserRouter>
       <NavBar/>
         <Routes element={<NavBar/>}>
+        <Route path='/Register' element={<ClientSignup/>} /> 
+          
           <Route path='/Topchart' element={<Topchart />} /> 
           
           <Route path='/Footer' element={<Footer/>}/> 
