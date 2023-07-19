@@ -87,6 +87,12 @@ const NavBar = () => {
                         Register
                         </Link>
                     </li>
+
+                    <li className='nav-item'>
+                        <Link to='/SignIn' className='nav-links' onClick ={closeMobileMenu}>
+                        SignIn
+                        </Link>
+                    </li>
                 </ul>
         
 

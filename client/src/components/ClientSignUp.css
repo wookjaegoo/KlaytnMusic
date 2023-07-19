@@ -1,3 +1,11 @@
+
+.signup{
+  
+display: grid;
+grid-column: 5/9;
+grid-row: 3/6;
+
+}
 .issuersignup--title {
   font-size: 2rem;
   font-weight: 700;

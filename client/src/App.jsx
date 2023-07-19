@@ -11,6 +11,10 @@ import { useEffect,useState } from "react";
 function App() {
   
   const [songs, updateSong] = useState();
+  const [type, setType] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({});
+
 
   const callApi = async()=>{
     axios.get("http://localhost:3001/api")
@@ -24,16 +28,34 @@ function App() {
       updateSong(res.data)
       console.log(songs)})
     .catch(error=>{console.error('요청실패',error)});
+    
   };
 
   useEffect(()=>{
     callApi();
   }, []);
 
+  
+  // useEffect(() => {
+  //   axios({
+  //     url: `http://localhost:3001/api/accesstoken`,
+  //     method: "GET",
+  //     withCredentials: true,
+  //   })
+  //     .then((data) => {
+  //       setType(data.data.type || "");
+  //       // setUser(data.data.user || {});
+  //       console.log(type)
+  //       setIsLoading(false);
+  //     })
+  //     .catch(() => {
+  //       setIsLoading(false);
+  //     });
+  // }, [type]);
+  // useEffect(() => {});
+
 
   const{state: {contract,account,contract2} } = useEth();
-  // console.log(songs)
-
   //백에서 songs던지는 로직으로 수정 7/17
 
   return (

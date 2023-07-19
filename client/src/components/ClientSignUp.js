@@ -41,11 +41,12 @@ const ClientSignup = () => {
       message.error("비밀번호를 형식에 맞춰 정확히 입력해주세요.");
     } else if (!isCorrect) {
       message.error("비밀번호 확인이 일치하지 않습니다");
-    } else if (!/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| |]+$/.test(clientInfo.title)) {
-      message.error("기관명을 정확히 입력해주세요.");
-    } else if (clientInfo.registNumber === "") {
-      message.error("사업자 등록번호를 입력해주세요.");
     } 
+    // else if (!/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| |]+$/.test(clientInfo.title)) {
+    //   message.error("기관명을 정확히 입력해주세요.");
+    // } else if (clientInfo.registNumber === "") {
+    //   message.error("사업자 등록번호를 입력해주세요.");
+    // } 
     else {
       let res = await axios({
         url: `http://localhost:3001/api/register-client`,
@@ -67,7 +68,7 @@ const ClientSignup = () => {
   };
 
   return (
-    <div cl>
+    <div className="signup">
       <div className="issuersignup--title">회원 가입</div>
       
       <Row className="issuersignup--row">
@@ -153,7 +154,7 @@ const ClientSignup = () => {
           </div>
         </Col>
       </Row>
-      <Row className="issuersignup--row">
+      {/* <Row className="issuersignup--row">
         <Col span={6} className="signup--col">
           사업자 등록번호
         </Col>
@@ -165,13 +166,13 @@ const ClientSignup = () => {
             id="registNumber"
           />
         </Col>
-      </Row>
-      <Row>
+      </Row> */}
+      {/* <Row>
         <Col span={18} offset={6}>
           <div className="validate--label">사업자 등록번호를 입력해주세요.</div>
         </Col>
-      </Row>
-      <Row className="issuersignup--row">
+      </Row> */}
+      {/* <Row className="issuersignup--row">
         <Col span={6} className="signup--col">
           기관소개
         </Col>
@@ -183,7 +184,7 @@ const ClientSignup = () => {
             id="desc"
           />
         </Col>
-      </Row>
+      </Row> */}
      
       <Row className="holdersignup--row">
         <Col span={6} style={{ display: "flex" }}>

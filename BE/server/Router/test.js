@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
+const verifyToken = require("../../utils/VerifyToken")
 const {sendTokenTransaction,
   requestSongData,
   registerClient,
-  loginClient}=require("../../controllers")
+  loginClient,getAccessToken}=require("../../controllers")
 
 router.get('/', (req, res)=>{
   res.send({ test: "bye"});
@@ -34,5 +34,17 @@ router.post('/login-client',loginClient)
 //       console.log(error)
 //     });
 // });
+
+
+/*
+    @ dev : Get AccessToken
+    @ desc : 
+         - 현재 로그인한 사용자의 AccessToken을 반환합니다.
+         - Front에서 로그인을 유지하기 위해 사용됩니다.
+    @ subject : Issuer, Holder, Verifier
+*/ 
+router.get('/accesstoken' ,verifyToken, getAccessToken )
+
+
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const IssuerSchema = new mongoose.Schema({
+const ClientSchema = new mongoose.Schema({
     title : {
         type : String,
         required : true,
@@ -24,4 +24,4 @@ const IssuerSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model("Issuer", IssuerSchema);
+module.exports = mongoose.model("Client", ClientSchema);

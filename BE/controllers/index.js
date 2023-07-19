@@ -79,7 +79,7 @@ const loginClient = async (req, res, next) => {
     if (!client) return next(createError(404, "Issuer Not Found"));
 
     // 비밀번호 검증 로직
-    const isCorrect = await bcrypt.compare(req.body.password, issuer.password);
+    const isCorrect = await bcrypt.compare(req.body.password, client.password);
     if (!isCorrect) return next(createError(400, "Wrong Password"));
 
     // 로그인 정보가 올바른 경우
@@ -87,7 +87,6 @@ const loginClient = async (req, res, next) => {
     const token = jwt.sign(
       { id: client._id, type: "client" },
       process.env.JWT_SECRET,
-      { client: "DIDNOW", expiresIn: "30m" }
     );
     const { password, ...others } = client._doc;
 
@@ -103,10 +102,27 @@ const loginClient = async (req, res, next) => {
   }
 };
 
+const getAccessToken = async (req, res, next) => {
+  try {
+    switch (req.user.type) {
+      case "client":
+        const client = await Client.findById(req.user.id);
+        return res.status(200).json({type:req.user.type,user:client});
+      default:
+        return next(createError(313, "User Not Found"));
+        
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports={
     sendTokenTransaction,
     requestSongData,
     registerClient,
-    loginClient
+    loginClient,
+    getAccessToken,
 }
 
