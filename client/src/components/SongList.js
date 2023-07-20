@@ -12,7 +12,7 @@ import SongItem from "./SongItem";
 
 
 
-const SongList = ({ songs = [] ,contract}) => {
+const SongList = ({ songs = [] ,contract,user}) => {
     //index 파라미터 박으면 map 메소드에 디폴트로 song 객체마다 순번을 매겨주는듯함
     if(songs !== 'undefined' && songs != null)
   {
@@ -21,7 +21,7 @@ const SongList = ({ songs = [] ,contract}) => {
       
     const songTags = songs.map((song, index) => {
         
-        return <SongItem song={song} key={index} index={index} contract={contract} />;
+        return <SongItem song={song} key={index} index={index} contract={contract} user={{user}}/>;
     });
     return <div id="song-list">{songTags}</div>;
      

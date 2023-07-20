@@ -1,38 +1,39 @@
-import React from 'react';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import Footer from "./Footer";
-import NavBar from './NavBar';
-import Main from './Main';
-import Profile from './Profile'
-import Topchart from './Topchart';
-import ClientSignup from './ClientSignUp';
-import SignIn from './SignIn';
-function Remoter()
-{
+// import {React,useState} from 'react';
+// import {BrowserRouter,Routes,Route} from 'react-router-dom';
+// import Footer from "./Footer";
+// import NavBar from './NavBar';
+// import Main from './Main';
+// import Profile from './Profile'
+// import Topchart from './Topchart';
+// import ClientSignup from './ClientSignUp';
+// import SignIn from './SignIn';
+// function Remoter()
+// {
  
-        
-    return(
-      //etheprovider 태그로 감싸야 state 값 정의가된다. 지금은 리모터에서 감은게 main 
-      //profile제작했을때에도 적용이 되어야한다.
-      
-    <BrowserRouter>
-      <NavBar/>
-        <Routes element={<NavBar/>}>
-        <Route path='/SignIn' element={<SignIn/>} /> 
-        
-        <Route path='/Register' element={<ClientSignup/>} /> 
-          
-          <Route path='/Topchart' element={<Topchart />} /> 
-          
-          <Route path='/Footer' element={<Footer/>}/> 
-          <Route path='/' element={<Main/>}/>
-          <Route path='/Profile' element={<Profile />}/>
-        </Routes>
-    </BrowserRouter>
-       
-    
-    );
-    
-}
 
-export default Remoter;
+
+        
+//     return(
+
+//     <BrowserRouter>
+//       <NavBar/>
+//         <Routes>
+//         <Route path='/SignIn' element={<SignIn/>} /> 
+        
+//         <Route path='/Register' element={<ClientSignup/>} /> 
+          
+//           <Route path='/Topchart' element={<Topchart />} /> 
+          
+//           <Route path='/Footer' element={<Footer/>}/> 
+//           <Route path='/' element={<Main/>}/>
+//           <Route path='/Profile' element={<Profile />}/>
+//         </Routes>
+
+        
+//     </BrowserRouter>
+
+//     );
+    
+// }
+
+// export default Remoter;

@@ -71,7 +71,7 @@ const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
     from:sender.address,
     to: AMARANTH_ADDRESS,
     input:_Input,
-    gas: 1000000000,
+    gas: 10000000,
  });
  const signed=await caver.wallet.sign(sender.address,executionTx);
 //  const encoded=tx.getRLPEncoding();

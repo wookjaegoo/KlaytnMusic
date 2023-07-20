@@ -7,6 +7,7 @@ import reducers from "./reducers";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import EthProvider from './contexts/EthContext/EthProvider';
+import { BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,7 +22,11 @@ root.render(
     )}> 
     
     <EthProvider>
+    <BrowserRouter>
+
     <App />
+
+    </BrowserRouter>
 
     </EthProvider>   
      

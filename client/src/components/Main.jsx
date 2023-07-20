@@ -8,7 +8,7 @@ import songs from "../data/songs.json"
 
 
 
-function Main()
+function Main( {user})
 {
   
 
@@ -27,7 +27,7 @@ console.log(songs)
     <React.Fragment>
     
             <SongListHeader />
-            <SongList songs={songs} contract={contract}/>
+            <SongList songs={songs} contract={contract} user={user}/>
             <SongDetail songs={{songs}} />
             {/* <Player /> */}
             <a href="#focused" id="focus-link" hidden>

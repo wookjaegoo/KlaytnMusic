@@ -23,7 +23,8 @@ const Player = ({
     contract2,
     accounts,
     web3,
-    nftData
+    nftData,
+    user
 }) => {
 
     //대안임 이함수는 solidity에서 ㄴ정의한 transfer이하의 setaddr 이하메소드가 
@@ -34,11 +35,15 @@ const Player = ({
     const [shuffled, setShuffled] = useState(false);
     const audioRef = useRef();
     let clicked = false;
-
     // if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
     // {
     //      src= songs[selectedSongId].url;      
     // }
+
+    if(user.user !== 'undefined' && user.user != null)
+    {
+    }
+
 
     if(songs.songs !== 'undefined' && songs.songs != null)
     {
@@ -114,7 +119,7 @@ const Player = ({
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
 
             //여기서 axios 로직 7/9
-            console.log( selectedSongId)
+            console.log( user)
            
             axios({
                 url:`http://localhost:3001/api/play-transaction`,
@@ -123,7 +128,8 @@ const Player = ({
                     receiver_address:nftData.receiver_address,
                     amount:nftData.amount,
                     tokenId:nftData.tokenId,
-                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef"
+                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef",
+                    clientId:user.user._id
                 },
                 withCredentials:true,
             }).catch((error)=>

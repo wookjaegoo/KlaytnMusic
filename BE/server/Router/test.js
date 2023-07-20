@@ -4,7 +4,9 @@ const verifyToken = require("../../utils/VerifyToken")
 const {sendTokenTransaction,
   requestSongData,
   registerClient,
-  loginClient,getAccessToken}=require("../../controllers")
+  loginClient,
+  getAccessToken,
+  logout}=require("../../controllers")
 
 router.get('/', (req, res)=>{
   res.send({ test: "bye"});
@@ -23,9 +25,10 @@ router.post('/register-client',registerClient)
 
 router.post('/login-client',loginClient)
 
+router.post('/logout', verifyToken, logout)
+
 // router.post('/play-transaction', (req, res) => {
 //   console.log(req.body)
-//   //ㅅㅂ 바디 부분 이렇게 짤라서보내라고..?
 //   sendTransaction(req.body.receiver_address,req.body.amount,req.body.tokenId,req.body.signKey)
 //     .then((result) => {
 //       res.json(result);

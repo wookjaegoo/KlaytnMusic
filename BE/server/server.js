@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     res.json(responseData);
   });
 
-  connect(); 
+  connect();    
 
 // console.log(JWT_SECRET)
 

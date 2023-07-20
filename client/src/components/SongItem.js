@@ -4,7 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import { selectSong,setNftData } from "../actions";
 import axios from "axios";
 
-const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftData,contract}) => {
+const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftData,contract,user}) => {
     const [, setHovered] = useState(false);
     const dispatch = useDispatch();
 
@@ -40,8 +40,13 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
             dispatch({ type: "SET_NFT_DATA", payload:nftData });
         }
     }
+    
+    
 
     useEffect(()=>{
+
+        
+    
         
         if(song !== 'undefined' && song != null)
         {       
@@ -54,7 +59,7 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
         
         }
     
-    },[selectedSongId,dispatch])
+    },[selectedSongId,user,dispatch])
 
 
     // set the gif
@@ -92,7 +97,9 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
                         receiver_address:nftData.receiver_address,
                         amount:nftData.amount,
                         tokenId:nftData.tokenId,
-                        signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56"
+                        signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
+                        clientId:user.user._id
+
                     },
                     withCredentials:true,
                 }).catch((error)=>

@@ -1,21 +1,32 @@
-import React from "react";
-import {useEffect,useState} from 'react'
+import {React,useEffect,useState} from 'react';
+import {useNavigate,useLocation} from 'react-router-dom';
+import axios from "axios";
 import "./NavBar.css";
 import metadata from "../data/metadata.json";
 import { Link } from 'react-router-dom';
-import {Button} from './Button';
+import {message,Layout} from "antd";
+import SideMenu from './Sidemenu';
 
 
 
-
-
-const NavBar = () => {
+const NavBar = ({logout,type}) => {
 
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    
+  // const [user, setUser] = useState({});
+  // const [type, setType] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const {Sider } = Layout;
+
+ 
+
+  // const navigate = useNavigate();
     
     const showButton = () => {
         if(window.innerWidth <= 960){
@@ -33,8 +44,7 @@ const NavBar = () => {
 
     window.addEventListener('resize', showButton);
 
-
-
+  
     return (
     <div className="navbar">
             <div className = 'navbar-container'>
@@ -52,6 +62,15 @@ const NavBar = () => {
                 </a>
             </div> */}
         </div>
+
+
+  {/* issuer, verifier 화면에서만 사이드메뉴 렌더링 */}
+  {location.pathname === "/" ? null : (
+    <Sider width={"100"} >
+      <SideMenu type={type} logout={logout} />
+    </Sider>
+  )}
+
 
         
             <div className='menu-icon' onClick={handleClick}>
@@ -89,7 +108,7 @@ const NavBar = () => {
                     </li>
 
                     <li className='nav-item'>
-                        <Link to='/SignIn' className='nav-links' onClick ={closeMobileMenu}>
+                        <Link to='/SignIn' className='nav-links' onClick ={closeMobileMenu} >
                         SignIn
                         </Link>
                     </li>

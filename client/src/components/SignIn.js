@@ -74,8 +74,8 @@ type="client"
                 type: userObj.data.type,
 
               });
-            //   setUser(JSON.parse(userData));
-            //   setType(userObj.data.type);
+              setUser(JSON.parse(userData));
+              setType(userObj.data.type);
               navigate("/");
               messageInfo("로그인 성공!");
               setIsLoading(false);
@@ -135,7 +135,7 @@ type="client"
                   onKeyDown={isEnter}
                 />
                 <Row style={{ margin: "10px 0px" }}>
-                  <Col span={10} style={{ fontWeight: 700 }}>
+                  <Col span={30} style={{ fontWeight: 700 }}>
                     <Link to="/Register">회원이 아니신가요?</Link>
                   </Col>
                 </Row>

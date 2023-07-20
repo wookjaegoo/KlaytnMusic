@@ -9,9 +9,13 @@ const sendTokenTransaction = async(req,res,next)=>
     const receiver_address=req.body.receiver_address;
     const amount=req.body.amount;
     const tokenId=req.body.tokenId;
-    const signKey=req.body.signKey;
+    // const signKey=req.body.signKey;
 
-    sendTransaction(receiver_address,amount,tokenId,signKey).then((result) => {
+
+
+    const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId,});
+    console.log(clientWallet.privateKey)
+    await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
         res.json(result);
       })
       .catch((error) => {
@@ -102,6 +106,18 @@ const loginClient = async (req, res, next) => {
   }
 };
 
+const logout = (req, res, next) => {
+  try {
+    res
+      .clearCookie("AccessToken")
+      .status(200)
+      .json("성공적으로 Logout 되었습니다.");
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 const getAccessToken = async (req, res, next) => {
   try {
     switch (req.user.type) {
@@ -124,5 +140,6 @@ module.exports={
     registerClient,
     loginClient,
     getAccessToken,
+    logout,
 }
 
