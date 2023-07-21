@@ -253,7 +253,7 @@ const Player = ({
 const mapStateToProps = (state) => {
     return {
         selectedSongId: state.selectedSongId,
-        // defaultSong: state.songs[0],
+        // defaultSong:state.songs.songs[0],
         playerState: state.playerState,
         // songs: state.songs,
         volume: state.volume,

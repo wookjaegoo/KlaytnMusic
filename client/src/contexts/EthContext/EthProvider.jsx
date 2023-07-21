@@ -102,9 +102,17 @@ export function EthProvider({ children }) {
             let songss = await response.json();
             
             songs.push(songss);
+            const listen_Count = await contract.methods.howmanyListen(i).call();
+            songs[i].listenCount = parseInt(listen_Count);
 
           }
+          const sortedSongs = songs.slice().sort((a, b) => b.listenCount - a.listenCount);
+
+          const updatedSongs = sortedSongs.map((song, index) => {
+            return { ...song, index }; // 해당 객체의 index 프로퍼티를 갱신하여 반환
+          });
           songdata=JSON.stringify(songs)
+          console.log(updatedSongs)
 
 
           //player 한테는 songs를 넘겨주고 songdata 는 리스트니까 songlist한테 넘겨줘야함

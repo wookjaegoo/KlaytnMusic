@@ -92,7 +92,7 @@ const SongDetail = ({
 const mapStateToProps = (state) => {
   return {
     selectedSongId: state.selectedSongId,
-    // defaultSong:songs[0]
+    // defaultSong:state.songs.songs[0],
     // songs: state.songs,
   };
 };

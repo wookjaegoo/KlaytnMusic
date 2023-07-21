@@ -10,10 +10,12 @@
 #top-list {
     display: grid;
     grid-column: 3/10;
-    grid-row: 3/8;
+    grid-row: 2/8;
     overflow-y: auto;
     overflow-x: hidden;
     padding-left: 2px;
+    
+    height: fit-content;
 }
 
 #song-list::-webkit-scrollbar {
@@ -89,7 +91,9 @@
     font-size: 50px;
     grid-column: 1/12;
     text-align: center;
-    grid-row: 2/3;
+    grid-row: 1/2;
+    
+    height: fit-content;
   }
   
   .flux {

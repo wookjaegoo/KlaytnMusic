@@ -73,7 +73,7 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
                 </div>
             );
         } else {
-            return <div className="index">{index + 1}</div>;
+            return <div className="index">{index }</div>;
         }
     };
     return (

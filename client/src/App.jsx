@@ -21,9 +21,8 @@ import SignIn from './components/SignIn';
 function App() {
   
   const [songs, updateSong] = useState();
-
+  const [sortedSongs, sortSong] = useState();
   
-    
   const [user, setUser] = useState({});
   const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -46,15 +45,29 @@ function App() {
     axios.get("http://localhost:3001/api/songList")
     .then((res)=>{
       updateSong(res.data)
+      const output=res.data
+      topSong(output)
+      console.log(sortedSongs)
       console.log(songs)})
     .catch(error=>{console.error('요청실패',error)});
     
   };
 
   useEffect(()=>{
-    callApi();
+    callApi()
+    
   }, [type]);
 
+  const topSong =async(param) =>
+  {
+    
+    const sortedSongs = param.slice().sort((a, b) => b.listenCount - a.listenCount);
+    const updatedSongs = sortedSongs.map((song, index) => {
+          return { ...song, index }; // 해당 객체의 index 프로퍼티를 갱신하여 반환
+        });
+    sortSong(updatedSongs)
+
+  }
 
     useEffect(() => {
         axios({
@@ -104,13 +117,16 @@ function App() {
         <Routes>
         <Route path='/SignIn' element={<SignIn type={type} setType={setType} setUser={setUser}/>} /> 
         <Route path='/Register' element={<ClientSignup/>} /> 
-          <Route path='/Topchart' element={<Topchart />} /> 
+          <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract}  user={user}/>} /> 
           <Route path='/Footer' element={<Footer/>}/> 
           <Route path='/' element={<Main user={user} contract={contract} songs={songs}/>}/>
           <Route path='/Profile' element={<Profile />}/>
         </Routes>
 
       <Player songs={{songs}} contract={contract} account={account} contract2={contract2} user={{user}}/>
+      <a href="#focused" id="focus-link" hidden>
+                Go to playing element
+            </a>
     </React.Fragment>
     
   );

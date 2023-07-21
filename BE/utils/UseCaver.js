@@ -99,13 +99,16 @@ const songDataSender =async ()=>
   for (let i = 0; i < num ; i++) {
 
     const Writer = await contractInstance.methods.tokenURI(i).call();
-
+    const listen_Count = await contractInstance.methods.howmanyListen(i).call();
+    
     const response = await fetch(Writer);
     if (!response.ok)
       throw new Error(response.statusText);
     let songs = await response.json();
     
     songList.push(songs);
+    songList[i].listenCount = parseInt(listen_Count);
+
 
   }
 

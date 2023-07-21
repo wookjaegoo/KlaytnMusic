@@ -13,11 +13,10 @@ import React from "react";
 
 // export default SongList;
 
-    const Topchart = ({ songs = [] }) => {
-    const songTags = songs.map((song, index) => {
-        return <SongItem song={song} key={index} index={index} />;
-    });
-  
+    const Topchart = ({ songs = [] ,contract,user}) => {
+        const songTags = songs.map((song, index) => {
+            return <SongItem song={song} key={index} index={index} contract={contract} user={{user}}/>;
+        });
   
     return (
         
