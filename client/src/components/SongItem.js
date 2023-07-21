@@ -44,15 +44,12 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
     
 
     useEffect(()=>{
-
-        
     
-        
         if(song !== 'undefined' && song != null)
         {       
           nftData.tokenId=selectedSongId
           songOwnerSender(nftData.tokenId)
-          console.log(nftData)
+        //   console.log(nftData)
           dispatch({ type: "SET_NFT_DATA", payload:nftData });
 
           //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
@@ -97,7 +94,7 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
                         receiver_address:nftData.receiver_address,
                         amount:nftData.amount,
                         tokenId:nftData.tokenId,
-                        signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
+                        // signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
                         clientId:user.user._id
 
                     },

@@ -96,7 +96,6 @@ function App() {
 
   const{state: {contract,account,contract2} } = useEth();
   //백에서 songs던지는 로직으로 수정 7/17
-  console.log(user)
 
   return (
     <React.Fragment>
@@ -107,7 +106,7 @@ function App() {
         <Route path='/Register' element={<ClientSignup/>} /> 
           <Route path='/Topchart' element={<Topchart />} /> 
           <Route path='/Footer' element={<Footer/>}/> 
-          <Route path='/' element={<Main user={user}/>}/>
+          <Route path='/' element={<Main user={user} contract={contract} songs={songs}/>}/>
           <Route path='/Profile' element={<Profile />}/>
         </Routes>
 

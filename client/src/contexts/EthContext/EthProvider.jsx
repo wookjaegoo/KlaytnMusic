@@ -3,7 +3,7 @@ import Web3 from "web3";
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
 import caver from "../../klaytn/caver";
-import { prepare, request, getResult, getCardList } from 'klip-sdk'
+// import { prepare, request, getResult, getCardList } from 'klip-sdk'
 
 export function EthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -60,12 +60,13 @@ export function EthProvider({ children }) {
         
        
      
-        const web3 = new Web3(Web3.givenProvider || "ws://127.0.0.1:7545");
+        // const web3 = new Web3(Web3.givenProvider || "ws://127.0.0.1:7545");
         // const accounts = await web3.eth.requestAccounts();
         // const networkID = await web3.eth.net.getId();
         
-        const account = await window.klaytn.enable();
-        console.log(account)
+        // const account = await window.klaytn.enable();
+        // console.log(account)
+        //가상화폐지갑 사용 로직 백엔드 구성으로인해 필요없음 7/21
 
 
         const { abi } = artifact;
@@ -78,13 +79,13 @@ export function EthProvider({ children }) {
           // console.log(keyting)
           //pvkey 입력받고 caver.wallet에 모두 추가한뒤에 signedtr결제로직으로 구성해야함
           //이거로 클레이튼 계정만들기는 가능 signedtr할때 개인키 입력 부분이 문제 
-          contract = new caver.klay.Contract(abi,'0xfbb92bf30d685385d2f1d160242e66350482816a');
+          contract = new caver.contract(abi,"0xfbb92bf30d685385d2f1d160242e66350482816a");
+          console.log(contract)
+
           const counts = await contract.methods.owner(1).call();
-          console.log(counts)
           
           const count = await contract.methods.howmanyListen(1).call();
-          console.log(count)
-
+          
 
 
           // contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
@@ -115,7 +116,7 @@ export function EthProvider({ children }) {
         }
         dispatch({
           type: actions.init,
-          data: { artifact,web3,contract,account,songs,songdata}
+          data: { artifact,contract,songs,songdata}
         });
       }
     },[]);
@@ -129,8 +130,10 @@ export function EthProvider({ children }) {
           const {abi} = artifact2;
           let address2, contract2;
           try{
-            contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
-            
+            // contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
+            contract2 = new caver.contract(abi,"0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d");
+            console.log(contract2)
+
             
           }
           catch (err) {
@@ -145,20 +148,6 @@ export function EthProvider({ children }) {
       },[])
     
     
-    
-  // useEffect(() => {
-  //   const tryInit = async () => {
-  //     try {
-  //       const artifact2= require("../../contracts/Amaranthus.json")
-  //       init2(artifact2);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   tryInit();
-  // }, [init2]);
-
     
   useEffect(() => {
     const tryInit = async () => {
@@ -195,10 +184,10 @@ export function EthProvider({ children }) {
       init(state.artifact2);
 
     };
-    events.forEach(e => window.ethereum.on(e, handleChange));
-    return () => {
-      events.forEach(e => window.ethereum.removeListener(e, handleChange));
-    };
+    // events.forEach(e => window.ethereum.on(e, handleChange));
+    // return () => {
+    //   events.forEach(e => window.ethereum.removeListener(e, handleChange));
+    // };
   }, [init,state.artifact,state.artifact2]);
 
   // useEffect(() => {

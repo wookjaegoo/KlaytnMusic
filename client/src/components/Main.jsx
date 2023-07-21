@@ -4,11 +4,10 @@ import SongListHeader from "./SongListHeader";
 import SongList from "./SongList";
 // import songs from "../data/songs.json"
 import useEth from "../contexts/EthContext/useEth";
-import songs from "../data/songs.json"
 
 
 
-function Main( {user})
+function Main( {user,contract,songs})
 {
   
 
@@ -19,9 +18,8 @@ function Main( {user})
   //그냥 컨트랙트 다시 배포해보고 0번 1번 제대로 찍어서 실험해봐야할듯 json id 때문에 생기는걸수도잇음
   
 
-const{state: {contract,account,songs,songdata} } = useEth();
+// const{state: {songs} } = useEth();
 
-console.log(songs)
 
      return(
     <React.Fragment>
