@@ -25,11 +25,24 @@ app.use('/api', test);
 
 
 
-app.get('/', (req, res) => {
-    // 클라이언트에게 응답 데이터를 전송
-    const responseData = { message: 'Hello from the server!' };
-    res.json(responseData);
-  });
+// Error Handling
+app.use((err, req, res, next)=>{
+    const status = err.status || 500;
+    const message = err.message || "Something went wrong!";
+    res.status(status).json({
+      success : false,
+      status : status,
+      message : message,
+    })
+  })
+
+
+
+// app.get('/', (req, res) => {
+//     // 클라이언트에게 응답 데이터를 전송
+//     const responseData = { message: 'Hello from the server!' };
+//     res.json(responseData);
+//   });
 
   connect();    
 

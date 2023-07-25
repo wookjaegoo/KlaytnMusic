@@ -7,6 +7,7 @@ import Progress from "./ProgressBar";
 import SongTime from "./SongTime";
 import caver from "../klaytn/caver";
 import axios from "axios"
+import { message } from "antd";
 
 
 var src=''
@@ -119,7 +120,6 @@ const Player = ({
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
 
             //여기서 axios 로직 7/9
-            console.log( user)
            
             axios({
                 url:`http://localhost:3001/api/play-transaction`,
@@ -134,8 +134,15 @@ const Player = ({
                 withCredentials:true,
             }).catch((error)=>
             {
-                console.log(error)
-            })
+                if (error.response.status==500) {
+                    message.error("Transaction is locked");
+
+                  } else {
+                    message.error("미확인오류");
+                    console.log(error)
+
+                  }           
+                 })
           
             //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
             // console.log(output) < 서명받는 tr 2023 7/21
@@ -177,7 +184,7 @@ const Player = ({
         audioRef.current.play();
         // tryInit();
         document.getElementById("focus-link").click();
-        window.history.pushState({}, "", "/");
+        // window.history.pushState({}, "", "/");
 
     }, [selectedSongId, dispatch,]);
 

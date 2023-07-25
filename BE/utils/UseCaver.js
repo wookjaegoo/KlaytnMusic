@@ -75,8 +75,11 @@ const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
  });
  const signed=await caver.wallet.sign(sender.address,executionTx);
 //  const encoded=tx.getRLPEncoding();
- caver.rpc.klay.sendRawTransaction(signed).then(console.log);
+//  caver.rpc.klay.sendRawTransaction(signed).then(console.log);
+
+ const receipt=await caver.rpc.klay.sendRawTransaction(signed);
  //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
+ //await 붙이니까 next로 받아주는듯 비동기 처리에대한 확실한 이해가 필요함 
 
 }
 

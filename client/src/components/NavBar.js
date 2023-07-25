@@ -65,11 +65,12 @@ const NavBar = ({logout,type}) => {
 
 
   {/* issuer, verifier 화면에서만 사이드메뉴 렌더링 */}
-  {location.pathname === "/" ? null : (
+  {/* {location.pathname === "/" ? null : (
     <Sider width={"100"} >
       <SideMenu type={type} logout={logout} />
     </Sider>
-  )}
+  )} */}
+
 
 
         
@@ -101,7 +102,7 @@ const NavBar = ({logout,type}) => {
                         </Link>
                     </li>
 
-                    <li className='nav-item'>
+                    {/* <li className='nav-item'>
                         <Link to='/Register' className='nav-links' onClick ={closeMobileMenu}>
                         Register
                         </Link>
@@ -111,7 +112,12 @@ const NavBar = ({logout,type}) => {
                         <Link to='/SignIn' className='nav-links' onClick ={closeMobileMenu} >
                         SignIn
                         </Link>
-                    </li>
+                    </li> */}
+
+<Sider width={"100"} >
+      <SideMenu type={type} logout={logout} />
+    </Sider>
+
                 </ul>
         
 

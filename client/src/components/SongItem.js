@@ -3,6 +3,7 @@ import "./SongItem.css";
 import { connect, useDispatch } from "react-redux";
 import { selectSong,setNftData } from "../actions";
 import axios from "axios";
+import { message } from "antd";
 
 const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftData,contract,user}) => {
     const [, setHovered] = useState(false);
@@ -101,7 +102,11 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
                     withCredentials:true,
                 }).catch((error)=>
                 {
-                    console.log(error)
+                    if (error.response.status) {
+                        message.error("Transaction is locked");
+                      } else {
+                        message.error("미확인오류");
+                      }    
                 })
                 
 
@@ -110,7 +115,8 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
             {phaser()}
             <div className="name">{song.name}</div>
             <div className="author">{song.author}</div>
-            <div className="selector">{selector()}</div>
+            {/* <div className="selector">{selector()}</div> */}
+            <div>HowManyListen:{song.listenCount}</div>
         </div>
     );
 };

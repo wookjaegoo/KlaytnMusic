@@ -31,7 +31,11 @@ function Footer() {
   const[inputs, setInputs] =useState({song:'',writer:''});
   const {song ,writer} =inputs;
   const{state: { contract, account,web3 } } = useEth();
-  
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [dragging, setDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
   
 async function uploadFile(e) {
   const file = e.target.files[0]
@@ -45,12 +49,50 @@ async function uploadFile(e) {
     const url = `https://prnftmusic.infura-ipfs.io/ipfs/${added2.path}`
     ipfsurl=url
    updateFileUrl(url)
+   setSelectedFile(file);
+
    console.log(url)
 
   } catch (error) {
     console.log('Error uploading file: ', error)
   } 
 }
+
+const handleFileChange = (event) => {
+  const file = event.target.files[0];
+  setSelectedFile(file);
+};
+
+const handleDragOver = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  setDragging(true);
+};
+
+const handleDragLeave = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  setDragging(false);
+};
+
+const handleDrop = (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  setDragging(false);
+  const file = event.dataTransfer.files[0];
+  setSelectedFile(file);
+};
+
+const handleUpload = () => {
+  if (selectedFile) {
+    setUploading(true);
+    // 파일 업로드 로직을 이곳에 작성합니다.
+    // ...
+    // 업로드가 완료되면 아래와 같이 호출합니다.
+    setUploading(false);
+    setSelectedFile(null);
+  }
+};
 
 
 async function onChange2(e)
@@ -120,12 +162,45 @@ catch (error) {
 
 <div className='Procedure'>  
     
-      <h1>Drag your music</h1>
 
-            
-      <div>
-        
-      <div >
+
+
+
+      <div
+      className={`container ${dragging ? 'dragging' : ''}`}
+      style={{ '--dragging-display': dragging ? 'block' : 'none' }}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+    >
+            <h1>Drag your music</h1>
+
+      <div className="input-container">
+
+        {/* <input
+          type="file"
+          id="input-file"
+          className="input-file"
+          accept="audio/*"
+          onChange={handleFileChange}
+          disabled={uploading}
+        /> */}
+        <input type="file" id="input-file"       accept="audio/*" onChange={uploadFile}    style={{display:"none"}}         disabled={uploading}/>
+        <label for="input-file"  className='custom-btn' style={{color:'black'}}>UPLOAD MUSIC</label>
+
+
+      </div>
+      <button className="upload-btn" onClick={handleUpload} disabled={!selectedFile || uploading}>
+        {uploading ? '업로드 중...' : '음악 업로드'}
+      </button>
+{/*       
+      {
+        fileUrl
+      } */}
+      <p className={`drag-text ${dragging ? 'dragging' : ''}`}>여기에 파일을 드래그하여 업로드하세요</p>
+
+    </div>
+    <div >
       NAME <input name="song" placeholder='NAME' onChange={onChange2} value={song} style={{display:'inline-block'}} />
       </div>
       <div>
@@ -133,30 +208,13 @@ catch (error) {
      
         </div> 
 
-      <br>
-      </br>
-      
-      <input type="file" id="input-file" onChange={uploadFile}    style={{display:"none"}}/>
-      <label for="input-file"  className='custom-btn' style={{color:'black'}}>UPLOAD MUSIC</label>
-      
-      {/* <input type="file" id='profileupload1'  onChange={onChangeprofile1}  style={{display:"none"}}/>
-      <label for="profileupload1" className='custom-btn'> 등급 인증서 사진 </label>
-       */}
-
-      {
-        fileUrl
-      }
-
+        <div>
     
-      <div>
-    
-      <br />
-      <label for="jsonupload" onClick={deployNFT} id="json"  className='custom-btn2'  style={{color:'black'}}>DEPLOY NFT</label>
+    <label for="jsonupload" onClick={deployNFT} id="json"  className='custom-btn2'  style={{color:'black'}}>DEPLOY NFT</label>
+
   
-      <br />
-    
-      </div>
-      </div>
+    </div>
+
 
       </div>
 

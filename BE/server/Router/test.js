@@ -49,5 +49,4 @@ router.post('/logout', verifyToken, logout)
 router.get('/accesstoken' ,verifyToken, getAccessToken )
 
 
-
 module.exports = router;

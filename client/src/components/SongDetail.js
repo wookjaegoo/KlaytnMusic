@@ -16,7 +16,6 @@ const SongDetail = ({
   //이게 메인에서 넘겨줄대 배열json songs로 넘겨주면 songs=[]로 받으셈
   
   // var defaultSong=''
-  console.log(songs.songs)
 
   if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
   {

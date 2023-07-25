@@ -54,16 +54,14 @@ font-family: "Montserrat", sans-serif;
 
   
   font-family: 'Cafe24Ssurround';
-  background: rgba( 12, 12, 13, 0.75 );
+  background: white;
   
-  color: white;
-  
-  background-image:url("../../public/hoverpc.png");
+  border: solid;
+
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 0px );
   -webkit-backdrop-filter: blur( 0px );
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 height: 500px;
 width: 500px;
@@ -84,7 +82,6 @@ box-sizing: border-box;
   color: #38bdf8;
   background: rgba( 12, 12, 13, 0.75 );
   
-  background-image:url("../../public/hoverpc.png");
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 0px );
   -webkit-backdrop-filter: blur( 0px );
@@ -143,4 +140,28 @@ font-family: 'Cafe24Ssurround';
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
+}
+
+
+.container{
+  border-style: dashed;
+  border-color: grey;
+  height: 300px;
+  background-image:url("../../public/downlogo.png");
+  background-repeat: no-repeat;
+  
+
+}
+.container.dragging {
+  border-color: blue;
+}
+.drag-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+}
+.drag-text.dragging{
+  color: blue;
+
 }

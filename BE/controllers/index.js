@@ -3,24 +3,37 @@ const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
 const jwt = require("jsonwebtoken")
+const createError = require("../utils/Error");
+
 
 const sendTokenTransaction = async(req,res,next)=>
 {
-    const receiver_address=req.body.receiver_address;
-    const amount=req.body.amount;
-    const tokenId=req.body.tokenId;
-    // const signKey=req.body.signKey;
 
+    try {
+      const receiver_address=req.body.receiver_address;
+      const amount=req.body.amount;
+      const tokenId=req.body.tokenId;
+      // const signKey=req.body.signKey;
+  
+  
+  
+      const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId});
+  
+      // await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
+      //     res.json(result);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error)
+      //   });
+   const result= await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey)
+      res.json(result);
+      
+    } catch (error) {
+      next(error)
+      
+    }
 
-
-    const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId,});
-    console.log(clientWallet.privateKey)
-    await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
-        res.json(result);
-      })
-      .catch((error) => {
-        console.log(error)
-      });
+  
 
 };
 
