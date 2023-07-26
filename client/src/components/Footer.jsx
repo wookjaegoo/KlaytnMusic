@@ -5,6 +5,8 @@ import "./Footer.css"
 import useEth from "../contexts/EthContext/useEth";
 // const client2= create('/ip4/127.0.0.1/tcp/5001')
 import Caver from 'caver-js'
+import axios from 'axios';
+import { message } from "antd";
 
 let ipfsurl = ""
 let songimageurl=""
@@ -26,7 +28,7 @@ const client2 = create({
 
 
 
-function Footer() {  
+function Footer({user}) {  
   const [fileUrl, updateFileUrl] = useState("");
   const[inputs, setInputs] =useState({song:'',writer:''});
   const {song ,writer} =inputs;
@@ -36,7 +38,8 @@ function Footer() {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  
+ 
+ console.log(user) 
 async function uploadFile(e) {
   const file = e.target.files[0]
   
@@ -51,11 +54,11 @@ async function uploadFile(e) {
    updateFileUrl(url)
    setSelectedFile(file);
 
-   console.log(url)
 
   } catch (error) {
     console.log('Error uploading file: ', error)
   } 
+
 }
 
 const handleFileChange = (event) => {
@@ -81,16 +84,18 @@ const handleDrop = (event) => {
   setDragging(false);
   const file = event.dataTransfer.files[0];
   setSelectedFile(file);
+
 };
 
 const handleUpload = () => {
   if (selectedFile) {
+
     setUploading(true);
     // 파일 업로드 로직을 이곳에 작성합니다.
     // ...
     // 업로드가 완료되면 아래와 같이 호출합니다.
     setUploading(false);
-    setSelectedFile(null);
+    // setSelectedFile(null);
   }
 };
 
@@ -145,9 +150,31 @@ async function deployNFT(e)
   const added = await client2.add(json)
   
   const url = `https://prnftmusic.infura-ipfs.io/ipfs/${added.path}`
-  const output = await contract.methods.safeMint(account[0],url).send({from:account[0], gas: 10000000});
+
+
+  axios({
+    url:`http://localhost:3001/api/nft-transaction`,
+    method:"POST",
+    data:{
+        seder_adress:user.walletAddress,
+        nftUrl:url
+
+    },
+    withCredentials:true,
+}).catch((error)=>
+{
+  console.log(error)
+    if (error.response.status) {
+        message.error("onlyowner메소드 때문인듯");
+      } else {
+        message.error("미확인오류");
+      }    
+})
+
+
+  // const output = await contract.methods.safeMint(account[0],url).send({from:account[0], gas: 10000000});
   
-  console.log(output)
+  // console.log(output)
 } 
 catch (error) {  
    
@@ -162,13 +189,9 @@ catch (error) {
 
 <div className='Procedure'>  
     
-
-
-
-
       <div
       className={`container ${dragging ? 'dragging' : ''}`}
-      style={{ '--dragging-display': dragging ? 'block' : 'none' }}
+      style={{ '--dragging-display': dragging ? 'block' : 'none' } }
       onDrop={handleDrop}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
@@ -191,14 +214,13 @@ catch (error) {
 
       </div>
       <button className="upload-btn" onClick={handleUpload} disabled={!selectedFile || uploading}>
-        {uploading ? '업로드 중...' : '음악 업로드'}
+        {uploading ? '업로드 중...' : ''}
       </button>
-{/*       
-      {
-        fileUrl
-      } */}
-      <p className={`drag-text ${dragging ? 'dragging' : ''}`}>여기에 파일을 드래그하여 업로드하세요</p>
 
+      <p className={`drag-text ${dragging ? 'dragging' : ''}`}>여기에 파일을 드래그하여 업로드하세요</p>
+      <img src='downlogo.png' ></img>
+      <div>      {selectedFile ? selectedFile.name: ''}
+</div>
     </div>
     <div >
       NAME <input name="song" placeholder='NAME' onChange={onChange2} value={song} style={{display:'inline-block'}} />

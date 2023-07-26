@@ -1,7 +1,7 @@
 import { useState,useEffect} from "react";
 import "./SongItem.css";
 import { connect, useDispatch } from "react-redux";
-import { selectSong,setNftData } from "../actions";
+import { selectSong,selectSongById,setNftData } from "../actions";
 import axios from "axios";
 import { message } from "antd";
 
@@ -38,26 +38,26 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
         {
             const owner_Address = await contract.methods.owner(tokenId).call();  
             nftData.receiver_address=owner_Address;
-            dispatch({ type: "SET_NFT_DATA", payload:nftData });
+            // dispatch({ type: "SET_NFT_DATA", payload:nftData });
         }
     }
     
     
 
-    useEffect(()=>{
+    // useEffect(()=>{
     
-        if(song !== 'undefined' && song != null)
-        {       
-          nftData.tokenId=selectedSongId
-          songOwnerSender(nftData.tokenId)
-        //   console.log(nftData)
-          dispatch({ type: "SET_NFT_DATA", payload:nftData });
+    //     if(song !== 'undefined' && song != null)
+    //     {       
+    //       nftData.tokenId=song.id
+    //       songOwnerSender(nftData.tokenId)
+    //       console.log(nftData)
+    //     //   dispatch({ type: "SET_NFT_DATA", payload:nftData });
 
-          //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
+    //       //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
         
-        }
+    //     }
     
-    },[selectedSongId,user,dispatch])
+    // },[selectedSongId,dispatch])
 
 
     // set the gif
@@ -83,11 +83,16 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
             id={now_selected}
             onMouseOver={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            onClick={() => {
+            onClick={
+                () => {
                 selectSong(song);
                 //노래 songitem클릭하면 시작하는 부분 player.js의 play버튼과 똑같은부분 여기서도 tr처리해주어야함
-                
                 dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
+               
+          nftData.tokenId=song.id
+          songOwnerSender(nftData.tokenId)
+          console.log(nftData.tokenId)
+
                 axios({
                     url:`http://localhost:3001/api/play-transaction`,
                     method:"POST",

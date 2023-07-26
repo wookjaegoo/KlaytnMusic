@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const verifyToken = require("../../utils/VerifyToken")
 const {sendTokenTransaction,
+  sendNftTransaction,
   requestSongData,
   registerClient,
   loginClient,
@@ -20,6 +21,8 @@ router.get('/songList',requestSongData);
 
 
 router.post('/play-transaction',sendTokenTransaction)
+router.post('/nft-transaction',sendNftTransaction)
+
 
 router.post('/register-client',registerClient)
 

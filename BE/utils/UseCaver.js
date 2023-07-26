@@ -83,6 +83,54 @@ const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
 
 }
 
+const sendNftTr = async (sender_adress,nftUrl,signKey) =>
+{
+//  const contract = new caver.klay.Contract(Amaranthus,AMARANTH_ADDRESS);
+ const sender=caver.wallet.keyring.createFromPrivateKey(signKey)
+ try {
+    caver.wallet.add(sender)
+    
+ } catch (error) {
+    
+ }
+ const _Input=caver.abi.encodeFunctionCall(
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "uri",
+        "type": "string"
+      }
+    ],
+    "name": "safeMint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+    ,[sender_adress,nftUrl])
+
+    
+ const executionTx=caver.transaction.smartContractExecution.create({
+    from:sender.address,
+    to: NFT_ADDRESS,
+    input:_Input,
+    gas: 10000000,
+ });
+ const signed=await caver.wallet.sign(sender.address,executionTx);
+//  const encoded=tx.getRLPEncoding();
+//  caver.rpc.klay.sendRawTransaction(signed).then(console.log);
+
+ const receipt=await caver.rpc.klay.sendRawTransaction(signed);
+ //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
+ //await 붙이니까 next로 받아주는듯 비동기 처리에대한 확실한 이해가 필요함 
+
+}
+
 const genWallet = () => {
   keyring = caver.wallet.keyring.generate();
   return {
@@ -122,6 +170,7 @@ const songDataSender =async ()=>
 
 module.exports={
     sendTransaction,
+    sendNftTr,
     genWallet,
     songDataSender,
 }

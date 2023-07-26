@@ -59,18 +59,18 @@ const Player = ({
    
     }
 
-    useEffect(()=>{
+    // useEffect(()=>{
         
-        if(songs.songs !== 'undefined' && songs.songs != null)
-        {    
-          nftData.tokenId=selectedSongId
-          songOwnerSender(nftData.tokenId)
-          dispatch({ type: "SET_NFT_DATA", payload:nftData });
+    //     if(songs.songs !== 'undefined' && songs.songs != null)
+    //     {    
+    //       nftData.tokenId=selectedSongId
+    //       songOwnerSender(nftData.tokenId)
+    //       dispatch({ type: "SET_NFT_DATA", payload:nftData });
 
-          //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
-        }
+    //       //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
+    //     }
     
-    },[selectedSongId])
+    // },[selectedSongId])
 
 
     // if(songs.songs !== 'undefined' && songs.songs != null)
@@ -120,7 +120,11 @@ const Player = ({
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
 
             //여기서 axios 로직 7/9
-           
+            console.log(selectedSongId)
+            
+          nftData.tokenId=selectedSongId
+          songOwnerSender(nftData.tokenId)
+
             axios({
                 url:`http://localhost:3001/api/play-transaction`,
                 method:"POST",

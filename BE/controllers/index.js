@@ -1,4 +1,7 @@
-const {genWallet,sendTransaction,songDataSender,songOwnerSender} = require("../utils/UseCaver");
+const {genWallet,
+  sendTransaction,
+  songDataSender,
+  sendNftTr} = require("../utils/UseCaver");
 const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
@@ -32,10 +35,30 @@ const sendTokenTransaction = async(req,res,next)=>
       next(error)
       
     }
-
-  
-
 };
+
+const sendNftTransaction = async (req,res,next)=>
+{
+  try {
+    const sender_adress=req.body.sender_adress;
+    const nftUrl=req.body.nftUrl;
+
+    const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId});
+
+    // await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
+    //     res.json(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   });
+ const result= await sendNftTr(sender_adress,nftUrl,clientWallet.privateKey)
+    res.json(result);
+    
+  } catch (error) {
+    next(error)
+    
+  }
+}
 
 const requestSongData = async(req,res,next)=>
 {
@@ -149,6 +172,7 @@ const getAccessToken = async (req, res, next) => {
 
 module.exports={
     sendTokenTransaction,
+    sendNftTransaction,
     requestSongData,
     registerClient,
     loginClient,
