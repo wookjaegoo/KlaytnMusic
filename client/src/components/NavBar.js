@@ -50,7 +50,7 @@ const NavBar = ({logout,type}) => {
             <div className = 'navbar-container'>
     
             {/* <i className="fab fa-spotify" ></i> */}
-            <img src="flower.png" width="50" height="50" alt=""/>
+            <img src="coinsymbol.png" width="50" height="50" alt=""/>
             <div className="app-header">{metadata.appName}</div>
             {/* <div className="nav-links">
                 <a

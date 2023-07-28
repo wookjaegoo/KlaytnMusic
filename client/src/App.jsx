@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+// import "./Loading.css"
+
 import Player from "./components/Player";
 // import Remoter from "./components/Remoter";
 import useEth from "./contexts/EthContext/useEth";
@@ -26,14 +28,15 @@ function App() {
   const [user, setUser] = useState({});
   const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [Loadpage, setLoadpage] = useState(true);
+  
   // const location = useLocation();
   const {Sider } = Layout;
 
   
 
   const navigate = useNavigate();
-    
-
+  
 
   const callApi = async()=>{
     axios.get("http://localhost:3001/api")
@@ -106,27 +109,58 @@ function App() {
       });
   };
   
+  
+  // 가정: 데이터를 비동기적으로 불러오는 함수 (예를 들어, API 호출)
+  const fetchData = () => {
+    // 비동기 작업 시간을 가정하여 setTimeout 사용
+    setTimeout(() => {
+      setLoadpage(false); // 데이터를 모두 불러왔을 때 isLoading을 false로 변경
+    }, 5000); // 2초 동안 로딩 화면을 유지
+  };
+
+  // 컴포넌트가 마운트되면 fetchData 함수를 실행 (처음 로딩 시 데이터 불러오기)
+  useEffect(() => {
+    fetchData();
+  }, []); // 빈 배열을 전달하여 컴포넌트가 처음 로드될 때만 실행
 
   const{state: {contract,account,contract2} } = useEth();
   //백에서 songs던지는 로직으로 수정 7/17
 
   return (
-    <React.Fragment>
-      {/* <Remoter />    */}      
-      <NavBar logout={logout} type={type}/>
-        <Routes>
-        <Route path='/SignIn' element={<SignIn type={type} setType={setType} setUser={setUser}/>} /> 
-        <Route path='/Register' element={<ClientSignup/>} /> 
-          <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract}  user={user}/>} /> 
-          <Route path='/Footer' element={<Footer user={{user}}/>}/> 
-          <Route path='/' element={<Main user={user} contract={contract} songs={songs}/>}/>
-          <Route path='/Profile' element={<Profile />}/>
-        </Routes>
 
-      <Player songs={{songs}} contract={contract} account={account} contract2={contract2} user={{user}}/>
-      <a href="#focused" id="focus-link" hidden>
-                Go to playing element
-            </a>
+    
+    <React.Fragment>
+      {/* <Remoter />    */}    
+    
+      
+      {Loadpage ? (
+        <div className="Loading" style={{background:'black'}}>
+          <img src="coinsymbol.png">
+          </img>
+          <div>
+            
+          <p color="white"></p>
+          <p color="white">Time is Gold</p>
+          </div>
+        </div>
+      ) : (
+        // isLoading이 false일 때 내용을 표시
+        <React.Fragment>
+          <NavBar logout={logout} type={type} />
+          <Routes>
+            <Route path='/SignIn' element={<SignIn type={type} setType={setType} setUser={setUser} />} />
+            <Route path='/Register' element={<ClientSignup />} />
+            <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract} user={user} />} />
+            <Route path='/Footer' element={<Footer user={{ user }} />} />
+            <Route path='/' element={<Main user={user} contract={contract} songs={songs} />} />
+            <Route path='/Profile' element={<Profile />} />
+          </Routes>
+          <Player songs={{ songs }} contract={contract} account={account} contract2={contract2} user={{ user }} />
+          <a href="#focused" id="focus-link" hidden>
+            Go to playing element
+          </a>
+        </React.Fragment>
+      )}
     </React.Fragment>
     
   );
