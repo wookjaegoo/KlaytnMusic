@@ -81,6 +81,12 @@ export function EthProvider({ children }) {
           //이거로 클레이튼 계정만들기는 가능 signedtr할때 개인키 입력 부분이 문제 
           contract = new caver.contract(abi,"0xfbb92bf30d685385d2f1d160242e66350482816a");
           console.log(contract)
+           const bal=await caver.rpc.klay.getBalance("0x342b6F55e1928965d5368F493B74CB4eBe92C61f")
+           const hexval=bal.toString()
+          const decimal = parseInt(hexval, 16);
+           const yourclay =await caver.utils.convertFromPeb(decimal,'KLAY')
+           console.log("당신이 보유한 klAY:",yourclay)
+
 
           const counts = await contract.methods.owner(1).call();
           

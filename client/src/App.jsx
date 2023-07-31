@@ -135,12 +135,12 @@ function App() {
       
       {Loadpage ? (
         <div className="Loading" style={{background:'black'}}>
-          <img src="coinsymbol.png">
+          <img src="newlogo.png">
           </img>
           <div>
             
           <p color="white"></p>
-          <p color="white">Time is Gold</p>
+          <p color="white">Your Time Is Priceless</p>
           </div>
         </div>
       ) : (

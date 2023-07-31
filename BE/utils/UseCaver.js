@@ -21,7 +21,6 @@ caver.wallet.add(newkey)
 const Amaranthus= require("./Amaranthus");
 const artifact = require("./ArtGrowNFT.json");
 
-
 //did 문서 참고해서 로직짜보셈 금방할듯
 
 
