@@ -7,7 +7,8 @@ const {sendTokenTransaction,
   registerClient,
   loginClient,
   getAccessToken,
-  logout}=require("../../controllers")
+  logout,
+}=require("../../controllers")
 
 router.get('/', (req, res)=>{
   res.send({ test: "bye"});
@@ -29,6 +30,7 @@ router.post('/register-client',registerClient)
 router.post('/login-client',loginClient)
 
 router.post('/logout', verifyToken, logout)
+
 
 // router.post('/play-transaction', (req, res) => {
 //   console.log(req.body)

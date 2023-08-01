@@ -1,7 +1,8 @@
 const {genWallet,
   sendTransaction,
   songDataSender,
-  sendNftTr} = require("../utils/UseCaver");
+  sendNftTr,
+  getBalance} = require("../utils/UseCaver");
 const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
@@ -169,6 +170,19 @@ const getAccessToken = async (req, res, next) => {
   }
 };
 
+const getClient = async (req, res, next) => {
+  try {
+    const client = await client.findById(req.params.clientId);
+    if (!client) return next(createError(404, "사용자가 존재하지 않습니다."));
+
+    res.status(200).json(client);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 
 module.exports={
     sendTokenTransaction,
@@ -178,5 +192,6 @@ module.exports={
     loginClient,
     getAccessToken,
     logout,
+    getClient,
 }
 

@@ -18,7 +18,7 @@ import Profile from './components/Profile'
 import Topchart from './components/Topchart';
 import ClientSignup from './components/ClientSignUp';
 import SignIn from './components/SignIn';
-
+import Mypage from "./components/Mypage";
 
 function App() {
   
@@ -115,7 +115,7 @@ function App() {
     // 비동기 작업 시간을 가정하여 setTimeout 사용
     setTimeout(() => {
       setLoadpage(false); // 데이터를 모두 불러왔을 때 isLoading을 false로 변경
-    }, 20000); // 2초 동안 로딩 화면을 유지
+    }, 2000); // 2초 동안 로딩 화면을 유지
   };
 
   // 컴포넌트가 마운트되면 fetchData 함수를 실행 (처음 로딩 시 데이터 불러오기)
@@ -153,7 +153,9 @@ function App() {
             <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract} user={user} />} />
             <Route path='/Footer' element={<Footer user={{ user }} />} />
             <Route path='/' element={<Main user={user} contract={contract} songs={songs} />} />
-            <Route path='/Profile' element={<Profile />} />
+            {/* <Route path='/Profile' element={<Profile />} /> */}
+            <Route path="/mypage" element={<Mypage type={type} />} />
+
           </Routes>
           <Player songs={{ songs }} contract={contract} account={account} contract2={contract2} user={{ user }} />
           <a href="#focused" id="focus-link" hidden>

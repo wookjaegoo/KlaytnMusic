@@ -102,6 +102,12 @@ const NavBar = ({logout,type}) => {
                         </Link>
                     </li>
 
+                    <li className='nav-item'>
+                        <Link to='/Mypage' className='nav-links' onClick ={closeMobileMenu}>
+                        Mypage
+                        </Link>
+                    </li>
+
                     {/* <li className='nav-item'>
                         <Link to='/Register' className='nav-links' onClick ={closeMobileMenu}>
                         Register
