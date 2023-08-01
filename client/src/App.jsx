@@ -115,7 +115,7 @@ function App() {
     // 비동기 작업 시간을 가정하여 setTimeout 사용
     setTimeout(() => {
       setLoadpage(false); // 데이터를 모두 불러왔을 때 isLoading을 false로 변경
-    }, 5000); // 2초 동안 로딩 화면을 유지
+    }, 20000); // 2초 동안 로딩 화면을 유지
   };
 
   // 컴포넌트가 마운트되면 fetchData 함수를 실행 (처음 로딩 시 데이터 불러오기)
