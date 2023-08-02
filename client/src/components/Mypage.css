@@ -1,8 +1,12 @@
 .mypage {
     padding: 0;
     display: grid;
-grid-column: 5/9;
-grid-row: 2/6;
+    grid-column: 7/13;
+    grid-row: 2/8;
+    height: 500px;
+width: 500px;
+
+
   }
   
   .mypage--breadcrumb {

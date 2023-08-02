@@ -32,17 +32,19 @@ const Mypage = ({ type }) => {
       .then((data) => {
         if (data.data.type === "client") {
           setPageTitle(data.data.user.title);
-        } 
-
+        
+        }
+        
         setUser({
           ...data.data.user,
           password: "",
         });
 
         setIsLoading(false);
+
       })
       .catch(() => {
-        setIsLoading(false);
+        setIsLoading(true);
       });
 
       
@@ -217,6 +219,7 @@ const Mypage = ({ type }) => {
   const issuerDOM = [titleDOM, emailDOM,walletAddressDOM,klayAmountDom];
 
   return (
+    <div className="Deploys"> 
     <div className="mypage">
       {/* <Breadcrumb className="mypage--breadcrumb" separator=">">
         <Breadcrumb.Item href="/">홈</Breadcrumb.Item>
@@ -265,6 +268,7 @@ const Mypage = ({ type }) => {
           </Row>
         </Spin>
       </div>
+    </div>
     </div>
   );
 };

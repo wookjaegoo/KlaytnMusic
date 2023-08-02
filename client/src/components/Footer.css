@@ -7,6 +7,13 @@
   font-style: normal;
 }
 
+@keyframes GradientRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
 @-webkit-keyframes AnimationName {
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
@@ -29,17 +36,17 @@
 }
 
 
+
+
 .Deploys
 {
   
 display: grid;
 grid-column: 1/13;
 grid-row: 2/8;
-background: rgba( 0, 0, 255, 0.3 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 0px );
--webkit-backdrop-filter: blur( 0px );
-background: linear-gradient(-45deg,#97084b, #420858, #4616b8, #c4055e);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #262626, #333333, #404040, #ffd700);
 animation: AnimationName 15s ease infinite;
 
 background-size: 400% 400%;
@@ -54,15 +61,13 @@ font-family: "Montserrat", sans-serif;
 
   
   font-family: 'Cafe24Ssurround';
-  background: white;
   
   border: solid;
 
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 0px );
-  -webkit-backdrop-filter: blur( 0px );
   border-radius: 10px;
-
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.3);
 height: 500px;
 width: 500px;
 
@@ -115,7 +120,7 @@ font-family: 'Cafe24Ssurround';
   font-weight: bold;
   width: 140px;
   height: 40px;
-  padding: 10px 25px;
+  padding: 5px 25px;
   border: 2px solid #000;
   font-weight: 500;
   background: white;

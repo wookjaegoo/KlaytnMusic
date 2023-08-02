@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { create } from 'ipfs-http-client'
 import React from 'react';
 import "./Footer.css"
@@ -6,7 +6,7 @@ import useEth from "../contexts/EthContext/useEth";
 // const client2= create('/ip4/127.0.0.1/tcp/5001')
 import Caver from 'caver-js'
 import axios from 'axios';
-import { message } from "antd";
+import { message,Spin} from "antd";
 
 let ipfsurl = ""
 let songimageurl=""
@@ -37,6 +37,14 @@ function Footer({user}) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+
+    setIsLoading(false)
+  }, []);
+
+
 
  
  console.log(user) 
@@ -188,7 +196,7 @@ catch (error) {
   <div className='Deploys' >
 
 <div className='Procedure'>  
-    
+<Spin spinning={isLoading} tip="로딩중..." size="large">
       <div
       className={`container ${dragging ? 'dragging' : ''}`}
       style={{ '--dragging-display': dragging ? 'block' : 'none' } }
@@ -232,12 +240,12 @@ catch (error) {
 
         <div>
     
-    <label for="jsonupload" onClick={deployNFT} id="json"  className='custom-btn2'  style={{color:'black'}}>DEPLOY NFT</label>
+    <label for="jsonupload" onClick={deployNFT} id="json"  className='custom-btn'  style={{color:'black'}}>DEPLOY NFT</label>
 
   
     </div>
 
-
+    </Spin>
       </div>
 
 

@@ -1,15 +1,15 @@
-import {React,useEffect,useState} from 'react';
-import {useNavigate,useLocation} from 'react-router-dom';
+import { React, useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios";
 import "./NavBar.css";
 import metadata from "../data/metadata.json";
 import { Link } from 'react-router-dom';
-import {message,Layout} from "antd";
+import { message, Layout } from "antd";
 import SideMenu from './Sidemenu';
 
 
 
-const NavBar = ({logout,type}) => {
+const NavBar = ({ logout, type }) => {
 
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
@@ -17,19 +17,19 @@ const NavBar = ({logout,type}) => {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
-    
-  // const [user, setUser] = useState({});
-  // const [type, setType] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-  const {Sider } = Layout;
 
- 
+    // const [user, setUser] = useState({});
+    // const [type, setType] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+    const { Sider } = Layout;
 
-  // const navigate = useNavigate();
-    
+
+
+    // const navigate = useNavigate();
+
     const showButton = () => {
-        if(window.innerWidth <= 960){
+        if (window.innerWidth <= 960) {
             setButton(false)
         }
         else {
@@ -44,15 +44,15 @@ const NavBar = ({logout,type}) => {
 
     window.addEventListener('resize', showButton);
 
-  
+
     return (
-    <div className="navbar">
-            <div className = 'navbar-container'>
-    
-            {/* <i className="fab fa-spotify" ></i> */}
-            <img src="newlogo.png" width="50" height="50" alt=""/>
-            <div className="app-header">{metadata.appName}</div>
-            {/* <div className="nav-links">
+        <div className="navbar">
+            <div className='navbar-container'>
+
+                {/* <i className="fab fa-spotify" ></i> */}
+                <img src="newlogo.png" width="50" height="50" alt="" />
+                <div className="app-header">{metadata.appName}</div>
+                {/* <div className="nav-links">
                 <a
                     href="https://www.github.com/jessej-samuel/spotipy"
                     target="_blank"
@@ -61,11 +61,11 @@ const NavBar = ({logout,type}) => {
                     <i className="fab fa-github"></i>
                 </a>
             </div> */}
-        </div>
+            </div>
 
 
-  {/* issuer, verifier 화면에서만 사이드메뉴 렌더링 */}
-  {/* {location.pathname === "/" ? null : (
+            {/* issuer, verifier 화면에서만 사이드메뉴 렌더링 */}
+            {/* {location.pathname === "/" ? null : (
     <Sider width={"100"} >
       <SideMenu type={type} logout={logout} />
     </Sider>
@@ -73,42 +73,43 @@ const NavBar = ({logout,type}) => {
 
 
 
-        
-            <div className='menu-icon' onClick={handleClick}>
-                <i className = {click ? 'fas fa-times' : 'fas fa-bars' } />
-            </div>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                    <li className='nav-item'>
-                        <Link to='/' className='nav-links' onClick ={closeMobileMenu}>
-                            Home
-                        </Link>
-                    </li>
 
-                    <li className='nav-item'>
-                        <Link to="/Footer" className='nav-links' onClick = {closeMobileMenu}>
-                            Deploy
-                        </Link>
-                    </li>
-                    
-                    {/* <li className='nav-item'>
+            <div className='menu-icon' onClick={handleClick}>
+                <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+            </div>
+            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                <li className='nav-item'>
+                    <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                        Home
+                    </Link>
+                </li>
+
+                <li className='nav-item'>
+                    <Link to="/Footer" className='nav-links' onClick={closeMobileMenu}>
+                        Deploy
+                    </Link>
+                </li>
+
+                {/* <li className='nav-item'>
                         <Link to="/Profile" className='nav-links' onClick = {closeMobileMenu}>
                             Profile
                         </Link>
                     </li> */}
 
-                    <li className='nav-item'>
-                        <Link to='/Topchart' className='nav-links' onClick ={closeMobileMenu}>
-                            Topchart
-                        </Link>
-                    </li>
+                <li className='nav-item'>
+                    <Link to='/Topchart' className='nav-links' onClick={closeMobileMenu}>
+                        Topchart
+                    </Link>
+                </li>
 
+                {type && (
                     <li className='nav-item'>
-                        <Link to='/Mypage' className='nav-links' onClick ={closeMobileMenu}>
-                        Mypage
+                        <Link to='/Mypage' className='nav-links' onClick={closeMobileMenu}>
+                            Mypage
                         </Link>
-                    </li>
+                    </li>)}
 
-                    {/* <li className='nav-item'>
+                {/* <li className='nav-item'>
                         <Link to='/Register' className='nav-links' onClick ={closeMobileMenu}>
                         Register
                         </Link>
@@ -120,15 +121,15 @@ const NavBar = ({logout,type}) => {
                         </Link>
                     </li> */}
 
-<Sider width={"100"} >
-      <SideMenu type={type} logout={logout} />
-    </Sider>
+                <Sider width={"100"} >
+                    <SideMenu type={type} logout={logout} />
+                </Sider>
 
-                </ul>
-        
+            </ul>
 
 
-    </div>
+
+        </div>
     );
 };
 

@@ -140,6 +140,7 @@ function App() {
           <div>
             
           <p color="white"></p>
+          <p color="white">Verax</p>
           <p color="white">Your Time Is Priceless</p>
           </div>
         </div>
