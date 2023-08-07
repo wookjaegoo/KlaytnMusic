@@ -155,7 +155,7 @@ function App() {
             <Route path='/Footer' element={<Footer user={{ user }} />} />
             <Route path='/' element={<Main user={user} contract={contract} songs={songs} />} />
             {/* <Route path='/Profile' element={<Profile />} /> */}
-            <Route path="/mypage" element={<Mypage type={type} />} />
+            <Route path="/mypage" element={<Mypage type={type} contract2={contract2} user={user}/>} />
 
           </Routes>
           <Player songs={{ songs }} contract={contract} account={account} contract2={contract2} user={{ user }} />

@@ -78,7 +78,7 @@ width: 500px;
   }
   
   .mypage--row {
-    margin: 30px 0;
+    margin: 10px 0;
   }
   
   /* tile uploaded pictures */
@@ -121,4 +121,6 @@ width: 500px;
   .mypage--DOM--title {
     font-size: 1.2rem;
     font-weight: 700;
+    padding: 0.5rem 1rem;
+
   }

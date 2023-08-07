@@ -18,7 +18,6 @@ function Main( {user,contract,songs})
   //그냥 컨트랙트 다시 배포해보고 0번 1번 제대로 찍어서 실험해봐야할듯 json id 때문에 생기는걸수도잇음
   
 
-// const{state: {songs} } = useEth();
 
 
      return(

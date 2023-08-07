@@ -87,13 +87,6 @@ export function EthProvider({ children }) {
            const yourclay =await caver.utils.convertFromPeb(decimal,'KLAY')
            console.log("당신이 보유한 klAY:",yourclay)
 
-
-          const counts = await contract.methods.owner(1).call();
-          
-          const count = await contract.methods.howmanyListen(1).call();
-          
-
-
           // contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
           const num = await contract.methods.totalSupply().call();
           
@@ -147,6 +140,10 @@ export function EthProvider({ children }) {
             // contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
             contract2 = new caver.contract(abi,"0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d");
             console.log(contract2)
+            const amount= await contract2.methods.balanceOf("0x342b6F55e1928965d5368F493B74CB4eBe92C61f").call();
+            
+             console.log("당신이 보유한 VERAX:",amount/(10**18))
+
 
             
           }

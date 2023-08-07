@@ -6,13 +6,10 @@ import "./Mypage.css";
 import caver from "../klaytn/caver";
 
 
-const Mypage = ({ type }) => {
-  const [user, setUser] = useState({
-    email: "",
-    title: "",
-    username: "",
-    walletAddress: "",
+const Mypage = ({ type,contract2,user}) => {
+  const [userAmount, setUserAmount] = useState({
     balance: 0,
+    Vbalance:0,
 
   });
 
@@ -35,10 +32,10 @@ const Mypage = ({ type }) => {
         
         }
         
-        setUser({
-          ...data.data.user,
-          password: "",
-        });
+        // setUser({
+        //   ...data.data.user,
+        //   password: "",
+        // });
 
         setIsLoading(false);
 
@@ -53,37 +50,60 @@ const Mypage = ({ type }) => {
   }, []);
 
   const onchange = (e) => {
-    setUser((prevUser) => {
-      return {
-        ...prevUser,
-        [e.target.id]: e.target.value,
-      };
-    });
+    // setUser((prevUser) => {
+    //   return {
+    //     ...prevUser,
+    //     [e.target.id]: e.target.value,
+    //   };
+    // });
   };
 
   const getBalance = async (addr) => {
-    const bal = await caver.rpc.klay.getBalance(addr);
-    const hexval = bal.toString();
-    const decimal = parseInt(hexval, 16);
-    const yourclay = await caver.utils.convertFromPeb(decimal, "KLAY");
+    try {
+      const bal = await caver.rpc.klay.getBalance(addr);
+      const hexval = bal.toString();
+      const decimal = parseInt(hexval, 16);
+      const yourclay = await caver.utils.convertFromPeb(decimal, "KLAY");
   
-    setUser((prevUser) => ({
-      ...prevUser,
-      balance: yourclay,
-    }));
+      setUserAmount((prevUser) => ({
+        ...prevUser,
+        balance: yourclay,
+      }));
   
-    return yourclay;
+      return yourclay;
+    } catch (error) {
+      console.error("잔액을 가져오는데 에러 발생:", error);
+      throw error;
+    }
   };
+
+  const getVerax = async (addr) => {
+    try {
+
+      const amount= await contract2.methods.balanceOf("0x342b6F55e1928965d5368F493B74CB4eBe92C61f").call();
+      const yourvx=amount/(10**18);
+
+      setUserAmount((prevUser) => ({
+        ...prevUser,
+        Vbalance: yourvx,
+      }));
+  
+      return yourvx;
+    } catch (error) {
+      console.error("잔액을 가져오는데 에러 발생:", error);
+      throw error;
+    }
+  };
+
+
 
   useEffect(() => {
     // 잔액을 가져오는 함수를 정의합니다.
     const fetchBalance = async () => {
       try {
         const yourclay = await getBalance(user.walletAddress);
-        setUser((prevUser) => ({
-          ...prevUser,
-          balance: yourclay,
-        }));
+        const yourvx= await getVerax(user.walletAddress)
+       
       } catch (error) {
         console.error("잔액을 가져오는데 에러 발생:", error);
       }
@@ -188,13 +208,30 @@ const Mypage = ({ type }) => {
   const klayAmountDom = (
     <>
       <div className="mypage--DOM--title">보유KLAY</div>
-      <img src="smalllklay.png"></img>
+      <img src="smallklay.png"></img>
       <input
         className="mypage--input disabled"
         type="text"
         id="klayCount"
         onChange={onchange}
-        value={user.balance}
+        value={userAmount.balance}
+        disabled
+      />
+    </>
+  );
+
+  const VeraxAmountDom = (
+    <>
+      <div className="mypage--DOM--title">보유VERAX
+      </div>      
+      <img src="smallverax.png"></img>
+
+      <input
+        className="mypage--input disabled"
+        type="text"
+        id="VeraxCount"
+        onChange={onchange}
+        value={userAmount.Vbalance}
         disabled
       />
     </>
@@ -216,7 +253,7 @@ const Mypage = ({ type }) => {
   */
 
 
-  const issuerDOM = [titleDOM, emailDOM,walletAddressDOM,klayAmountDom];
+  const issuerDOM = [titleDOM, emailDOM,walletAddressDOM,klayAmountDom,VeraxAmountDom];
 
   return (
     <div className="Deploys"> 
