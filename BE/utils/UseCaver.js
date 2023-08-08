@@ -14,6 +14,7 @@ const AMARANTH_ADDRESS=process.env.REACT_APP_AMARANTH_ADDRESS
 // const newkey=caver.wallet.keyring.createFromPrivateKey("0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56");
 
 const newkey=caver.wallet.keyring.createFromPrivateKey(process.env.REACT_APP_PRIVATE_KEY_KIAKAS);
+//2번계정이 회원가입하는 유저한테 klay랑 토큰 쏴줘야함 test넷이니까 일단
 //여기오류남 7/8
 caver.wallet.add(newkey)
 
@@ -22,6 +23,69 @@ const Amaranthus= require("./Amaranthus");
 const artifact = require("./ArtGrowNFT.json");
 
 //did 문서 참고해서 로직짜보셈 금방할듯
+
+const sendTokenAndKlay= async(receiver_address) =>
+{
+  const amount=caver.utils.toBN(5*10**18)
+  const valueTransfer = caver.transaction.valueTransfer.create({
+    from: newkey.address,
+    to: receiver_address,
+    value:amount,
+    gas: 30000,
+})
+
+await valueTransfer.sign(newkey)
+
+const receipt=await caver.rpc.klay.sendRawTransaction(valueTransfer);
+console.log(receipt)
+
+//klay전송 로직
+const tokenamount=caver.utils.toBN(5*10**18)
+
+const _Input=caver.abi.encodeFunctionCall(
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+  ,[receiver_address,tokenamount])
+
+  const executionTx=caver.transaction.smartContractExecution.create({
+    from:newkey.address,
+    to: AMARANTH_ADDRESS,
+    input:_Input,
+    gas: 10000000,
+ });
+
+ const signed=await caver.wallet.sign(newkey.address,executionTx);
+const receipt2=await caver.rpc.klay.sendRawTransaction(signed);
+
+//토큰 로직
+
+
+}
+
+
+
 
 
 const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
@@ -173,5 +237,6 @@ module.exports={
     sendNftTr,
     genWallet,
     songDataSender,
-    
+    sendTokenAndKlay
+  
 }

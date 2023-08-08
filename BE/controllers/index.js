@@ -2,7 +2,7 @@ const {genWallet,
   sendTransaction,
   songDataSender,
   sendNftTr,
-  getBalance} = require("../utils/UseCaver");
+  sendTokenAndKlay} = require("../utils/UseCaver");
 const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
@@ -84,6 +84,8 @@ const registerClient = async (req, res, next) => {
     const {WalletPublicKey,WalletPrivateKey} = genWallet();
     
     const newClient = new Client({ ...req.body, password: hashedPassword, walletAddress : WalletPublicKey });
+    
+    await sendTokenAndKlay(WalletPublicKey)
 
     // 블록체인 접근
     // 테스트넷의 지갑주소 생성
@@ -104,11 +106,9 @@ const registerClient = async (req, res, next) => {
     await newClient.save();
     
 
-    
-
-    res.status(200).json("Issuer가 등록되었습니다.");
+    res.status(200).json("Client가 등록되었습니다.");
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     next(error);
   }
 };

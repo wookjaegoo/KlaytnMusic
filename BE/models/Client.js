@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const ClientSchema = new mongoose.Schema({
-    title : {
+    name : {
         type : String,
         required : true,
         unique : true,

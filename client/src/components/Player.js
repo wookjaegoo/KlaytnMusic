@@ -132,7 +132,7 @@ const Player = ({
                     receiver_address:nftData.receiver_address,
                     amount:nftData.amount,
                     tokenId:nftData.tokenId,
-                    signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef",
+                    // signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef",
                     clientId:user.user._id
                 },
                 withCredentials:true,

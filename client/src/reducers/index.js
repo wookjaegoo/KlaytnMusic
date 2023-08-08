@@ -15,7 +15,7 @@ import { combineReducers } from "redux";
 // };
 const initialNftData = {
     receiver_address: "",
-    amount: 100000000000000,
+    amount: 100000000000,
     tokenId: 0,
     signKey: "",
 };

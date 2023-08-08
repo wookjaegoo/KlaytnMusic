@@ -80,7 +80,7 @@ const Mypage = ({ type,contract2,user}) => {
   const getVerax = async (addr) => {
     try {
 
-      const amount= await contract2.methods.balanceOf("0x342b6F55e1928965d5368F493B74CB4eBe92C61f").call();
+      const amount= await contract2.methods.balanceOf(user.walletAddress).call();
       const yourvx=amount/(10**18);
 
       setUserAmount((prevUser) => ({

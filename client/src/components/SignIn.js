@@ -68,7 +68,7 @@ type="client"
                 email: userObj.data.user.email,
                 // username: userObj.data.user.username,
                 walletAddress: userObj.data.user.walletAddress,
-                title: userObj.data.user.title,
+                name: userObj.data.user.name,
                 
                 // desc: userObj.data.user.desc,
                 type: userObj.data.type,

@@ -81,14 +81,18 @@ export function EthProvider({ children }) {
           //이거로 클레이튼 계정만들기는 가능 signedtr할때 개인키 입력 부분이 문제 
           contract = new caver.contract(abi,"0xfbb92bf30d685385d2f1d160242e66350482816a");
           console.log(contract)
-           const bal=await caver.rpc.klay.getBalance("0x342b6F55e1928965d5368F493B74CB4eBe92C61f")
+           const bal=await caver.rpc.klay.getBalance("0x892776eba67d184a407243e701770d1e647a8b28")
            const hexval=bal.toString()
           const decimal = parseInt(hexval, 16);
            const yourclay =await caver.utils.convertFromPeb(decimal,'KLAY')
            console.log("당신이 보유한 klAY:",yourclay)
 
           // contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
-          const num = await contract.methods.totalSupply().call();
+
+      
+
+
+        const num = await contract.methods.totalSupply().call();
           
 
           for (let i = 0; i < num ; i++) {
@@ -140,8 +144,7 @@ export function EthProvider({ children }) {
             // contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
             contract2 = new caver.contract(abi,"0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d");
             console.log(contract2)
-            const amount= await contract2.methods.balanceOf("0x342b6F55e1928965d5368F493B74CB4eBe92C61f").call();
-            
+            const amount= await contract2.methods.balanceOf("0x7137201f7617a680b98f1b21242cc8f2030ac40e").call();
              console.log("당신이 보유한 VERAX:",amount/(10**18))
 
 

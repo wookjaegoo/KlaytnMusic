@@ -1,5 +1,5 @@
 import "./ClientSignUp.css";
-import { Row, Col, message, Select } from "antd";
+import { Row, Col, message, Select,Spin } from "antd";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,11 +7,13 @@ import axios from "axios";
 const ClientSignup = () => {
   useEffect(() => {});
   useEffect(() => {}, []);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const [clientInfo, setclientInfo] = useState({
     email: "",
     password: "",
-    title: "",
+    name: "",
     registNumber: "",
     requiredVC: "",
     desc: "",
@@ -42,7 +44,7 @@ const ClientSignup = () => {
     } else if (!isCorrect) {
       message.error("비밀번호 확인이 일치하지 않습니다");
     } 
-    // else if (!/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| |]+$/.test(clientInfo.title)) {
+    // else if (!/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| |]+$/.test(clientInfo.name)) {
     //   message.error("기관명을 정확히 입력해주세요.");
     // } else if (clientInfo.registNumber === "") {
     //   message.error("사업자 등록번호를 입력해주세요.");
@@ -54,13 +56,14 @@ const ClientSignup = () => {
         data: {
           email: clientInfo.email,
           password: clientInfo.password,
-          title: clientInfo.title,
+          name: clientInfo.name,
           // desc: clientInfo.desc,
         },
         withCredentials: true,
       });
 
       if (res.status === 200) {
+        setIsLoading(false)
         message.info(res.data);
         navigate("/");
       }
@@ -69,8 +72,8 @@ const ClientSignup = () => {
 
   return (
     <div className="signup">
-      <div className="issuersignup--title">회원 가입</div>
-      
+      <div className="issuersignup--name">회원 가입</div>
+      <Spin spinning={isLoading}>
       <Row className="issuersignup--row">
         <Col span={6} className="signup--col">
           이메일
@@ -136,14 +139,14 @@ const ClientSignup = () => {
       </Row>
       <Row className="issuersignup--row">
         <Col span={6} className="signup--col">
-          기관명
+          이름
         </Col>
         <Col span={18}>
           <input
             className="issuersignup--input"
             type="text"
             onChange={onchange}
-            id="title"
+            id="name"
           />
         </Col>
       </Row>
@@ -192,10 +195,11 @@ const ClientSignup = () => {
         </Col>
       </Row>
       <Row>
-        <button className="signup--btn" onClick={validate}>
+        <button className="signup--btn"  onClick={() => { validate(); setIsLoading(true);}}>
           가입 완료
         </button>
       </Row>
+      </Spin>
     </div>
   );
 };
