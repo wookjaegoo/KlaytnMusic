@@ -157,36 +157,36 @@ const Mypage = ({ type,contract2,user}) => {
       />
     </>
   );
-  const titleDOM = (
-    <>
-      <div className="mypage--DOM--title">기관명</div>
-      <input
-        className="mypage--input"
-        type="text"
-        id="title"
-        onChange={onchange}
-        value={user.title}
-      />
-      <div className="validate--label">
-        기관명은 1글자 이상 20글자 미만의 영어, 한글, 숫자만 입력가능합니다.
-      </div>
-    </>
-  );
   const nameDOM = (
     <>
       <div className="mypage--DOM--title">이름</div>
       <input
         className="mypage--input"
         type="text"
-        id="username"
+        id="name"
         onChange={onchange}
-        value={user.username}
+        value={user.name}
       />
       <div className="validate--label">
-        이름은 1글자 이상 10글자 미만의 영어, 한글만 입력가능합니다.
+        기관명은 1글자 이상 20글자 미만의 영어, 한글, 숫자만 입력가능합니다.
       </div>
     </>
   );
+  // const nameDOM = (
+  //   <>
+  //     <div className="mypage--DOM--title">이름</div>
+  //     <input
+  //       className="mypage--input"
+  //       type="text"
+  //       id="username"
+  //       onChange={onchange}
+  //       value={user.username}
+  //     />
+  //     <div className="validate--label">
+  //       이름은 1글자 이상 10글자 미만의 영어, 한글만 입력가능합니다.
+  //     </div>
+  //   </>
+  // );
 
 
 
@@ -253,7 +253,7 @@ const Mypage = ({ type,contract2,user}) => {
   */
 
 
-  const issuerDOM = [titleDOM, emailDOM,walletAddressDOM,klayAmountDom,VeraxAmountDom];
+  const issuerDOM = [nameDOM, emailDOM,walletAddressDOM,klayAmountDom,VeraxAmountDom];
 
   return (
     <div className="Deploys"> 
