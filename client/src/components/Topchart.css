@@ -2,7 +2,7 @@
 .Topchart{
     background-color: black;
     grid-column: 1/13;
-    grid-row: 2/8;
+    grid-row: 2/12;
 
     display: grid;
 }

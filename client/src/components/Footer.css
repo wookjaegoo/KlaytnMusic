@@ -43,7 +43,7 @@
   
 display: grid;
 grid-column: 1/13;
-grid-row: 2/8;
+grid-row: 2/12;
 backdrop-filter: blur(4px);
 -webkit-backdrop-filter: blur(4px);
 background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #262626, #333333, #404040, #ffd700);
@@ -168,4 +168,27 @@ font-family: 'Cafe24Ssurround';
 .drag-text.dragging{
   color: blue;
 
+}
+
+
+
+@media (max-width: 760px) {
+  
+.Deploys
+{
+  
+grid-row: 2/11;
+
+}
+
+.Procedure
+{
+
+  
+
+height: 300px;
+width: 300px;
+
+
+}
 }

@@ -38,46 +38,38 @@ const NavBar = ({ logout, type }) => {
     };
 
     // SIGNUP버튼이 사이즈가 줄어들면 없어지도록 한다. 
+    // useEffect(() => {
+    //     showButton();
+    // }, []);
+
+    // window.addEventListener('resize', showButton);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // 화면 크기에 따라 모바일 여부 결정
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
+    };
+
     useEffect(() => {
-        showButton();
-    }, []);
-
-    window.addEventListener('resize', showButton);
-
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => {
+          window.removeEventListener('resize', checkMobile);
+        };
+      }, []);
 
     return (
         <div className="navbar">
             <div className='navbar-container'>
 
-                {/* <i className="fab fa-spotify" ></i> */}
                 <img src="newlogo.png" width="50" height="50" alt="" />
-                <div className="app-header">{metadata.appName}</div>
-                {/* <div className="nav-links">
-                <a
-                    href="https://www.github.com/jessej-samuel/spotipy"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    <i className="fab fa-github"></i>
-                </a>
-            </div> */}
+            
             </div>
 
 
-            {/* issuer, verifier 화면에서만 사이드메뉴 렌더링 */}
-            {/* {location.pathname === "/" ? null : (
-    <Sider width={"100"} >
-      <SideMenu type={type} logout={logout} />
-    </Sider>
-  )} */}
 
 
-
-
-            <div className='menu-icon' onClick={handleClick}>
-                <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-            </div>
-            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <ul className={`nav-menu ${isMobile ? 'mobile' : ''}`}>
                 <li className='nav-item'>
                     <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                         Home

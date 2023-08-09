@@ -1,6 +1,6 @@
 #song-list {
     grid-column: 5/13;
-    grid-row: 3/8;
+    grid-row: 3/12;
     overflow-y: auto;
     overflow-x: hidden;
     padding-left: 2px;
@@ -27,11 +27,7 @@
     background: #ccc;
 }
 
-@media (max-width: 760px) {
-    #song-list {
-        grid-column: 1/13;
-    }
-}
+
 
 .song-item.header:hover {
     border-bottom-right-radius: 0px;
@@ -42,4 +38,13 @@
 .song-item.header > * {
     /* color: #eee !important; */
     color: black !important;
+}
+
+
+@media (max-width: 760px) {
+    #song-list {
+        grid-column: 1/13;
+        grid-row: 3/11;
+
+    }
 }
