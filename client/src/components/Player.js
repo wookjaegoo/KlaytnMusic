@@ -148,7 +148,7 @@ const Player = ({
                   }           
                  })
           
-            //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
+        //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
             // console.log(output) < 서명받는 tr 2023 7/21
 
             //const isexist1=await contract2.methods.playerList(1).call();

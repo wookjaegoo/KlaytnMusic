@@ -70,9 +70,15 @@ const NavBar = ({ logout, type }) => {
 
 
             <ul className={`nav-menu ${isMobile ? 'mobile' : ''}`}>
+
+            <li className='nav-item'>
+                    <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
+                        home
+                    </Link>
+                </li>
                 <li className='nav-item'>
-                    <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                        Home
+                    <Link to='/chart' className='nav-links' onClick={closeMobileMenu}>
+                        chart
                     </Link>
                 </li>
 

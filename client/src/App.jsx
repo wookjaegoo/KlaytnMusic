@@ -19,6 +19,7 @@ import Topchart from './components/Topchart';
 import ClientSignup from './components/ClientSignUp';
 import SignIn from './components/SignIn';
 import Mypage from "./components/Mypage";
+import Home from "./components/Home";
 
 function App() {
   
@@ -149,11 +150,12 @@ function App() {
         <React.Fragment>
           <NavBar logout={logout} type={type} />
           <Routes>
+          <Route path='/Home' element={<Home/>} />
             <Route path='/SignIn' element={<SignIn type={type} setType={setType} setUser={setUser} />} />
             <Route path='/Register' element={<ClientSignup />} />
             <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract} user={user} />} />
             <Route path='/Footer' element={<Footer user={{ user }} />} />
-            <Route path='/' element={<Main user={user} contract={contract} songs={songs} />} />
+            <Route path='/chart' element={<Main user={user} contract={contract} songs={songs} />} />
             {/* <Route path='/Profile' element={<Profile />} /> */}
             <Route path="/mypage" element={<Mypage type={type} contract2={contract2} user={user}/>} />
 

@@ -49,7 +49,7 @@ header:not(#root)
     font-size: 1.6rem;
     display: none;
 }
-@media (max-width: 390px) {
+@media (max-width: 300px) {
     #root {
         display: none;
     }
