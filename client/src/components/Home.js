@@ -1,14 +1,37 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import "./Home.css";
+import { Link } from 'react-router-dom';
 
 
-function Home() {
+function Home( ) {
+    const [click, setClick] = useState(false);
+
+    const closeMobileMenu = () => setClick(false);
+
     return (
+        
         <div className="veraxhome" >
-            <h1>Welcome to Verax</h1>
+            <div className='onlyPc'>
+              <div className='homeNavbar'>
+             
+
+              </div>
+            </div>
+            <div className='contentSection'>
+
+
+            <div className='contentContaienr'>      
+                     <h1>Welcome to Verax</h1>
             <div className="featured-playlists">
                 <h3>Featured Playlists</h3>
-                {/* Featured 플레이리스트 목록을 여기에 추가 */}
+
+                <div className="album-list1">
+                    <img className="featured-image" src="nft11.png" alt="Album 1" />
+                    <img className="featured-image" src="nft12.png" alt="Album 2" />
+                    <img className="featured-image" src="nft13.png" alt="Album 3" />
+
+
+                </div>
             </div>
 
             <div className="new-releases">
@@ -39,6 +62,9 @@ function Home() {
 
                 </div>
             </div>
+            </div>
+            </div>
+
 
         </div>
     );

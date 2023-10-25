@@ -20,6 +20,7 @@ import ClientSignup from './components/ClientSignUp';
 import SignIn from './components/SignIn';
 import Mypage from "./components/Mypage";
 import Home from "./components/Home";
+import NavBarmobile from "./components/NavBarmobile";
 
 function App() {
   
@@ -149,7 +150,10 @@ function App() {
         // isLoading이 false일 때 내용을 표시
         <React.Fragment>
           <NavBar logout={logout} type={type} />
+          <NavBarmobile logout={logout} type={type} />
+          
           <Routes>
+          <Route path='/' element={<Home/>} />
           <Route path='/Home' element={<Home/>} />
             <Route path='/SignIn' element={<SignIn type={type} setType={setType} setUser={setUser} />} />
             <Route path='/Register' element={<ClientSignup />} />

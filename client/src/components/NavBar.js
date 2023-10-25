@@ -47,44 +47,49 @@ const NavBar = ({ logout, type }) => {
 
     // 화면 크기에 따라 모바일 여부 결정
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
+        setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
     };
 
     useEffect(() => {
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => {
-          window.removeEventListener('resize', checkMobile);
+            window.removeEventListener('resize', checkMobile);
         };
-      }, []);
+    }, []);
 
     return (
+
+
         <div className="navbar">
             <div className='navbar-container'>
 
                 <img src="newlogo.png" width="50" height="50" alt="" />
-            
+
             </div>
 
 
 
 
-            <ul className={`nav-menu ${isMobile ? 'mobile' : ''}`}>
 
-            <li className='nav-item'>
+
+            <ul className='nav-menu'>
+
+                <li className='nav-item'>
                     <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
-                        home
+                        <img src='greyhome.png' style={{ width: '20px', height: '20px' }}></img>
                     </Link>
                 </li>
                 <li className='nav-item'>
                     <Link to='/chart' className='nav-links' onClick={closeMobileMenu}>
-                        chart
+                        <img src='searchlogo.png' style={{ width: '20px', height: '20px' }}></img>
+
                     </Link>
                 </li>
 
                 <li className='nav-item'>
                     <Link to="/Footer" className='nav-links' onClick={closeMobileMenu}>
-                        Deploy
+                        <img src='greydlogo.png' style={{ width: '20px', height: '20px' }}></img>
                     </Link>
                 </li>
 
@@ -94,11 +99,11 @@ const NavBar = ({ logout, type }) => {
                         </Link>
                     </li> */}
 
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     <Link to='/Topchart' className='nav-links' onClick={closeMobileMenu}>
                         Topchart
                     </Link>
-                </li>
+                </li> */}
 
                 {type && (
                     <li className='nav-item'>
@@ -128,6 +133,7 @@ const NavBar = ({ logout, type }) => {
 
 
         </div>
+
     );
 };
 

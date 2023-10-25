@@ -200,7 +200,7 @@ const Player = ({
     return (
         <div id="player">
             <SongTime />
-            <div
+            {/* <div
                 className="control"
                 id={shuffled ? `active` : null}
                 onClick={() => {
@@ -209,7 +209,7 @@ const Player = ({
                 }}
             >
                 {shuffleSvg}
-            </div>
+            </div> */}
             <div className="control" onClick={onBackwardClick}>
                 {backwardsSvg}
             </div>
@@ -223,7 +223,7 @@ const Player = ({
             <div className="control" onClick={onForwardClick}>
                 {forwardsSvg}
             </div>
-            <Progress />
+            {/* <Progress /> */}
             
 
             <audio
