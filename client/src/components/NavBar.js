@@ -53,10 +53,48 @@ const NavBar = ({ logout, type }) => {
     useEffect(() => {
         checkMobile();
         window.addEventListener('resize', checkMobile);
+
+
+        
+  
+        const siderElement = document.querySelector('.ant-layout-sider.ant-layout-sider-dark');
+        siderElement.style.maxWidth = '100px';
+        siderElement.style.minWidth = '70px';
+        siderElement.style.width = '60px';
+        
+        const menuItemElement = document.querySelector('.ant-menu-item.ant-menu-item-active.ant-menu-item-selected.ant-menu-item-only-child');
+        // menuItemElement.style.width = '60px';
+        // menuItemElement.style.paddinginline='0';
+        // 요소를 선택합니다.
+        const menuItem = document.querySelector("#root > div.navbar > ul > aside > div > ul > li");
+        menuItem.style.paddingInline = '0px';
+        
+
+
+        
+        const menuTitleContentElement = document.querySelector('.ant-menu-title-content');
+        menuTitleContentElement.style.width = '55px';
+        menuTitleContentElement.style.display='flex';
+        menuTitleContentElement.style.justifyContent='center'
+        menuTitleContentElement.style.alignItems='center'
+        
+
+        const menuElement = document.querySelector('.ant-menu');
+        menuElement.style.background = 'black';
+    
+
+
+
+
+
         return () => {
             window.removeEventListener('resize', checkMobile);
         };
     }, []);
+
+    
+
+
 
     return (
 
@@ -124,7 +162,7 @@ const NavBar = ({ logout, type }) => {
                         </Link>
                     </li> */}
 
-                <Sider width={"100"} >
+                <Sider  >
                     <SideMenu type={type} logout={logout} />
                 </Sider>
 

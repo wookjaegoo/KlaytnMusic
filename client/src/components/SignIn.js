@@ -16,7 +16,7 @@ const SignIn = ({ type, setType, setUser }) => {
 //   }, [navigate, type]);
 type="client"
 
-  const [way, setWay] = useState("holder");
+  const [way, setWay] = useState("client");
   const [isLoading, setIsLoading] = useState(false);
   const [signinObj, setSigninObj] = useState({
     email: "",
@@ -27,9 +27,10 @@ type="client"
     setSigninObj(signinObj);
   };
 
-  const changeWay = (e) => {
-    setWay(e.target.value);
-  };
+  
+  // const changeWay = (e) => {
+  //   setWay(e.target.value);
+  // };
 
   const messageInfo = (msg) => {
     message.success(msg);
@@ -48,7 +49,7 @@ type="client"
       // login
     //   setIsLoading(true);
       axios({
-        url: `http://localhost:3001/api/login-${way}`,
+        url: `http://localhost:3001/api/login-client`,
         method: "POST",
         data: {
           email: signinObj.email,
@@ -106,7 +107,7 @@ type="client"
             <div className="signin--right">
               <div className="signin--canvas">
                 <span className="signin--title">🔐 로그인</span>
-                <Radio.Group
+                {/* <Radio.Group
                   defaultValue="holder"
                   buttonStyle="solid"
                   size="large"
@@ -118,7 +119,7 @@ type="client"
                     </Radio.Button>
                     
                   </Row>
-                </Radio.Group>
+                </Radio.Group> */}
                 <input
                   type="text"
                   className="signin--id"
