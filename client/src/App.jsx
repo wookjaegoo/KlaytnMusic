@@ -34,10 +34,15 @@ function App() {
   
   // const location = useLocation();
   const {Sider } = Layout;
-
-  
-
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
+  
+  useEffect(()=>{
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    
+  }, []);
   
 
   const callApi = async()=>{
@@ -57,11 +62,16 @@ function App() {
     .catch(error=>{console.error('요청실패',error)});
     
   };
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
+
+  }
 
   useEffect(()=>{
     callApi()
-    
+  
   }, [type]);
+
 
   const topSong =async(param) =>
   {
@@ -125,6 +135,7 @@ function App() {
     fetchData();
   }, []); // 빈 배열을 전달하여 컴포넌트가 처음 로드될 때만 실행
 
+
   const{state: {contract,account,contract2} } = useEth();
   //백에서 songs던지는 로직으로 수정 7/17
 
@@ -149,8 +160,8 @@ function App() {
       ) : (
         // isLoading이 false일 때 내용을 표시
         <React.Fragment>
-          <NavBar logout={logout} type={type} />
-          <NavBarmobile logout={logout} type={type} />
+         <NavBar logout={logout} type={type} />
+         {isMobile&&<NavBarmobile logout={logout} type={type} />}
           
           <Routes>
           <Route path='/' element={<Home/>} />

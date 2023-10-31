@@ -15,60 +15,72 @@ const NavBarmobile = ({ logout, type }) => {
     const closeMobileMenu = () => setClick(false);
     const { Sider } = Layout;
 
+    const [hovered, setHovered] = useState(false);
+
+    const [hoveredHome, setHoveredHome] = useState(false);
+    const [hoveredChart, setHoveredChart] = useState(false);
+    const [hoveredFooter, setHoveredFooter] = useState(false);
+
 
 
     // SIGNUP버튼이 사이즈가 줄어들면 없어지도록 한다. 
     // useEffect(() => {
     //     showButton();
     // }, []);
-
     // window.addEventListener('resize', showButton);
     const [isMobile, setIsMobile] = useState(false);
-
     // 화면 크기에 따라 모바일 여부 결정
     const checkMobile = () => {
-        setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
-        const siderElement = document.querySelector("#root > div.navbarmobile > ul > aside");
-        const menuItem = document.querySelector("#root > div.navbarmobile > ul > aside > div > ul > li");
-
-        const menuTitleContentElement = document.querySelector("#root > div.navbarmobile > ul > aside > div > ul > li > span");
-        const menuElement = document.querySelector("#root > div.navbarmobile > ul > aside > div > ul");
+        const siderElement = document.querySelector("#root > div.navbarmobile > ul  > li:nth-child(4)> aside");
+        const menuItem = document.querySelector("#root > div.navbarmobile > ul > li:nth-child(4) > aside > div > ul > li");
+        const menuTitleContentElement = document.querySelector("#root > div.navbarmobile > ul> li:nth-child(4)  > aside > div > ul > li > span");
+        const menuElement = document.querySelector("#root > div.navbarmobile > ul > li:nth-child(4)>  aside > div > ul");
 
 
         if (siderElement) {
-            siderElement.style.maxWidth = '100px';
+            // siderElement.style.maxWidth = '100px';
             siderElement.style.minWidth = '70px';
-            siderElement.style.minHeight = '60px'
-            siderElement.style.width = '60px';
-            siderElement.style.height = '50px'
+            siderElement.style.minHeight = '70px'
+            siderElement.style.width = '100%';
+            siderElement.style.height = '100%'
 
         }
         if (menuItem) {
+            menuItem.style.display = 'flex';
             menuItem.style.paddingInline = '0px';
             menuItem.style.height = '50px'
+            menuItem.style.width = '100%'
+            menuItem.style.marginInline = '0px'
+            menuItem.style.justifyContent = 'center'
+            menuItem.style.alignItems = 'center'
+            menuItem.style.background = 'none'
         }
         if (menuTitleContentElement) {
-
-
-
-            menuTitleContentElement.style.width = '55px';
+            menuTitleContentElement.style.width = '60px';
             menuTitleContentElement.style.height = '50px'
             menuTitleContentElement.style.display = 'flex';
             menuTitleContentElement.style.justifyContent = 'center'
             menuTitleContentElement.style.alignItems = 'center'
+
+
+            menuTitleContentElement.addEventListener('mouseleave', function() {
+                this.style.color = 'white'; // 마우스가 벗어났을 때의 스타일 (기본값으로 복원)
+              });
+              menuTitleContentElement.addEventListener('mouseenter', function() {
+                this.style.color = 'blue'; // 마우스가 올라갔을 때의 스타일
+              });
+
         }
 
         if (menuElement) {
-
-
             menuElement.style.background = 'black';
             menuElement.style.height = '70px'
         }
     };
 
     useEffect(() => {
+        setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
         checkMobile();
-        window.addEventListener('resize', checkMobile);
 
 
 
@@ -84,41 +96,56 @@ const NavBarmobile = ({ logout, type }) => {
 
 
         <div className="navbarmobile">
-            {isMobile &&
+           
 
                 <ul className='nav-menu-mobile'>
 
-                    <li className='nav-item'>
-                        <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
-                            <img src='greyhome.png' style={{ width: '20px', height: '20px' }}></img>
+                    <li className='nav-item' onMouseEnter={() => setHoveredHome(true)}
+                        onMouseLeave={() => setHoveredHome(false)}>
+                        <Link to='/home' className='nav-links'>
+                            <img src={hoveredHome ? 'redhome.png' : 'greyhome.png'}  style={{ width: '20px', height: '20px' }}></img>
                         </Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link to='/chart' className='nav-links' onClick={closeMobileMenu}>
-                            <img src='searchlogo.png' style={{ width: '20px', height: '20px' }}></img>
+                    <li className='nav-item' onMouseEnter={() => setHoveredChart(true)}
+                        onMouseLeave={() => setHoveredChart(false)}>
+                        <Link to='/chart' className='nav-links'>
+                            <img src={hoveredChart ? 'readsearch.png' : 'searchlogo.png'} style={{ width: '20px', height: '20px' }}></img>
 
                         </Link>
                     </li>
 
-                    <li className='nav-item'>
-                        <Link to="/Footer" className='nav-links' onClick={closeMobileMenu}>
-                            <img src='greydlogo.png' style={{ width: '20px', height: '20px' }}></img>
+                    <li className='nav-item' onMouseEnter={() => setHoveredFooter(true)}
+                        onMouseLeave={() => setHoveredFooter(false)}>
+                        <Link to="/Footer" className='nav-links'>
+                            <img src={hoveredFooter ? 'reddlogo.png' : 'greydlogo.png'}  style={{ width: '20px', height: '20px' }}></img>
                         </Link>
                     </li>
 
 
                     {type && (
-                        <li className='nav-item'>
-                            <Link to='/Mypage' className='nav-links' onClick={closeMobileMenu}>
+                        <li className='nav-item' onMouseEnter={() => setHovered(true)}
+                            onMouseLeave={() => setHovered(false)}>
+                            <Link to='/Mypage' className='nav-links' >
                                 Mypage
                             </Link>
                         </li>)}
 
-                    <Sider  >
-                        <SideMenu type={type} logout={logout} />
-                    </Sider>
+                        {!type && (
+                        <li className='nav-item' onMouseEnter={() => setHovered(true)}
+                            onMouseLeave={() => setHovered(false)}>
+                            <Link to='/Mypage' className='nav-links' >
+                                go!
+                            </Link>
+                        </li>)}
 
-                </ul>}
+
+                    {/* <li className='nav-item'>
+                        <Sider  >
+                            <SideMenu type={type} logout={logout} />
+                        </Sider>
+
+                    </li> */}
+                </ul>
 
         </div>
 

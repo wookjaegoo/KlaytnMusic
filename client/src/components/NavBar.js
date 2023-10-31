@@ -52,37 +52,55 @@ const NavBar = ({ logout, type }) => {
 
     useEffect(() => {
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-
+        // window.addEventListener('resize', checkMobile);
+        const siderElement = document.querySelector("#root > div.navbar > div > aside");
         
-  
-        const siderElement = document.querySelector('.ant-layout-sider.ant-layout-sider-dark');
-        siderElement.style.maxWidth = '100px';
+        const menuItem = document.querySelector("#root > div.navbar > div > aside > div > ul > li")
+        const menuTitleContentElement = document.querySelector("#root > div.navbar > div > aside > div > ul > li > span")
+        const menuElement = document.querySelector("#root > div.navbar > div > aside > div > ul");
+
+        if (siderElement) {
         siderElement.style.minWidth = '70px';
-        siderElement.style.width = '60px';
-        
-        const menuItemElement = document.querySelector('.ant-menu-item.ant-menu-item-active.ant-menu-item-selected.ant-menu-item-only-child');
-        // menuItemElement.style.width = '60px';
-        // menuItemElement.style.paddinginline='0';
-        // 요소를 선택합니다.
-        const menuItem = document.querySelector("#root > div.navbar > ul > aside > div > ul > li");
-        menuItem.style.paddingInline = '0px';
-        
+        siderElement.style.minHeight = '60px'
+        siderElement.style.width = '100px';
+        siderElement.style.height = '50%';
+        siderElement.style.flex = '0 0 0'
+        siderElement.style.position = 'absolute';
+        siderElement.style.right = '0';
+        }
+        if (menuItem) {
+            menuItem.style.display = 'flex';
+            menuItem.style.paddingInline = '0px';
+            menuItem.style.height = '50px'
+            menuItem.style.width = '100%'
+            menuItem.style.marginInline = '0px'
+            menuItem.style.justifyContent = 'center'
+            menuItem.style.alignItems = 'center'
+            menuItem.style.background = 'none'
+        }
 
 
-        
-        const menuTitleContentElement = document.querySelector('.ant-menu-title-content');
-        menuTitleContentElement.style.width = '55px';
-        menuTitleContentElement.style.display='flex';
-        menuTitleContentElement.style.justifyContent='center'
-        menuTitleContentElement.style.alignItems='center'
-        
 
-        const menuElement = document.querySelector('.ant-menu');
-        menuElement.style.background = 'black';
-    
+        if (menuTitleContentElement) {
+            menuTitleContentElement.style.width = '60px';
+            menuTitleContentElement.style.height = '50px'
+            menuTitleContentElement.style.display = 'flex';
+            menuTitleContentElement.style.justifyContent = 'center'
+            menuTitleContentElement.style.alignItems = 'center'
 
+
+            menuTitleContentElement.addEventListener('mouseleave', function () {
+                this.style.color = 'white'; // 마우스가 벗어났을 때의 스타일 (기본값으로 복원)
+            });
+            menuTitleContentElement.addEventListener('mouseenter', function () {
+                this.style.color = 'blue'; // 마우스가 올라갔을 때의 스타일
+            });
+
+        }
+        if (menuElement) {
+            menuElement.style.background = 'black';
+            menuElement.style.height = '70px'
+        }
 
 
 
@@ -92,7 +110,7 @@ const NavBar = ({ logout, type }) => {
         };
     }, []);
 
-    
+
 
 
 
@@ -100,15 +118,19 @@ const NavBar = ({ logout, type }) => {
 
 
         <div className="navbar">
+
             <div className='navbar-container'>
 
-                <img src="newlogo.png" width="50" height="50" alt="" />
+                <div className="logo-container">
+                    <img src="newlogo.png" width="50" height="50" alt="" />
+                </div>
+
+
+                <Sider  >
+                    <SideMenu type={type} logout={logout} />
+                </Sider>
 
             </div>
-
-
-
-
 
 
             <ul className='nav-menu'>
@@ -162,9 +184,6 @@ const NavBar = ({ logout, type }) => {
                         </Link>
                     </li> */}
 
-                <Sider  >
-                    <SideMenu type={type} logout={logout} />
-                </Sider>
 
             </ul>
 

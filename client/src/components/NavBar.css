@@ -26,6 +26,14 @@
   max-width: 1500px;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(6, auto);
@@ -39,7 +47,7 @@
 
 .nav-item {
 
-  height: 50px;
+  height: 100%;
 }
 
 .nav-links {
@@ -138,7 +146,7 @@ i.fa-spotify {
   }
 
   .nav-links:hover {
-    background-color: #fff;
+    
     color: #242424;
     border-radius: 0;
   }

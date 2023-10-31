@@ -130,7 +130,7 @@ width: 500px;
   .mypage {
     grid-row: 2/11;
     
-    width: 400px;
+    width: 100%;
 
 
   }
