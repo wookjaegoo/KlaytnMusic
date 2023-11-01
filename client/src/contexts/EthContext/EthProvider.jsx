@@ -79,7 +79,11 @@ export function EthProvider({ children }) {
           // console.log(keyting)
           //pvkey 입력받고 caver.wallet에 모두 추가한뒤에 signedtr결제로직으로 구성해야함
           //이거로 클레이튼 계정만들기는 가능 signedtr할때 개인키 입력 부분이 문제 
-          contract = new caver.contract(abi,"0xfbb92bf30d685385d2f1d160242e66350482816a");
+          // contract = new caver.contract(abi,"0xfbb92bf30d685385d2f1d160242e66350482816a");
+          contract = new caver.contract(abi,"0x8c2f28afe28d208d153283355d855c7f2a73dc62");
+            // const lockedUntil = await contract.lockedUntil(address1);
+            // console.log(`Address ${address1}의 lockedUntil 값: ${lockedUntil}`);
+            
           console.log(contract)
            const bal=await caver.rpc.klay.getBalance("0x892776eba67d184a407243e701770d1e647a8b28")
            const hexval=bal.toString()
@@ -142,10 +146,14 @@ export function EthProvider({ children }) {
           let address2, contract2;
           try{
             // contract2 = new caver.klay.Contract(abi,'0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d');
-            contract2 = new caver.contract(abi,"0x9fbf326fda60bbfcf19c098c73bdfea65d442b0d");
-            console.log(contract2)
+            contract2 = new caver.contract(abi,"0x219d8d386f2b377255db99d634e920ca482ba281");
+
+           const res=await contract2.methods.getLockedUntil("0x6aee013da3ccda73ed28122cd7c984e538301481").call()
+            console.log(res,"lockeuntil시간 이걸활용해야함 11/1")
+
+
             const amount= await contract2.methods.balanceOf("0x7137201f7617a680b98f1b21242cc8f2030ac40e").call();
-             console.log("당신이 보유한 VERAX:",amount/(10**18))
+            //  console.log("당신이 보유한 VERAX:",amount/(10**18))
 
 
             

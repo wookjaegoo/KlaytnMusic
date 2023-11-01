@@ -10,6 +10,9 @@ console.log(dotenv)
 const NFT_ADDRESS=process.env.REACT_APP_NFT_ADDRESS
 const AMARANTH_ADDRESS=process.env.REACT_APP_AMARANTH_ADDRESS
 
+const NFT_ADDRESS2="0x8c2f28afe28d208d153283355d855c7f2a73dc62"
+const AMARANTH_ADDRESS2="0x219d8d386f2b377255db99d634e920ca482ba281"
+
 
 // const newkey=caver.wallet.keyring.createFromPrivateKey("0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56");
 
@@ -21,6 +24,7 @@ caver.wallet.add(newkey)
 // const ArtGrowNFT= require("./ArtGrowNFT")
 const Amaranthus= require("./Amaranthus");
 const artifact = require("./ArtGrowNFT.json");
+
 
 //did 문서 참고해서 로직짜보셈 금방할듯
 
@@ -71,7 +75,7 @@ const _Input=caver.abi.encodeFunctionCall(
 
   const executionTx=caver.transaction.smartContractExecution.create({
     from:newkey.address,
-    to: AMARANTH_ADDRESS,
+    to: AMARANTH_ADDRESS2,
     input:_Input,
     gas: 10000000,
  });
@@ -127,12 +131,12 @@ const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
         "stateMutability": "nonpayable",
         "type": "function"
       }
-    ,[receiver_address,amount,NFT_ADDRESS,tokenId])
+    ,[receiver_address,amount,NFT_ADDRESS2,tokenId])
 
     
  const executionTx=caver.transaction.smartContractExecution.create({
     from:sender.address,
-    to: AMARANTH_ADDRESS,
+    to: AMARANTH_ADDRESS2,
     input:_Input,
     gas: 10000000,
  });
@@ -143,6 +147,7 @@ const sendTransaction = async (receiver_address,amount,tokenId,signKey) =>
  const receipt=await caver.rpc.klay.sendRawTransaction(signed);
  //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
  //await 붙이니까 next로 받아주는듯 비동기 처리에대한 확실한 이해가 필요함 
+ console.log(receipt)
 
 }
 
@@ -180,7 +185,7 @@ const sendNftTr = async (sender_adress,nftUrl,signKey) =>
     
  const executionTx=caver.transaction.smartContractExecution.create({
     from:sender.address,
-    to: NFT_ADDRESS,
+    to: NFT_ADDRESS2,
     input:_Input,
     gas: 10000000,
  });
@@ -189,6 +194,7 @@ const sendNftTr = async (sender_adress,nftUrl,signKey) =>
 //  caver.rpc.klay.sendRawTransaction(signed).then(console.log);
 
  const receipt=await caver.rpc.klay.sendRawTransaction(signed);
+ console.log(receipt)
  //메타마스크 사인과정 없이 보내는 로직 wallet keyring add과정이 필수불가결함
  //await 붙이니까 next로 받아주는듯 비동기 처리에대한 확실한 이해가 필요함 
 
@@ -206,7 +212,7 @@ const songDataSender =async ()=>
 {
   const {abi} = artifact;
 
-  const contractInstance = new caver.contract(abi,NFT_ADDRESS)
+  const contractInstance = new caver.contract(abi,NFT_ADDRESS2)
   const num = await contractInstance.methods.totalSupply().call();
   let songList=[]
 

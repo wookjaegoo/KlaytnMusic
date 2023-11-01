@@ -27,6 +27,22 @@ type="client"
     setSigninObj(signinObj);
   };
 
+  const signinelement= document.querySelector("#root > div.Deploys > div > div > div > div ");
+  const signinbox=document.querySelector("#root > div.Deploys > div > div > div > div > div")
+  
+  if(signinelement)
+  {
+    signinelement.style.display='flex'    
+  signinelement.style.justifyContent='center'
+  signinelement.style.width='100%'
+
+  }
+  if(signinbox)
+  {
+   
+    signinbox.style.marginInlineStart = '0%';
+
+  }
   
   // const changeWay = (e) => {
   //   setWay(e.target.value);
@@ -100,6 +116,8 @@ type="client"
     }
   };
   return (
+    <div className='Deploys' style={{background:'white'}}>
+
     <div className="signin">
       <Spin tip="로딩중..." size="large" spinning={isLoading}>
         <Row>
@@ -148,6 +166,7 @@ type="client"
           </Col>
         </Row>
       </Spin>
+    </div>
     </div>
   );
 };

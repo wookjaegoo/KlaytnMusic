@@ -78,17 +78,17 @@ const NavBarmobile = ({ logout, type }) => {
         }
     };
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
-        checkMobile();
+    // useEffect(() => {
+    //     setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
+    //     checkMobile();
 
 
 
 
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener('resize', checkMobile);
+    //     };
+    // }, []);
 
 
 

@@ -39,9 +39,12 @@ contract Amaranthus is ERC20{
 
     mapping(address => uint256) private lockedUntil;
 
+    function getLockedUntil(address account) external view returns (uint256) {
+        return lockedUntil[account];
+    }
+
     function sendTransaction(address to, uint256 value,address _counter,uint256 _tokenId) external {
         require(block.timestamp >= lockedUntil[msg.sender], "Transaction is locked.");
-
         // Lock the sender's account for 4 minutes
         lockedUntil[msg.sender] = block.timestamp + 240;
         // Send the transaction

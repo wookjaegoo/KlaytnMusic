@@ -1,12 +1,14 @@
 .mypage {
     padding: 0;
     display: grid;
-    grid-column: 7/13;
-    grid-row: 2/8;
-    height: 500px;
-width: 500px;
+    /* grid-column: 7/13; */
+    grid-row: 2/11;
 
 
+  }
+  .mypageContainer{
+    display: flex;
+    justify-content: center;
   }
   
   .mypage--breadcrumb {
@@ -21,11 +23,16 @@ width: 500px;
   }
   
   .mypage--form {
-    margin: 5%;
+
+    display: flex;
     background-color: white;
     border-radius: 20px;
-    padding: 5% 0;
+    height: 100%;
+    
     box-shadow: 2px 2px 5px #777777;
+    align-items: center;
+    justify-content: center;
+
   }
   
   .mypage--regist {
@@ -70,7 +77,7 @@ width: 500px;
   }
   
   .mypage--input {
-    text-indent: 15px;
+    text-indent: 1px;
     border-radius: 10px;
     width: 100%;
     height: 2.5rem;
@@ -132,6 +139,10 @@ width: 500px;
     
     width: 100%;
 
+
+  }
+
+  .mypage--form {
 
   }
   

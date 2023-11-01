@@ -10,7 +10,6 @@ const Mypage = ({ type,contract2,user}) => {
   const [userAmount, setUserAmount] = useState({
     balance: 0,
     Vbalance:0,
-
   });
 
   const [pageTitle, setPageTitle] = useState("");
@@ -19,6 +18,45 @@ const Mypage = ({ type,contract2,user}) => {
   const requiredVCList = ["이메일", "지갑주소"];
 
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+   
+
+    const mypageelements3=  document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div > div")
+    const  mypageelements=document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div");
+    const mypageelements2=document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div");
+    const mypageelement4=  document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb");
+      if(mypageelements)
+      {
+        mypageelements.style.width='100%'
+        mypageelements.style.display = 'flex';
+        mypageelements.style.justifyContent = 'center';
+        mypageelements.style.alignItems = 'center'; 
+      }
+      if(mypageelements2)
+      {
+        mypageelements2.style.flex= '0 0 100%';
+        mypageelements2.style.justifyContent='center'
+        mypageelements2.style.marginInlineStart='0'
+        mypageelements2.style.justifyContent='center';
+        mypageelements2.style.maxWidth='100%'
+      }
+      if(mypageelements3)
+      {
+        mypageelements3.style.marginInlineStart='0'
+        mypageelements3.style.maxWidth='100%'
+        mypageelements3.style.width='100%'
+        mypageelements3.style.flex='0 0 80%'
+      }
+      if(mypageelement4)
+      {
+      }
+
+
+    return () => {
+    };
+}, []);
+ 
 
   useEffect(() => {
     axios({
@@ -257,13 +295,14 @@ const Mypage = ({ type,contract2,user}) => {
 
   return (
     <div className="Deploys"> 
+
     <div className="mypage">
       {/* <Breadcrumb className="mypage--breadcrumb" separator=">">
         <Breadcrumb.Item href="/">홈</Breadcrumb.Item>
         <Breadcrumb.Item href="/mypage">정보 수정</Breadcrumb.Item>
       </Breadcrumb> */}
       {/* <div className="mypage--description">{type}의 정보를 수정합니다.</div> */}
-
+<div className="mypageContainer">
       <div className="mypage--form">
         <Spin spinning={isLoading} tip="로딩중..." size="large">
           <Row className="mypage--row">
@@ -305,6 +344,7 @@ const Mypage = ({ type,contract2,user}) => {
           </Row>
         </Spin>
       </div>
+    </div>
     </div>
     </div>
   );

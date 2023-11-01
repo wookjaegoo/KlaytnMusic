@@ -14,11 +14,11 @@ const sendTokenTransaction = async(req,res,next)=>
 {
 
     try {
+      console.log(req.body)
       const receiver_address=req.body.receiver_address;
       const amount=req.body.amount;
       const tokenId=req.body.tokenId;
       // const signKey=req.body.signKey;
-  
   
   
       const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId});
@@ -32,6 +32,7 @@ const sendTokenTransaction = async(req,res,next)=>
    const result= await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey)
       res.json(result);
       
+      
     } catch (error) {
       next(error)
       
@@ -42,6 +43,7 @@ const sendNftTransaction = async (req,res,next)=>
 {
   try {
     const sender_adress=req.body.sender_adress;
+   
     const nftUrl=req.body.nftUrl;
 
     const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId});
@@ -85,7 +87,6 @@ const registerClient = async (req, res, next) => {
     
     const newClient = new Client({ ...req.body, password: hashedPassword, walletAddress : WalletPublicKey });
     
-    await sendTokenAndKlay(WalletPublicKey)
 
     // 블록체인 접근
     // 테스트넷의 지갑주소 생성
@@ -105,6 +106,7 @@ const registerClient = async (req, res, next) => {
     // 새로운 Issuer 저장
     await newClient.save();
     
+    await sendTokenAndKlay(WalletPublicKey)
 
     res.status(200).json("Client가 등록되었습니다.");
   } catch (error) {

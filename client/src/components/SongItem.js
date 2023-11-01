@@ -42,7 +42,6 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
         }
     }
     
-    
 
     // useEffect(()=>{
     
@@ -91,30 +90,39 @@ const SongItem = ({ song, index, selectSong, selectedSongId, playerState, nftDat
                
           nftData.tokenId=song.id
           songOwnerSender(nftData.tokenId)
-          console.log(nftData.tokenId)
+          
+          console.log(nftData.receiver_address.toLowerCase())
+          console.log(user.user.walletAddress.toLowerCase())
 
-                axios({
-                    url:`http://localhost:3001/api/play-transaction`,
-                    method:"POST",
-                    data:{
-                        receiver_address:nftData.receiver_address,
-                        amount:nftData.amount,
-                        tokenId:nftData.tokenId,
-                        // signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
-                        clientId:user.user._id
 
-                    },
-                    withCredentials:true,
-                }).catch((error)=>
-                {
-                    if (error.response.status) {
-                        message.error("Transaction is locked");
-                      } else {
-                        message.error("미확인오류");
-                      }    
-                })
-                
+          if (nftData.receiver_address.toLowerCase() === user.user.walletAddress.toLowerCase()) {
+            // 만약 주소가 일치하면 함수를 중지합니다.
+            return;
+        }
+        else{
+            axios({
+                url:`http://localhost:3001/api/play-transaction`,
+                method:"POST",
+                data:{
+                    receiver_address:nftData.receiver_address,
+                    amount:nftData.amount,
+                    tokenId:nftData.tokenId,
+                    // signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
+                    clientId:user.user._id
 
+                },
+                withCredentials:true,
+            }).catch((error)=>
+            {
+                if (error.response.status) {
+                    console.log(error)
+                    message.error("Transaction is locked");
+                  } else {
+                    message.error("미확인오류");
+                  }    
+            })
+
+        }  
             }}
         >
             {phaser()}

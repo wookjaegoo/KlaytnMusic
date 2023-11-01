@@ -16,7 +16,6 @@ const projectId = '2O93jmJXVU0vnrDtMUzuuvLiiIu';
 const projectSecret = '5b3f1a4c745556778787fe752e3780e9';
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 
-
 const client2 = create({
   host: 'ipfs.infura.io',
   port: 5001,
@@ -38,16 +37,17 @@ function Footer({user}) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  // const [address,setAddress] =useState("");
+
 
   useEffect(() => {
+    // setAddress(user.user.walletAddress);
 
     setIsLoading(false)
   }, []);
 
 
 
- 
- console.log(user) 
 async function uploadFile(e) {
   const file = e.target.files[0]
   
@@ -155,7 +155,8 @@ async function deployNFT(e)
 }`                
 
 
-  const added = await client2.add(json)
+  const added = await client2.add(json);
+  console.log(added)
   
   const url = `https://prnftmusic.infura-ipfs.io/ipfs/${added.path}`
 
@@ -164,8 +165,9 @@ async function deployNFT(e)
     url:`http://localhost:3001/api/nft-transaction`,
     method:"POST",
     data:{
-        seder_adress:user.walletAddress,
-        nftUrl:url
+        sender_adress:user.user.walletAddress,
+        nftUrl:url,
+        clientId:user.user._id
 
     },
     withCredentials:true,

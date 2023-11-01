@@ -115,6 +115,8 @@ const Player = ({
 
         if (!playerState) {
 
+            
+
             audioRef.current.play();
             dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
             // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
@@ -123,8 +125,15 @@ const Player = ({
             console.log(selectedSongId)
             
           nftData.tokenId=selectedSongId
-          songOwnerSender(nftData.tokenId)
+          songOwnerSender(nftData.tokenId);
+          console.log(nftData.receiver_address.toLowerCase())
+          console.log(user.user.walletAddress.toLowerCase())
 
+          if (nftData.receiver_address.toLowerCase() === user.user.walletAddress.toLowerCase()) {
+            // 만약 주소가 일치하면 함수를 중지합니다.
+            return;
+        }
+        else{
             axios({
                 url:`http://localhost:3001/api/play-transaction`,
                 method:"POST",
@@ -163,6 +172,9 @@ const Player = ({
         // 그리고 되는함수 player list뿐임 내가원한건 상태변수 player 숫자 리턴받고 그 숫자를 playerlist에 넣는건데..
         // player 상태변수를 리턴하는건 다시해야함 <<transaction count느낌이지 그변수로 대체해도될거같고..
         // 2022 9/4 여기까지하자 2022 
+
+        }
+            
 
         } else {
             audioRef.current.pause();
