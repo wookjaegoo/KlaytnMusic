@@ -7,7 +7,7 @@ import useEth from "../contexts/EthContext/useEth";
 
 
 
-function Main( {user,contract,songs})
+function Main( {user,contract,songs,contract2})
 {
   
 
@@ -24,7 +24,7 @@ function Main( {user,contract,songs})
     <React.Fragment>
     
             <SongListHeader />
-            <SongList songs={songs} contract={contract} user={user}/>
+            <SongList songs={songs} contract={contract} user={user} contract2={contract2}/>
             <SongDetail songs={{songs}} />
             {/* <Player /> */}
             <a href="#focused" id="focus-link" hidden>

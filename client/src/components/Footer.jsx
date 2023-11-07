@@ -29,6 +29,8 @@ const client2 = create({
 
 function Footer({user}) {  
   const [fileUrl, updateFileUrl] = useState("");
+  const [imageUrl, updateImageUrl] = useState("");
+
   const[inputs, setInputs] =useState({song:'',writer:''});
   const {song ,writer} =inputs;
   const{state: { contract, account,web3 } } = useEth();
@@ -60,6 +62,7 @@ async function uploadFile(e) {
     const url = `https://prnftmusic.infura-ipfs.io/ipfs/${added2.path}`
     ipfsurl=url
    updateFileUrl(url)
+   console.log(ipfsurl)
    setSelectedFile(file);
 
 
@@ -68,6 +71,24 @@ async function uploadFile(e) {
   } 
 
 }
+
+async function uploadImage(e) {
+  const imageFile = e.target.files[0];
+
+  try {
+    const addedImage = await client2.add(imageFile);
+    const url = `https://prnftmusic.infura-ipfs.io/ipfs/${addedImage.path}`;
+    // 여기서 imageUrl을 사용하여 업로드 된 이미지를 활용할 수 있습니다.
+    songimageurl=url;
+    console.log(songimageurl)
+    updateImageUrl(url)
+
+    // 아래에 추가적으로 원하는 작업을 수행할 수 있습니다.
+  } catch (error) {
+    console.error('이미지 업로드 중 오류 발생: ', error);
+  }
+}
+
 
 const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -218,8 +239,12 @@ catch (error) {
           onChange={handleFileChange}
           disabled={uploading}
         /> */}
-        <input type="file" id="input-file"       accept="audio/*" onChange={uploadFile}    style={{display:"none"}}         disabled={uploading}/>
+        <input type="file" id="input-file"  accept="audio/*" onChange={uploadFile}    style={{display:"none"}}         disabled={uploading}/>
         <label for="input-file"  className='custom-btn' style={{color:'black'}}>UPLOAD MUSIC</label>
+        
+        <input type="file" id="input-image"  accept="image/*" onChange={uploadImage}    style={{display:"none"}}        />
+        <label for="input-image"  className='custom-btn'  style={{color:'black'}}>UPLOAD IMAGE</label>
+        
 
 
       </div>
@@ -243,7 +268,6 @@ catch (error) {
         <div>
     
     <label for="jsonupload" onClick={deployNFT} id="json"  className='custom-btn'  style={{color:'black'}}>DEPLOY NFT</label>
-
   
     </div>
 

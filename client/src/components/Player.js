@@ -36,6 +36,9 @@ const Player = ({
     const [shuffled, setShuffled] = useState(false);
     const audioRef = useRef();
     let clicked = false;
+    const [lockedTime, setLockedTime] = useState(null);
+    const [isLocked, setIsLocked] = useState(false);
+
     // if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
     // {
     //      src= songs[selectedSongId].url;      
@@ -58,6 +61,24 @@ const Player = ({
       dispatch({ type: "SET_NFT_DATA", payload:nftData });
    
     }
+
+
+
+    useEffect(() => {
+      async function fetchLockedTime() {
+        const lockedTime = await contract2.methods.getLockedUntil(user.user.walletAddress).call();
+        setLockedTime(lockedTime);
+      }
+  
+      fetchLockedTime();
+    }, [/* 필요한 의존성 배열을 여기에 추가하세요 (만약 필요하다면) */selectedSongId]);
+
+    useEffect(() => {
+        if (lockedTime !== null) {
+          const currentTime = Math.floor(Date.now() / 1000);
+          setIsLocked(lockedTime > currentTime);
+        }
+      }, [lockedTime]);
 
     // useEffect(()=>{
         
@@ -129,7 +150,7 @@ const Player = ({
           console.log(nftData.receiver_address.toLowerCase())
           console.log(user.user.walletAddress.toLowerCase())
 
-          if (nftData.receiver_address.toLowerCase() === user.user.walletAddress.toLowerCase()) {
+          if (nftData.receiver_address.toLowerCase() === user.user.walletAddress.toLowerCase() ||isLocked) {
             // 만약 주소가 일치하면 함수를 중지합니다.
             return;
         }

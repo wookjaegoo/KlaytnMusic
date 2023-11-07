@@ -150,7 +150,8 @@ export function EthProvider({ children }) {
 
            const res=await contract2.methods.getLockedUntil("0x6aee013da3ccda73ed28122cd7c984e538301481").call()
             console.log(res,"lockeuntil시간 이걸활용해야함 11/1")
-
+            let currentTime = Math.floor(Date.now() / 1000); // 현재 시간을 초 단위로 얻기
+            console.log(currentTime)
 
             const amount= await contract2.methods.balanceOf("0x7137201f7617a680b98f1b21242cc8f2030ac40e").call();
             //  console.log("당신이 보유한 VERAX:",amount/(10**18))

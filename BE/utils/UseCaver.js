@@ -219,6 +219,7 @@ const songDataSender =async ()=>
   for (let i = 0; i < num ; i++) {
 
     const Writer = await contractInstance.methods.tokenURI(i).call();
+   
     const listen_Count = await contractInstance.methods.howmanyListen(i).call();
     
     const response = await fetch(Writer);
@@ -226,6 +227,13 @@ const songDataSender =async ()=>
       throw new Error(response.statusText);
     let songs = await response.json();
     
+    if(songs.url === null || songs.url === '')
+    {
+      continue;
+    }
+    //음악없이 그림만 nft로 발행한경우 예외처리 필요하다.
+    console.log(songs.url)
+
     songList.push(songs);
     songList[i].listenCount = parseInt(listen_Count);
 

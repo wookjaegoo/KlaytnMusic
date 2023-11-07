@@ -170,7 +170,7 @@ function App() {
             <Route path='/Register' element={<ClientSignup />} />
             <Route path='/Topchart' element={<Topchart songs={sortedSongs} contract={contract} user={user} />} />
             <Route path='/Footer' element={<Footer user={{ user }} />} />
-            <Route path='/chart' element={<Main user={user} contract={contract} songs={songs} />} />
+            <Route path='/chart' element={<Main user={user} contract={contract} songs={songs} contract2={contract2}  />} />
             {/* <Route path='/Profile' element={<Profile />} /> */}
             <Route path="/mypage" element={<Mypage type={type} contract2={contract2} user={user}/>} />
 
