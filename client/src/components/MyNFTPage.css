@@ -1,0 +1,57 @@
+.mynftpage.open {
+    padding: 0;
+    display: grid;
+
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 20px;
+    justify-content: center;
+    /* 수평 가운데 정렬 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
+
+
+}
+
+
+.mynftpage.closed {
+    display: none;
+    /* 닫힌 상태일 때는 숨김 */
+}
+
+.mynftpage.open .content {
+    /* 내용의 스타일 지정 */
+    height: 100%;
+    /* 예시로 내용의 높이를 100%로 지정 */
+    text-align: center;
+    /* 내용을 수평 가운데 정렬 */
+
+}
+
+.randomboxlogo {
+    width: 50%;
+    height: 40%;
+    transition: transform 2s;
+    /* 회전 애니메이션 설정 */
+
+}
+
+.randomboxlogo.rotated {
+    transform: rotate(720deg);
+    /* 360도 회전 */
+}
+
+
+.randomnftlogo {
+    width: 70%;
+    height: 60%;
+    opacity: 0; /* 초기에는 투명하게 설정 */
+    /* 회전 애니메이션 설정 */
+
+}
+.randomnftlogo.visible {
+    transition: opacity 1s; /* 서서히 나타나는 애니메이션 설정 */
+    
+    opacity: 1; /* 나타나는 상태 */
+}

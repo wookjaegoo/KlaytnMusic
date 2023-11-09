@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Mypage.css";
 import caver from "../klaytn/caver";
+import MyNFTPage from "./MyNFTPage";
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-const Mypage = ({ type,contract2,user}) => {
+const Mypage = ({ type, contract2, user }) => {
   const [userAmount, setUserAmount] = useState({
     balance: 0,
-    Vbalance:0,
+    Vbalance: 0,
   });
 
   const [pageTitle, setPageTitle] = useState("");
@@ -18,45 +21,42 @@ const Mypage = ({ type,contract2,user}) => {
   const requiredVCList = ["이메일", "지갑주소"];
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isMyNFTTabOpen, setIsMyNFTTabOpen] = useState(false);
 
   useEffect(() => {
-   
 
-    const mypageelements3=  document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div > div")
-    const  mypageelements=document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div");
-    const mypageelements2=document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div");
-    const mypageelement4=  document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb");
-      if(mypageelements)
-      {
-        mypageelements.style.width='100%'
-        mypageelements.style.display = 'flex';
-        mypageelements.style.justifyContent = 'center';
-        mypageelements.style.alignItems = 'center'; 
-      }
-      if(mypageelements2)
-      {
-        mypageelements2.style.flex= '0 0 100%';
-        mypageelements2.style.justifyContent='center'
-        mypageelements2.style.marginInlineStart='0'
-        mypageelements2.style.justifyContent='center';
-        mypageelements2.style.maxWidth='100%'
-      }
-      if(mypageelements3)
-      {
-        mypageelements3.style.marginInlineStart='0'
-        mypageelements3.style.maxWidth='100%'
-        mypageelements3.style.width='100%'
-        mypageelements3.style.flex='0 0 80%'
-      }
-      if(mypageelement4)
-      {
-      }
+
+    const mypageelements3 = document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div > div")
+    const mypageelements = document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div");
+    const mypageelements2 = document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div");
+    const mypageelement4 = document.querySelector("#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb");
+    if (mypageelements) {
+      mypageelements.style.width = '100%'
+      mypageelements.style.display = 'flex';
+      mypageelements.style.justifyContent = 'center';
+      mypageelements.style.alignItems = 'center';
+    }
+    if (mypageelements2) {
+      mypageelements2.style.flex = '0 0 100%';
+      mypageelements2.style.justifyContent = 'center'
+      mypageelements2.style.marginInlineStart = '0'
+      mypageelements2.style.justifyContent = 'center';
+      mypageelements2.style.maxWidth = '100%'
+    }
+    if (mypageelements3) {
+      mypageelements3.style.marginInlineStart = '0'
+      mypageelements3.style.maxWidth = '100%'
+      mypageelements3.style.width = '100%'
+      mypageelements3.style.flex = '0 0 80%'
+    }
+    if (mypageelement4) {
+    }
 
 
     return () => {
     };
-}, []);
- 
+  }, []);
+
 
   useEffect(() => {
     axios({
@@ -67,9 +67,9 @@ const Mypage = ({ type,contract2,user}) => {
       .then((data) => {
         if (data.data.type === "client") {
           setPageTitle(data.data.user.title);
-        
+
         }
-        
+
         // setUser({
         //   ...data.data.user,
         //   password: "",
@@ -82,7 +82,7 @@ const Mypage = ({ type,contract2,user}) => {
         setIsLoading(true);
       });
 
-      
+
 
 
   }, []);
@@ -102,12 +102,12 @@ const Mypage = ({ type,contract2,user}) => {
       const hexval = bal.toString();
       const decimal = parseInt(hexval, 16);
       const yourclay = await caver.utils.convertFromPeb(decimal, "KLAY");
-  
+
       setUserAmount((prevUser) => ({
         ...prevUser,
         balance: yourclay,
       }));
-  
+
       return yourclay;
     } catch (error) {
       console.error("잔액을 가져오는데 에러 발생:", error);
@@ -118,14 +118,14 @@ const Mypage = ({ type,contract2,user}) => {
   const getVerax = async (addr) => {
     try {
 
-      const amount= await contract2.methods.balanceOf(user.walletAddress).call();
-      const yourvx=amount/(10**18);
+      const amount = await contract2.methods.balanceOf(user.walletAddress).call();
+      const yourvx = amount / (10 ** 18);
 
       setUserAmount((prevUser) => ({
         ...prevUser,
         Vbalance: yourvx,
       }));
-  
+
       return yourvx;
     } catch (error) {
       console.error("잔액을 가져오는데 에러 발생:", error);
@@ -140,17 +140,17 @@ const Mypage = ({ type,contract2,user}) => {
     const fetchBalance = async () => {
       try {
         const yourclay = await getBalance(user.walletAddress);
-        const yourvx= await getVerax(user.walletAddress)
-       
+        const yourvx = await getVerax(user.walletAddress)
+
       } catch (error) {
         console.error("잔액을 가져오는데 에러 발생:", error);
       }
     };
-  
+
     // 컴포넌트가 처음 마운트될 때와 user.walletAddress가 변경될 때마다 fetchBalance 함수를 호출합니다.
     fetchBalance();
   }, [user.walletAddress]);
-  
+
 
 
   // const updateInfo = (e) => {
@@ -181,7 +181,7 @@ const Mypage = ({ type,contract2,user}) => {
   //     }
   //   }
   // };
-  useEffect(( ) => {});
+  useEffect(() => { });
   const emailDOM = (
     <>
       <div className="mypage--DOM--title">이메일</div>
@@ -245,7 +245,7 @@ const Mypage = ({ type,contract2,user}) => {
 
   const klayAmountDom = (
     <>
-      <div className="mypage--DOM--title">보유KLAY</div>
+      <div className="mypage--DOM--title">KLAY</div>
       <img src="smallklay.png"></img>
       <input
         className="mypage--input disabled"
@@ -260,8 +260,8 @@ const Mypage = ({ type,contract2,user}) => {
 
   const VeraxAmountDom = (
     <>
-      <div className="mypage--DOM--title">보유VERAX
-      </div>      
+      <div className="mypage--DOM--title">VERAX
+      </div>
       <img src="smallverax.png"></img>
 
       <input
@@ -289,63 +289,82 @@ const Mypage = ({ type,contract2,user}) => {
     </>
   );
   */
+  const toggleMyNFTTab = () => {
+    setIsMyNFTTabOpen(!isMyNFTTabOpen);
+  };
 
 
-  const issuerDOM = [nameDOM, emailDOM,walletAddressDOM,klayAmountDom,VeraxAmountDom];
+  const issuerDOM = [nameDOM, emailDOM, walletAddressDOM, klayAmountDom, VeraxAmountDom];
 
   return (
-    <div className="Deploys"> 
+    <div className="Deploys">
 
-    <div className="mypage">
-      {/* <Breadcrumb className="mypage--breadcrumb" separator=">">
+      {isMyNFTTabOpen && <MyNFTPage></MyNFTPage>}
+
+
+
+      <div className="mypage">
+        {/* <Breadcrumb className="mypage--breadcrumb" separator=">">
         <Breadcrumb.Item href="/">홈</Breadcrumb.Item>
         <Breadcrumb.Item href="/mypage">정보 수정</Breadcrumb.Item>
       </Breadcrumb> */}
-      {/* <div className="mypage--description">{type}의 정보를 수정합니다.</div> */}
-<div className="mypageContainer">
-      <div className="mypage--form">
-        <Spin spinning={isLoading} tip="로딩중..." size="large">
-          <Row className="mypage--row">
-            <Col span={20} offset={2}>
-              <Row>
-                <Col span={12} offset={6}>
-                  <div className="mypage--title">
-                    {/* {pageTitle} */}
-                    마이페이지
-                  </div>
-                  <hr />
-                  {type === ""
-                    ? ""
-                    
-                    : type === "client"
-                    ? issuerDOM.map((e, idx) => {
-                        return (
-                          <Row className="mypage--row" key={idx}>
-                            {e}
-                          </Row>
-                        );
-                      })
-                    
-                    : ""}
-                  <hr style={{ margin: "30px 0 " }} />
+        {/* <div className="mypage--description">{type}의 정보를 수정합니다.</div> */}
+
+
+
+
+        <div className="mypageContainer">
+          <div className="mypage--form">
+            <Spin spinning={isLoading} tip="로딩중..." size="large">
+              <Row className="mypage--row">
+                <Col span={20} offset={2}>
+                  <Row>
+                    <Col span={12} offset={6}>
+                      <div className="mypage--title">
+                        {/* {pageTitle} */}
+                        마이페이지
+                      </div>
+                      <hr />
+                      {type === ""
+                        ? ""
+
+                        : type === "client"
+                          ? issuerDOM.map((e, idx) => {
+                            return (
+                              <Row className="mypage--row" key={idx}>
+                                {e}
+                              </Row>
+                            );
+                          })
+
+                          : ""}
+                      <hr style={{ margin: "30px 0 " }} />
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={6} offset={9}>
-              {/* <button className="mypage--submit" onClick={updateInfo}>
+              <Row>
+                <Col span={6} offset={9}>
+                  {/* <button className="mypage--submit" onClick={updateInfo}>
                 정보 수정
               </button> */}
-              <button className="mypage--submit" >
+                  {/* <button className="mypage--submit" >
                 정보 수정
-              </button>
-            </Col>
-          </Row>
-        </Spin>
+              </button> */}
+
+                  <button
+                    className="mypage--submit"
+                    onClick={toggleMyNFTTab}
+                  >
+                    MY NFT
+                  </button>
+
+                </Col>
+              </Row>
+            </Spin>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 };
