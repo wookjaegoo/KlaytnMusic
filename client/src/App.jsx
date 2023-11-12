@@ -22,6 +22,10 @@ import Mypage from "./components/Mypage";
 import Home from "./components/Home";
 import NavBarmobile from "./components/NavBarmobile";
 
+const fs = require("fs");
+const path = require("path");
+
+
 function App() {
   
   const [songs, updateSong] = useState();
@@ -136,6 +140,7 @@ function App() {
   }, []); // 빈 배열을 전달하여 컴포넌트가 처음 로드될 때만 실행
 
 
+
   const{state: {contract,account,contract2} } = useEth();
   //백에서 songs던지는 로직으로 수정 7/17
 
@@ -172,7 +177,7 @@ function App() {
             <Route path='/Footer' element={<Footer user={{ user }} />} />
             <Route path='/chart' element={<Main user={user} contract={contract} songs={songs} contract2={contract2}  />} />
             {/* <Route path='/Profile' element={<Profile />} /> */}
-            <Route path="/mypage" element={<Mypage type={type} contract2={contract2} user={user}/>} />
+            <Route path="/mypage" element={<Mypage type={type} contract2={contract2} user={user} contract={contract}/>} />
 
           </Routes>
           <Player songs={{ songs }} contract={contract} account={account} contract2={contract2} user={{ user }} />

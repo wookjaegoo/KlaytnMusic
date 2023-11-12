@@ -9,7 +9,7 @@ import MyNFTPage from "./MyNFTPage";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-const Mypage = ({ type, contract2, user }) => {
+const Mypage = ({ type, contract2, user,contract }) => {
   const [userAmount, setUserAmount] = useState({
     balance: 0,
     Vbalance: 0,
@@ -299,7 +299,7 @@ const Mypage = ({ type, contract2, user }) => {
   return (
     <div className="Deploys">
 
-      {isMyNFTTabOpen && <MyNFTPage></MyNFTPage>}
+      {isMyNFTTabOpen && <MyNFTPage contract={contract} user={user}></MyNFTPage>}
 
 
 

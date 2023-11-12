@@ -6,6 +6,8 @@ const {genWallet,
 const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
+const Image = require("../models/Image")
+
 const jwt = require("jsonwebtoken")
 const createError = require("../utils/Error");
 
@@ -186,6 +188,32 @@ const getClient = async (req, res, next) => {
 
 
 
+const uploadImage = async (req, res, next) => {
+  try {
+    // 이미지를 모델에 저장
+    const newImage = new Image({
+      image: {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      },
+    });
+
+    await newImage.save();
+
+    // 업로드가 성공하면 클라이언트에게 성공 응답을 보냄
+    return res.status(200).json({ success: true, message: 'Image uploaded successfully' });
+  } catch (error) {
+    console.error('Error uploading image:', error);
+
+    // 업로드가 실패하면 클라이언트에게 실패 응답을 보냄
+    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+};
+
+
+
+
+
 module.exports={
     sendTokenTransaction,
     sendNftTransaction,
@@ -195,5 +223,6 @@ module.exports={
     getAccessToken,
     logout,
     getClient,
+    uploadImage
 }
 
