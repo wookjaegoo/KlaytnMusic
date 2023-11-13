@@ -62,7 +62,7 @@ async function uploadFile(e) {
     const url = `https://prnftmusic.infura-ipfs.io/ipfs/${added2.path}`
     ipfsurl=url
    updateFileUrl(url)
-   console.log(ipfsurl)
+   console.log(fileUrl)
    setSelectedFile(file);
 
 

@@ -50,8 +50,15 @@
     /* 회전 애니메이션 설정 */
 
 }
+
+.randomnftlogobox{
+
+}
+
 .randomnftlogo.visible {
     transition: opacity 1s; /* 서서히 나타나는 애니메이션 설정 */
     
     opacity: 1; /* 나타나는 상태 */
+    border: 1px solid black;
+
 }

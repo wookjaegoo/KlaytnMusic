@@ -2,11 +2,12 @@ const {genWallet,
   sendTransaction,
   songDataSender,
   sendNftTr,
-  sendTokenAndKlay} = require("../utils/UseCaver");
+  sendTokenAndKlay,
+transferOwnership
+} = require("../utils/UseCaver");
 const bcrypt = require("bcrypt")
 const Wallet = require("../models/Wallet")
 const Client = require("../models/Client")
-const Image = require("../models/Image")
 
 const jwt = require("jsonwebtoken")
 const createError = require("../utils/Error");
@@ -185,30 +186,27 @@ const getClient = async (req, res, next) => {
   }
 };
 
+const changeNftOwnership = async (req, res, next) =>
+{
 
-
-
-const uploadImage = async (req, res, next) => {
   try {
-    // 이미지를 모델에 저장
-    const newImage = new Image({
-      image: {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      },
-    });
-
-    await newImage.save();
-
-    // 업로드가 성공하면 클라이언트에게 성공 응답을 보냄
-    return res.status(200).json({ success: true, message: 'Image uploaded successfully' });
+    const receiver_address=req.body.receiver_address;
+    // const sender_address=req.body.sender_address;
+    const tokenId=req.body.tokenId;
+    // const signKey=req.body.signKey;
+    // const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId}); 
+   const result= await transferOwnership(receiver_address,tokenId)
+    res.json(result);
+    
+    
   } catch (error) {
-    console.error('Error uploading image:', error);
-
-    // 업로드가 실패하면 클라이언트에게 실패 응답을 보냄
-    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+    console.log(error)
+    next(error)
+    
   }
-};
+
+}
+
 
 
 
@@ -223,6 +221,6 @@ module.exports={
     getAccessToken,
     logout,
     getClient,
-    uploadImage
+    changeNftOwnership
 }
 

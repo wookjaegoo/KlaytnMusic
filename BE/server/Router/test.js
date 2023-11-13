@@ -8,13 +8,11 @@ const {sendTokenTransaction,
   loginClient,
   getAccessToken,
   logout,
-  uploadImage
+  changeNftOwnership
+  
 }=require("../../controllers")
 
 const multer = require('multer');
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 
 
 router.get('/', (req, res)=>{
@@ -37,8 +35,8 @@ router.post('/register-client',registerClient)
 router.post('/login-client',loginClient)
 
 router.post('/logout', verifyToken, logout)
-router.post('/upload', upload.single('image'), uploadImage);
 
+router.post('/change-ownership',changeNftOwnership)
 
 // router.post('/play-transaction', (req, res) => {
 //   console.log(req.body)

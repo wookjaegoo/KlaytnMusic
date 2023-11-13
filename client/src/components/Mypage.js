@@ -356,7 +356,7 @@ const Mypage = ({ type, contract2, user,contract }) => {
                     className="mypage--submit"
                     onClick={toggleMyNFTTab}
                   >
-                    MY NFT
+                  {isMyNFTTabOpen?("NFT닫기"):("NFT열기")}
                   </button>
 
                 </Col>

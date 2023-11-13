@@ -21,6 +21,9 @@ const newkey=caver.wallet.keyring.createFromPrivateKey(process.env.REACT_APP_PRI
 //여기오류남 7/8
 caver.wallet.add(newkey)
 
+const approvenft=caver.wallet.keyring.createFromPrivateKey(process.env.REACT_APP_PRIVATE_KEY_KIAKAS2);
+
+
 // const ArtGrowNFT= require("./ArtGrowNFT")
 const Amaranthus= require("./Amaranthus");
 const artifact = require("./ArtGrowNFT.json");
@@ -244,13 +247,68 @@ const songDataSender =async ()=>
 
 }
 
+const transferOwnership = async (receiver_address,tokenId) =>
+{
 
+  // const sender=caver.wallet.keyring.createFromPrivateKey(signKey)
+  try {
+    //  caver.wallet.add(sender)
+    caver.wallet.add(approvenft)
+     
+  } catch (error) {
+     
+  }
+
+  const _Input2=caver.abi.encodeFunctionCall(
+
+
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "safeTransferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+
+    "type": "function"
+  },[approvenft.address,receiver_address,tokenId])
+
+
+  const executionTx=caver.transaction.smartContractExecution.create({
+    from:approvenft.address,
+    to: NFT_ADDRESS2,
+    input:_Input2,
+    gas: 10000000,
+ });
+ const signed=await caver.wallet.sign(approvenft.address,executionTx);
+//  const encoded=tx.getRLPEncoding();
+//  caver.rpc.klay.sendRawTransaction(signed).then(console.log);
+
+ const receipt=await caver.rpc.klay.sendRawTransaction(signed);
+ console.log(receipt)
+  
+}
 
 module.exports={
     sendTransaction,
     sendNftTr,
     genWallet,
     songDataSender,
-    sendTokenAndKlay
+    sendTokenAndKlay,
+    transferOwnership
   
 }
