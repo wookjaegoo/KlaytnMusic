@@ -50,13 +50,17 @@ function App() {
   
 
   const callApi = async()=>{
-    axios.get("http://localhost:3001/api")
+    axios.get("https://3.37.50.239/3001/api")
+
+    // axios.get("http://localhost:3001/api")
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
-    axios.get("http://localhost:3001/api/play-transaction")
+    // axios.get("http://localhost:3001/api/play-transaction")
+    axios.get("https://3.37.50.239/3001/api/play-transaction")
+
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
-    axios.get("http://localhost:3001/api/songList")
+    axios.get("https://3.37.50.239/3001/api/songList")
     .then((res)=>{
       updateSong(res.data)
       const output=res.data
@@ -90,7 +94,9 @@ function App() {
 
     useEffect(() => {
         axios({
-          url: `http://localhost:3001/api/accesstoken`,
+          url: `https://3.37.50.239/3001/api/accesstoken`,
+
+          // url: `http://localhost:3001/api/accesstoken`,
           method: "GET",
           withCredentials: true,
         })
@@ -108,7 +114,9 @@ function App() {
     const logout = () => {
     setIsLoading(true);
     axios({
-      url: `http://localhost:3001/api/logout`,
+      url: `https://3.37.50.239/3001/api/logout`,
+
+      // url: `http://localhost:3001/api/logout`,
       method: "POST",
       withCredentials: true,
     })

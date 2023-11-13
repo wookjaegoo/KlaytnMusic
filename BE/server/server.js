@@ -11,6 +11,7 @@ const connect = require("../DB/index")
 
 app.use(cors(
     {
+        
         origin:'https://schoolnftproject.com',
         methods: ["GET","POST","PUT","DELETE"],
         credentials:true,

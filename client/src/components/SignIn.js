@@ -65,7 +65,10 @@ type="client"
       // login
     //   setIsLoading(true);
       axios({
-        url: `http://localhost:3001/api/login-client`,
+        
+        url: `https://3.37.50.239/3001/api/login-client`,
+
+        // url: `http://localhost:3001/api/login-client`,
         method: "POST",
         data: {
           email: signinObj.email,
@@ -75,7 +78,9 @@ type="client"
       })
         .then((data) => {
           axios({
-            url: `http://localhost:3001/api/accesstoken`,
+            url: `https://3.37.50.239/3001/api/accesstoken`,
+
+            // url: `http://localhost:3001/api/accesstoken`,
             method: "GET",
             withCredentials: true,
           })

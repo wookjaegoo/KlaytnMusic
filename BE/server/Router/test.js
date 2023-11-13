@@ -12,7 +12,6 @@ const {sendTokenTransaction,
   
 }=require("../../controllers")
 
-const multer = require('multer');
 
 
 router.get('/', (req, res)=>{

@@ -150,7 +150,9 @@ function MyNFTPage({ contract, user }) {
     async function changeOwnership() {
         try {
             const response = await axios.post(
-                'http://localhost:3001/api/change-ownership',
+               
+                'https://3.37.50.239/3001/api/change-ownership',
+                // 'http://localhost:3001/api/change-ownership',
                 {
                     receiver_address: user.walletAddress,
                     tokenId: AdminNFTid,

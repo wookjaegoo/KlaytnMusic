@@ -60,7 +60,9 @@ const Mypage = ({ type, contract2, user,contract }) => {
 
   useEffect(() => {
     axios({
-      url: `http://localhost:3001/api/accesstoken`,
+      url: `https://3.37.50.239/3001/api/accesstoken`,
+
+      // url: `http://localhost:3001/api/accesstoken`,
       method: "GET",
       withCredentials: true,
     })

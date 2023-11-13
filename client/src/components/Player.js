@@ -156,7 +156,10 @@ const Player = ({
         }
         else{
             axios({
-                url:`http://localhost:3001/api/play-transaction`,
+                
+                url:`https://3.37.50.239/3001/api/play-transaction`,
+
+                // url:`http://localhost:3001/api/play-transaction`,
                 method:"POST",
                 data:{
                     receiver_address:nftData.receiver_address,
