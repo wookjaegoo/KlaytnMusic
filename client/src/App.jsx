@@ -50,17 +50,17 @@ function App() {
   
 
   const callApi = async()=>{
-    axios.get("https://schoolnftproject.com:3001/api")
+    axios.get("https://schoolnftproject.com/api")
 
     // axios.get("http://localhost:3001/api")
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
     // axios.get("http://localhost:3001/api/play-transaction")
-    axios.get("https://schoolnftproject.com:3001/api/play-transaction")
+    axios.get("https://schoolnftproject.com/api/play-transaction")
 
     .then((res)=>{console.log(res.data.test)})
     .catch(error=>{console.error('요청실패',error)});
-    axios.get("https://schoolnftproject.com:3001/api/songList")
+    axios.get("https://schoolnftproject.com/api/songList")
     .then((res)=>{
       updateSong(res.data)
       const output=res.data
