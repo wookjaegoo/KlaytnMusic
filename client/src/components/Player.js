@@ -157,7 +157,7 @@ const Player = ({
         else{
             axios({
                 
-                url:`https://schoolnftproject.com/3001/api/play-transaction`,
+                url:`https://schoolnftproject.com:3001/api/play-transaction`,
 
                 // url:`http://localhost:3001/api/play-transaction`,
                 method:"POST",

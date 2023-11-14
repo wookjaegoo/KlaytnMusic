@@ -52,7 +52,7 @@ const ClientSignup = () => {
     else {
       let res = await axios({
         
-        url: `https://schoolnftproject.com/3001/api/register-client`,
+        url: `https://schoolnftproject.com:3001/api/register-client`,
 
         // url: `http://localhost:3001/api/register-client`,
         method: "POST",
