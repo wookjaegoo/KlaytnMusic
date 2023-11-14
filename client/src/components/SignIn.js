@@ -66,7 +66,7 @@ type="client"
     //   setIsLoading(true);
       axios({
         
-        url: `https://3.37.50.239/3001/api/login-client`,
+        url: `https://schoolnftproject.com/3001/api/login-client`,
 
         // url: `http://localhost:3001/api/login-client`,
         method: "POST",
@@ -78,7 +78,7 @@ type="client"
       })
         .then((data) => {
           axios({
-            url: `https://3.37.50.239/3001/api/accesstoken`,
+            url: `https://schoolnftproject.com/3001/api/accesstoken`,
 
             // url: `http://localhost:3001/api/accesstoken`,
             method: "GET",

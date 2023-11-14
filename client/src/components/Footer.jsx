@@ -183,7 +183,9 @@ async function deployNFT(e)
 
 
   axios({
-    url:`https://3.37.50.239/3001/api/nft-transaction`,
+
+    
+    url:`https://schoolnftproject.com/3001/api/nft-transaction`,
 
     // url:`http://localhost:3001/api/nft-transaction`,
     method:"POST",
