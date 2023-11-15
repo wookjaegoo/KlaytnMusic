@@ -5,7 +5,7 @@ dotenv.config();
 const app = express();
 const test = require('./Router/test');
 const cors = require("cors");
-const connect = require("../DB/index")
+// const connect = require("../DB/index")
 // const crypto = require('crypto');
 // const JWT_SECRET = crypto.randomBytes(32).toString('hex');
 
@@ -45,7 +45,7 @@ app.use((err, req, res, next)=>{
 //     res.json(responseData);
 //   });
 
-  connect();    
+  // connect();    
 
 // console.log(JWT_SECRET)
 
