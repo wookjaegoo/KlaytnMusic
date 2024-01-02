@@ -1,4 +1,4 @@
-import caver from 'klaytn/caver'
+import caver from "klaytn/caver";
 
 /**
  * 1. Create contract instance
@@ -7,8 +7,9 @@ import caver from 'klaytn/caver'
  * Now you can access the instance by `this.countContract` variable.
  */
 
-const NftContract = DEPLOYED_ABI
-  && DEPLOYED_ADDRESS
-  && new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS)
+const NftContract =
+  DEPLOYED_ABI &&
+  DEPLOYED_ADDRESS &&
+  new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS);
 
-export default NftContract
+export default NftContract;

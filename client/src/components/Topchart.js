@@ -13,22 +13,25 @@ import React from "react";
 
 // export default SongList;
 
-    const Topchart = ({ songs = [] ,contract,user}) => {
-        const songTags = songs.map((song, index) => {
-            return <SongItem song={song} key={index} index={index} contract={contract} user={{user}}/>;
-        });
-  
+const Topchart = ({ songs = [], contract, user }) => {
+  const songTags = songs.map((song, index) => {
     return (
-        
-<div className="Topchart">
-            
-    <div className="neon"> Hot100</div>
-          <div id="top-list">
-        {songTags}
-    </div>
-</div>
-        )
-};
+      <SongItem
+        song={song}
+        key={index}
+        index={index}
+        contract={contract}
+        user={{ user }}
+      />
+    );
+  });
 
+  return (
+    <div className="Topchart">
+      <div className="neon"> Hot100</div>
+      <div id="top-list">{songTags}</div>
+    </div>
+  );
+};
 
 export default Topchart;

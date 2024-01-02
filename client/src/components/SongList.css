@@ -1,50 +1,46 @@
 #song-list {
-    grid-column: 5/13;
-    grid-row: 3/12;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-left: 2px;
-    background-color: black;
+  grid-column: 5/13;
+  grid-row: 3/12;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 2px;
+  background-color: black;
 }
 
 #song-list::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 /* Track */
 #song-list::-webkit-scrollbar-track {
-    background: rgb(15, 23, 42);
+  background: rgb(15, 23, 42);
 }
 
 /* Handle */
 #song-list::-webkit-scrollbar-thumb {
-    background: rgb(148, 163, 184);
-    border-radius: 4px;
+  background: rgb(148, 163, 184);
+  border-radius: 4px;
 }
 
 /* Handle on hover */
 #song-list::-webkit-scrollbar-thumb:hover {
-    background: #ccc;
+  background: #ccc;
 }
 
-
-
 .song-item.header:hover {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    background-color: initial;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background-color: initial;
 }
 
 .song-item.header > * {
-    /* color: #eee !important; */
-    color: black !important;
+  /* color: #eee !important; */
+  color: black !important;
 }
 
-
 @media (max-width: 760px) {
-    #song-list {
-        grid-column: 1/13;
-        grid-row: 3/11;
-
-    }
+  #song-list {
+    grid-column: 1/13;
+    grid-row: 3/11;
+  }
 }

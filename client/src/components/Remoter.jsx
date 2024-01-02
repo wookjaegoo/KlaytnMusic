@@ -9,31 +9,27 @@
 // import SignIn from './SignIn';
 // function Remoter()
 // {
- 
 
-
-        
 //     return(
 
 //     <BrowserRouter>
 //       <NavBar/>
 //         <Routes>
-//         <Route path='/SignIn' element={<SignIn/>} /> 
-        
-//         <Route path='/Register' element={<ClientSignup/>} /> 
-          
-//           <Route path='/Topchart' element={<Topchart />} /> 
-          
-//           <Route path='/Footer' element={<Footer/>}/> 
+//         <Route path='/SignIn' element={<SignIn/>} />
+
+//         <Route path='/Register' element={<ClientSignup/>} />
+
+//           <Route path='/Topchart' element={<Topchart />} />
+
+//           <Route path='/Footer' element={<Footer/>}/>
 //           <Route path='/' element={<Main/>}/>
 //           <Route path='/Profile' element={<Profile />}/>
 //         </Routes>
 
-        
 //     </BrowserRouter>
 
 //     );
-    
+
 // }
 
 // export default Remoter;

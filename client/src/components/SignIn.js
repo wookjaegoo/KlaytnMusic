@@ -6,15 +6,15 @@ import axios from "axios";
 
 const SignIn = ({ type, setType, setUser }) => {
   const navigate = useNavigate();
-//   useEffect(() => {
-//     if (type !== "") {
-//       setIsLoading(false);
-//       navigate("/");
-//     } else {
-//       setIsLoading(false);
-//     }
-//   }, [navigate, type]);
-type="client"
+  //   useEffect(() => {
+  //     if (type !== "") {
+  //       setIsLoading(false);
+  //       navigate("/");
+  //     } else {
+  //       setIsLoading(false);
+  //     }
+  //   }, [navigate, type]);
+  type = "client";
 
   const [way, setWay] = useState("client");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,23 +27,22 @@ type="client"
     setSigninObj(signinObj);
   };
 
-  const signinelement= document.querySelector("#root > div.Deploys > div > div > div > div ");
-  const signinbox=document.querySelector("#root > div.Deploys > div > div > div > div > div")
-  
-  if(signinelement)
-  {
-    signinelement.style.display='flex'    
-  signinelement.style.justifyContent='center'
-  signinelement.style.width='100%'
+  const signinelement = document.querySelector(
+    "#root > div.Deploys > div > div > div > div ",
+  );
+  const signinbox = document.querySelector(
+    "#root > div.Deploys > div > div > div > div > div",
+  );
 
+  if (signinelement) {
+    signinelement.style.display = "flex";
+    signinelement.style.justifyContent = "center";
+    signinelement.style.width = "100%";
   }
-  if(signinbox)
-  {
-   
-    signinbox.style.marginInlineStart = '0%';
+  if (signinbox) {
+    signinbox.style.marginInlineStart = "0%";
+  }
 
-  }
-  
   // const changeWay = (e) => {
   //   setWay(e.target.value);
   // };
@@ -63,9 +62,8 @@ type="client"
       message.error("비밀번호를 입력해주세요.");
     } else {
       // login
-    //   setIsLoading(true);
+      //   setIsLoading(true);
       axios({
-        
         url: `https://schoolnftproject.com:3001/api/login-client`,
 
         // url: `http://localhost:3001/api/login-client`,
@@ -91,10 +89,9 @@ type="client"
                 // username: userObj.data.user.username,
                 walletAddress: userObj.data.user.walletAddress,
                 name: userObj.data.user.name,
-                
+
                 // desc: userObj.data.user.desc,
                 type: userObj.data.type,
-
               });
               setUser(JSON.parse(userData));
               setType(userObj.data.type);
@@ -103,7 +100,7 @@ type="client"
               setIsLoading(false);
             })
             .catch((err) => {
-                console.log(err)
+              console.log(err);
               messageError("로그인 실패!!");
               setIsLoading(false);
             });
@@ -121,16 +118,15 @@ type="client"
     }
   };
   return (
-    <div className='Deploys' style={{background:'white'}}>
-
-    <div className="signin">
-      <Spin tip="로딩중..." size="large" spinning={isLoading}>
-        <Row>
-          <Col span={12} offset={7}>
-            <div className="signin--right">
-              <div className="signin--canvas">
-                <span className="signin--title">🔐 로그인</span>
-                {/* <Radio.Group
+    <div className="Deploys" style={{ background: "white" }}>
+      <div className="signin">
+        <Spin tip="로딩중..." size="large" spinning={isLoading}>
+          <Row>
+            <Col span={12} offset={7}>
+              <div className="signin--right">
+                <div className="signin--canvas">
+                  <span className="signin--title">🔐 로그인</span>
+                  {/* <Radio.Group
                   defaultValue="holder"
                   buttonStyle="solid"
                   size="large"
@@ -143,35 +139,35 @@ type="client"
                     
                   </Row>
                 </Radio.Group> */}
-                <input
-                  type="text"
-                  className="signin--id"
-                  placeholder="EMAIL"
-                  onChange={onchange}
-                  id="email"
-                />
-                <input
-                  type="password"
-                  className="signin--id"
-                  placeholder="PASSWORD"
-                  onChange={onchange}
-                  id="password"
-                  onKeyDown={isEnter}
-                />
-                <Row style={{ margin: "10px 0px" }}>
-                  <Col span={30} style={{ fontWeight: 700 }}>
-                    <Link to="/Register">회원이 아니신가요?</Link>
-                  </Col>
-                </Row>
-                <button className="signin--signinbtn" onClick={signin}>
-                  로그인
-                </button>
+                  <input
+                    type="text"
+                    className="signin--id"
+                    placeholder="EMAIL"
+                    onChange={onchange}
+                    id="email"
+                  />
+                  <input
+                    type="password"
+                    className="signin--id"
+                    placeholder="PASSWORD"
+                    onChange={onchange}
+                    id="password"
+                    onKeyDown={isEnter}
+                  />
+                  <Row style={{ margin: "10px 0px" }}>
+                    <Col span={30} style={{ fontWeight: 700 }}>
+                      <Link to="/Register">회원이 아니신가요?</Link>
+                    </Col>
+                  </Row>
+                  <button className="signin--signinbtn" onClick={signin}>
+                    로그인
+                  </button>
+                </div>
               </div>
-            </div>
-          </Col>
-        </Row>
-      </Spin>
-    </div>
+            </Col>
+          </Row>
+        </Spin>
+      </div>
     </div>
   );
 };

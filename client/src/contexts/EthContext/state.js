@@ -10,9 +10,9 @@ const initialState = {
   account: null,
   networkID: null,
   contract: null,
-  songs:null,
-  songjson:null,
-  songdata:null
+  songs: null,
+  songjson: null,
+  songdata: null,
 };
 
 const reducer = (state, action) => {
@@ -25,8 +25,4 @@ const reducer = (state, action) => {
   }
 };
 
-export {
-  actions,
-  initialState,
-  reducer
-};
+export { actions, initialState, reducer };

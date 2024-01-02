@@ -5,7 +5,7 @@
  * them to suit your project as necessary.
  *
  * More information about configuration can be found at:
- * 
+ *
  * https://trufflesuite.com/docs/truffle/reference/configuration
  *
  * To deploy via Infura you'll need a wallet provider (like @truffle/hdwallet-provider)
@@ -24,7 +24,8 @@
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 const HDWalletProvider = require("truffle-hdwallet-provider-klaytn");
 
-const privateKey = "0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef";
+const privateKey =
+  "0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef";
 
 module.exports = {
   /**
@@ -45,15 +46,15 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-   
+
     klaytn: {
-      host: '127.0.0.1',
+      host: "127.0.0.1",
       port: 8551,
-      from: '0x75a59b94889a05c03c66c3c84e9d2f8308ca4abd', // 계정 주소를 입력하세요
-      network_id: '1001', // Baobab 네트워크 id
+      from: "0x75a59b94889a05c03c66c3c84e9d2f8308ca4abd", // 계정 주소를 입력하세요
+      network_id: "1001", // Baobab 네트워크 id
       gas: 20000000, // 트랜잭션 가스 한도
       gasPrice: 25000000000, // Baobab의 gasPrice는 25 Gpeb입니다
-  },
+    },
 
     // baobab: {
     //   provider: () => {
@@ -63,7 +64,7 @@ module.exports = {
     //   gas: "8500000",
     //   gasPrice: null,
     // },
-  
+
     //
     // An additional network, but with some advanced options…
     // advanced: {
@@ -102,7 +103,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.14",      // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.14", // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -111,7 +112,7 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
-    }
+    },
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:

@@ -10021,87 +10021,33 @@
   "ast": {
     "absolutePath": "project:/contracts/RoyalClub.sol",
     "exportedSymbols": {
-      "Address": [
-        3231
-      ],
-      "Amaranthus": [
-        5524
-      ],
-      "ArtGrowNFT": [
-        5433
-      ],
-      "Context": [
-        3253
-      ],
-      "Counters": [
-        3327
-      ],
-      "ERC165": [
-        3580
-      ],
-      "ERC20": [
-        727
-      ],
-      "ERC721": [
-        2169
-      ],
-      "ERC721Burnable": [
-        2333
-      ],
-      "ERC721Enumerable": [
-        2687
-      ],
-      "ERC721URIStorage": [
-        2843
-      ],
-      "IERC165": [
-        3592
-      ],
-      "IERC20": [
-        805
-      ],
-      "IERC20Metadata": [
-        830
-      ],
-      "IERC20Permit": [
-        866
-      ],
-      "IERC4906": [
-        137
-      ],
-      "IERC721": [
-        2285
-      ],
-      "IERC721Enumerable": [
-        2874
-      ],
-      "IERC721Metadata": [
-        2901
-      ],
-      "IERC721Receiver": [
-        2303
-      ],
-      "Math": [
-        4458
-      ],
-      "Ownable": [
-        112
-      ],
-      "PlayCounter": [
-        5237
-      ],
-      "SafeERC20": [
-        1242
-      ],
-      "SafeMath": [
-        4770
-      ],
-      "SignedMath": [
-        4875
-      ],
-      "Strings": [
-        3556
-      ]
+      "Address": [3231],
+      "Amaranthus": [5524],
+      "ArtGrowNFT": [5433],
+      "Context": [3253],
+      "Counters": [3327],
+      "ERC165": [3580],
+      "ERC20": [727],
+      "ERC721": [2169],
+      "ERC721Burnable": [2333],
+      "ERC721Enumerable": [2687],
+      "ERC721URIStorage": [2843],
+      "IERC165": [3592],
+      "IERC20": [805],
+      "IERC20Metadata": [830],
+      "IERC20Permit": [866],
+      "IERC4906": [137],
+      "IERC721": [2285],
+      "IERC721Enumerable": [2874],
+      "IERC721Metadata": [2901],
+      "IERC721Receiver": [2303],
+      "Math": [4458],
+      "Ownable": [112],
+      "PlayCounter": [5237],
+      "SafeERC20": [1242],
+      "SafeMath": [4770],
+      "SignedMath": [4875],
+      "Strings": [3556]
     },
     "id": 5525,
     "license": "MIT",
@@ -10109,12 +10055,7 @@
     "nodes": [
       {
         "id": 5214,
-        "literals": [
-          "solidity",
-          "^",
-          "0.8",
-          ".4"
-        ],
+        "literals": ["solidity", "^", "0.8", ".4"],
         "nodeType": "PragmaDirective",
         "src": "32:23:28"
       },
@@ -10246,9 +10187,7 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "id": 5237,
-        "linearizedBaseContracts": [
-          5237
-        ],
+        "linearizedBaseContracts": [5237],
         "name": "PlayCounter",
         "nameLocation": "721:11:28",
         "nodeType": "ContractDefinition",
@@ -10477,18 +10416,7 @@
         "fullyImplemented": true,
         "id": 5433,
         "linearizedBaseContracts": [
-          5433,
-          112,
-          2333,
-          2843,
-          2687,
-          2874,
-          2169,
-          2901,
-          137,
-          2285,
-          3580,
-          3592,
+          5433, 112, 2333, 2843, 2687, 2874, 2169, 2901, 137, 2285, 3580, 3592,
           3253
         ],
         "name": "ArtGrowNFT",
@@ -10744,9 +10672,7 @@
               "src": "1625:398:28",
               "statements": [
                 {
-                  "assignments": [
-                    5281
-                  ],
+                  "assignments": [5281],
                   "declarations": [
                     {
                       "constant": false,
@@ -10917,10 +10843,7 @@
                       "id": 5291,
                       "name": "_safeMint",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        1737,
-                        1766
-                      ],
+                      "overloadedDeclarations": [1737, 1766],
                       "referencedDeclaration": 1737,
                       "src": "1728:9:28",
                       "typeDescriptions": {
@@ -11017,9 +10940,7 @@
                   "src": "1761:26:28"
                 },
                 {
-                  "assignments": [
-                    5305
-                  ],
+                  "assignments": [5305],
                   "declarations": [
                     {
                       "constant": false,
@@ -11161,11 +11082,7 @@
                     "isPure": false,
                     "kind": "structConstructorCall",
                     "lValueRequested": false,
-                    "names": [
-                      "listenCount",
-                      "tokenId",
-                      "owner"
-                    ],
+                    "names": ["listenCount", "tokenId", "owner"],
                     "nodeType": "FunctionCall",
                     "src": "1844:123:28",
                     "tryCall": false,
@@ -11790,10 +11707,7 @@
             "visibility": "public"
           },
           {
-            "baseFunctions": [
-              2140,
-              2525
-            ],
+            "baseFunctions": [2140, 2525],
             "body": {
               "id": 5383,
               "nodeType": "Block",
@@ -12075,10 +11989,7 @@
             "visibility": "internal"
           },
           {
-            "baseFunctions": [
-              1910,
-              2842
-            ],
+            "baseFunctions": [1910, 2842],
             "body": {
               "id": 5398,
               "nodeType": "Block",
@@ -12229,10 +12140,7 @@
             "visibility": "internal"
           },
           {
-            "baseFunctions": [
-              1447,
-              2786
-            ],
+            "baseFunctions": [1447, 2786],
             "body": {
               "id": 5414,
               "nodeType": "Block",
@@ -12413,11 +12321,7 @@
             "visibility": "public"
           },
           {
-            "baseFunctions": [
-              1336,
-              2383,
-              2727
-            ],
+            "baseFunctions": [1336, 2383, 2727],
             "body": {
               "id": 5431,
               "nodeType": "Block",
@@ -12630,13 +12534,7 @@
         "contractKind": "contract",
         "fullyImplemented": true,
         "id": 5524,
-        "linearizedBaseContracts": [
-          5524,
-          727,
-          830,
-          805,
-          3253
-        ],
+        "linearizedBaseContracts": [5524, 727, 830, 805, 3253],
         "name": "Amaranthus",
         "nameLocation": "3298:10:28",
         "nodeType": "ContractDefinition",
@@ -13272,10 +13170,7 @@
                       "id": 5489,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        4294967278,
-                        4294967278
-                      ],
+                      "overloadedDeclarations": [4294967278, 4294967278],
                       "referencedDeclaration": 4294967278,
                       "src": "3993:7:28",
                       "typeDescriptions": {
