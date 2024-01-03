@@ -1,40 +1,177 @@
-# React Truffle Box
+# klaytn music
 
-This box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.
+# :books: 목차
 
-## Installation
+- [:book: 프로젝트 소개](#book-프로젝트-소개)
 
-First ensure you are in an empty directory.
+  - [프로젝트 개요](#프로젝트-개요)
+  - [프로젝트 요약](#프로젝트-요약)
+  - [프로젝트 플로우차트](#프로젝트-플로우차트)
+  <!-- - [DB 스키마](#db-스키마) -->
 
-Run the `unbox` command using 1 of 2 ways.
+- [:wrench: 사용 기술 (Technique)](#wrench-사용-기술-technique)
 
-```sh
-# Install Truffle globally and run `truffle unbox`
-$ npm install -g truffle
-$ truffle unbox react
+  - [:hammer:기술 스택 (Technique Used)](#기술-스택-technique-used)
+
+    - [**FrontEnd**](#frontend)
+    - [**BackEnd**](#backend)
+    - [**Smart Contract**](#smart-contract)
+    <!-- - [**Deploy**](#deploy) -->
+
+    <!-- - [Deploy :rocket:](#deploy-rocket) -->
+    <!-- - [Connect](#connect) -->
+
+- [:computer: 제공 기능 (Service)](#computer-제공-기능-service)
+
+# :book: 프로젝트 소개
+
+## 프로젝트 개요
+
+기존 음원서비스의 정산 시스템의 속도가 가상화폐를 사용하여 정산하는 속도보다 느리다.
+※ 음원 다운로드 혹은 스트리밍 방식에 의한 수익 산정 방법은 명시되어 있으나 언제 수익이 정산되는지 사용자가 알 수가 없다.
+
+- 음원차트의 경우 특정 플랫폼이 사용자 음원 재생 정보를 독점하기 때문에 사용자는 자세한 정보를 알 수 없다.
+  이러한 단점을 해결하기 위해 만든 프로젝트 입니다.
+  ![](/Doc/img/cashflow.png)
+
+## 프로젝트 요약
+
+기존 음원 스트리밍 서비스보다 블록체인의 스마트 컨트랙트를 통한 신뢰성 있는 음원차트기능 생성
+음원 스트리밍에 적용할 수 있는 스마트 컨트랙트를 통한 ERC-20표준 가상화폐 발행
+기존 음원 스트리밍 서비스보다 스마트 컨트랙트의 가상화폐를 통한 빠른 음원 스트리밍 비용 정산 시스템 구축
+
+## 프로젝트 플로우차트
+
+![](./Doc/img/flowchart.png)
+
+# :wrench: 사용 기술 (Technique)
+
+### FrontEnd
+
+|                           Icon                            | Stack | Description     |
+| :-------------------------------------------------------: | :---: | --------------- |
+| <img src = "./Doc/img/stackIcon/react.png" height = 25px> | REACT | 프론트앤드 구성 |
+
+### BackEnd
+
+|                            Icon                             |  Stack  | Description        |
+| :---------------------------------------------------------: | :-----: | ------------------ |
+| <img src = "./Doc/img/stackIcon/nodejs.png" height = 25px>  | NODEJS  | API 서버 제작      |
+| <img src = "./Doc/img/stackIcon/mongoDB.png" height = 25px> | MONGODB | MongoDB Atlas 사용 |
+|  <img src = "./Doc/img/stackIcon/nginx.png" height = 27px>  |  NGINX  | 웹 서버로 사용     |
+
+### Smart Contract
+
+|                             Icon                             |  Stack   | Description          |
+| :----------------------------------------------------------: | :------: | -------------------- |
+| <img src = "./Doc/img/stackIcon/Solidity.png" height = 25px> | SOLIDITY | 스마트 컨트랙트 작성 |
+| <img src = "./Doc/img/stackIcon/Truffle.png" height = 25px>  | TRUFFLE  | 스마트 컨트랙트 배포 |
+|  <img src = "./Doc/img/stackIcon/klaytn.png" height = 25px>  |  KLAYTN  | 블록체인 네트워크    |
+| <img src = "./Doc/img/stackIcon/ganache.png" height = 25px>  | GANACHE  | 로컬에서 테스트      |
+
+<!-- ### Deploy
+
+|                               Icon                                |        Stack        | Description                        |
+| :---------------------------------------------------------------: | :-----------------: | ---------------------------------- |
+|    <img src = "./Doc/img/stackIcon/docker.png" height = 25px>     |       DOCKER        | 컨테이너 생성, 배포 시 이미지 생성 |
+|      <img src = "./Doc/img/stackIcon/ec2.png" height = 30px>      |         EC2         | 배포 서버                          |
+|    <img src = "./Doc/img/stackIcon/route53.png" height = 30px>    |      ROUTE 53       | DNS와 EC2서버 연결                 |
+|      <img src = "./Doc/img/stackIcon/acm.png" height = 30px>      | CERTIFICATE MANAGER | SSL 인증서 생성                    |
+| <img src = "./Doc/img/stackIcon/githubactions.png" height = 25px> |   GITHUB ACTIONS    | CI/CI 배포 자동화 사용             | -->
+
+<!-- ## :construction:Architecture
+
+## 1. FE .env 설정 -->
+
+# :computer: 제공 기능 (Service)
+
+홈화면
+![](/Doc/img/homelogo.png)
+음원업로드
+![](/Doc/img/downloadtab.png)
+마이페이지
+![](/Doc/img/mypagelogo.png)
+음원리스트
+![](/Doc/img/songlistlogo.png)
+
+### 음원 재생 SmartContract
+
+```solidity
+// 예시 솔리디티 코드
+pragma solidity ^0.8.0;
+
+interface PlayCounter{
+
+struct tokenInfo{
+        uint256 listenCount;
+        uint256 tokenId;
+        address owner;
+
+    }
+
+    function listen(uint256 _tokenId) external ;
+}
+
+//ERC721 NFT 발행을 위한 ArtGrowNFT.sol
+//음원정산을 위한 ERC20토큰 발행 Amaranthus.sol 의 interface이다.
+
+    function safeMint(address to, string memory uri) public  {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, uri);
+
+        PlayCounter.tokenInfo memory newtokenInfo = PlayCounter.tokenInfo({
+            listenCount:0,
+            tokenId:tokenId,
+            owner:msg.sender
+        });
+     _tokenInfoList[tokenId]= newtokenInfo;
+    }
+
+    // The following functions are overrides required by Solidity.
+
+    function listen(uint256 _tokenId) external{
+        _tokenInfoList[_tokenId].listenCount+=1;
+    }
+
+//ArtGrowNFT.sol의 NFT 발행 로직이다. 음원 관련하여 사용자의 기호를 반영하려고 했다.
+
+
+
+contract Amaranthus is ERC20{
+        using Counters for Counters.Counter;
+
+    Counters.Counter private _playerCounter;
+
+   using SafeMath for uint256;
+   using SafeERC20 for IERC20;
+
+    uint256 private MAX_TOKEN_COUNT = 20000000000;   // 총 코인 개수
+    constructor() ERC20("Amaranthus", "AAS") {
+        // Mint 100 tokens to msg.sender
+        // Similar to how
+        // 1 dollar = 100 cents
+        // 1 token = 1 * (10 ** decimals)
+        _mint(msg.sender, MAX_TOKEN_COUNT * 10**uint(decimals()));
+    }
+
+    mapping(address => uint256) private lockedUntil;
+
+    function getLockedUntil(address account) external view returns (uint256) {
+        return lockedUntil[account];
+    }
+
+    function sendTransaction(address to, uint256 value,address _counter,uint256 _tokenId) external {
+        require(block.timestamp >= lockedUntil[msg.sender], "Transaction is locked.");
+        // Lock the sender's account for 4 minutes
+        lockedUntil[msg.sender] = block.timestamp + 240;
+        // Send the transaction
+        transfer(to,value);
+        PlayCounter(_counter).listen(_tokenId);
+    }
+}
+
+//Amaranthus.sol의 일부분이며 사용자가 음원 재생시 sendTransaction 함수가 사용되어 앞서 발행한 erc20토큰을
+//음원 제작자에게 전송한다. 무분별한 트랜잭션을 방지하기위해 4분의 transaction lock을 설정해두었다.
 ```
-
-```sh
-# Alternatively, run `truffle unbox` via npx
-$ npx truffle unbox react
-```
-
-Start the react dev server.
-
-```sh
-$ cd client
-$ npm start
-  Starting the development server...
-```
-
-From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
-
-## FAQ
-
-- __How do I use this with Ganache (or any other network)?__
-
-  The Truffle project is set to deploy to Ganache by default. If you'd like to change this, it's as easy as modifying the Truffle config file! Check out [our documentation on adding network configurations](https://trufflesuite.com/docs/truffle/reference/configuration/#networks). From there, you can run `truffle migrate` pointed to another network, restart the React dev server, and see the change take place.
-
-- __Where can I find more resources?__
-
-  This Box is a sweet combo of [Truffle](https://trufflesuite.com) and [Create React App](https://create-react-app.dev). Either one would be a great place to start!
