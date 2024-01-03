@@ -85,17 +85,20 @@
 
 # :computer: 제공 기능 (Service)
 
+<div>
 <!-- 홈화면 이미지 -->
 <img src="/Doc/img/homelogo.png" alt="홈화면" width="324" height="707">
 
 <!-- 음원업로드 이미지 -->
 <img src="/Doc/img/downloadtab.png" alt="음원업로드" width="324" height="707">
-
+</div>
+<div>
 <!-- 마이페이지 이미지 -->
 <img src="/Doc/img/mypagelogo.png" alt="마이페이지" width="324" height="707">
 
 <!-- 음원리스트 이미지 -->
 <img src="/Doc/img/songlistlogo.png" alt="음원리스트" width="324" height="707">
+</div>
 
 ### 음원 재생 SmartContract
 
