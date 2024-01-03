@@ -48,26 +48,26 @@
 
 ### FrontEnd
 
-|                           Icon                            | Stack | Description     |
-| :-------------------------------------------------------: | :---: | --------------- |
-| <img src = "./Doc/img/stackIcon/react.png" height = 25px> | REACT | 프론트앤드 구성 |
+|                         Icon                         | Stack | Description     |
+| :--------------------------------------------------: | :---: | --------------- |
+| <img src = "/Doc/stackIcon/react.png" height = 25px> | REACT | 프론트앤드 구성 |
 
 ### BackEnd
 
-|                            Icon                             |  Stack  | Description        |
-| :---------------------------------------------------------: | :-----: | ------------------ |
-| <img src = "./Doc/img/stackIcon/nodejs.png" height = 25px>  | NODEJS  | API 서버 제작      |
-| <img src = "./Doc/img/stackIcon/mongoDB.png" height = 25px> | MONGODB | MongoDB Atlas 사용 |
-|  <img src = "./Doc/img/stackIcon/nginx.png" height = 27px>  |  NGINX  | 웹 서버로 사용     |
+|                          Icon                          |  Stack  | Description        |
+| :----------------------------------------------------: | :-----: | ------------------ |
+| <img src = "/Doc/stackIcon/nodejs.png" height = 25px>  | NODEJS  | API 서버 제작      |
+| <img src = "/Doc/stackIcon/mongoDB.png" height = 25px> | MONGODB | MongoDB Atlas 사용 |
+|  <img src = "/Doc/stackIcon/nginx.png" height = 27px>  |  NGINX  | 웹 서버로 사용     |
 
 ### Smart Contract
 
-|                             Icon                             |  Stack   | Description          |
-| :----------------------------------------------------------: | :------: | -------------------- |
-| <img src = "./Doc/img/stackIcon/Solidity.png" height = 25px> | SOLIDITY | 스마트 컨트랙트 작성 |
-| <img src = "./Doc/img/stackIcon/Truffle.png" height = 25px>  | TRUFFLE  | 스마트 컨트랙트 배포 |
-|  <img src = "./Doc/img/stackIcon/klaytn.png" height = 25px>  |  KLAYTN  | 블록체인 네트워크    |
-| <img src = "./Doc/img/stackIcon/ganache.png" height = 25px>  | GANACHE  | 로컬에서 테스트      |
+|                          Icon                           |  Stack   | Description          |
+| :-----------------------------------------------------: | :------: | -------------------- |
+| <img src = "/Doc/stackIcon/Solidity.png" height = 25px> | SOLIDITY | 스마트 컨트랙트 작성 |
+| <img src = "/Doc/stackIcon/Truffle.png" height = 25px>  | TRUFFLE  | 스마트 컨트랙트 배포 |
+|  <img src = "/Doc/stackIcon/klaytn.png" height = 25px>  |  KLAYTN  | 블록체인 네트워크    |
+| <img src = "/Doc/stackIcon/ganache.png" height = 25px>  | GANACHE  | 로컬에서 테스트      |
 
 <!-- ### Deploy
 
