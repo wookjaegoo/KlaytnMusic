@@ -146,7 +146,12 @@ struct tokenInfo{
     }
 
 //ArtGrowNFT.sol의 NFT 발행 로직이다. 음원 관련하여 사용자의 기호를 반영하려고 했다.
+```
 
+
+```solidity
+// 예시 솔리디티 코드
+pragma solidity ^0.8.0;
 
 
 contract Amaranthus is ERC20{
