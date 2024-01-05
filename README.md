@@ -104,7 +104,7 @@
 <img src="/Doc/img/songlistlogo.png" alt="음원리스트" width="324" height="707">
 </div>
 
-### 음원 재생 SmartContract
+## 음원 재생 SmartContract
 
 ```solidity
 // 예시 솔리디티 코드
