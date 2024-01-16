@@ -1,13 +1,5 @@
 import { combineReducers } from "redux";
 
-// const songsReducer =() =>{
-
-//     //여기서 json song파일을 import하는게 아닌
-//     //블록에서 json파일 가져와서 가공해야할거같은데..
-//     //js파일로 블록 리스트 데이터 전부 반환해서 여기로 던지면 json으로 던질수잇을까? 이걸 지금 해보자
-
-//     return songs;
-// };
 const initialNftData = {
   receiver_address: "",
   amount: 100000000000,

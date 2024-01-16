@@ -24,16 +24,16 @@ const Mypage = ({ type, contract2, user, contract }) => {
 
   useEffect(() => {
     const mypageelements3 = document.querySelector(
-      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div > div",
+      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div > div"
     );
     const mypageelements = document.querySelector(
-      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div",
+      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div > div"
     );
     const mypageelements2 = document.querySelector(
-      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div",
+      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb > div"
     );
     const mypageelement4 = document.querySelector(
-      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb",
+      "#root > div.Deploys > div > div > div > div > div > div.ant-row.mypage--row.css-dev-only-do-not-override-1m62vyb"
     );
     if (mypageelements) {
       mypageelements.style.width = "100%";
@@ -64,7 +64,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
     axios({
       url: `https://schoolnftproject.com/api/accesstoken`,
 
-      // url: `http://localhost:3001/api/accesstoken`,
       method: "GET",
       withCredentials: true,
     })
@@ -73,26 +72,12 @@ const Mypage = ({ type, contract2, user, contract }) => {
           setPageTitle(data.data.user.title);
         }
 
-        // setUser({
-        //   ...data.data.user,
-        //   password: "",
-        // });
-
         setIsLoading(false);
       })
       .catch(() => {
         setIsLoading(true);
       });
   }, []);
-
-  const onchange = (e) => {
-    // setUser((prevUser) => {
-    //   return {
-    //     ...prevUser,
-    //     [e.target.id]: e.target.value,
-    //   };
-    // });
-  };
 
   const getBalance = async (addr) => {
     try {
@@ -147,34 +132,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
     fetchBalance();
   }, [user.walletAddress]);
 
-  // const updateInfo = (e) => {
-
-  //   const userTitleRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9]+$/;
-  //   if (type === "issuer") {
-  //     if (!userTitleRegex.test(user.title)) {
-  //       message.error("기관명은 한글, 영어, 숫자로만 입력해주세요.");
-  //     } else if (user.title.length < 1 || user.title.length > 20) {
-  //       message.error("기관명은 1글자이상 20글자 이하로 해주세요.");
-  //     }
-  //     else {
-  //       axios({
-  //         url: `${process.env.REACT_APP_ISSUER}/${type.slice(
-  //           0,
-  //           3
-  //         )}/api/${type}/${user._id}`,
-  //         method: "PUT",
-  //         data: {
-  //           title: user.title,
-  //         },
-  //         withCredentials: true,
-  //       }).then(() => {
-  //         message.success("정보 수정 완료!");
-  //         navigate("/home");
-  //         navigate(0);
-  //       });
-  //     }
-  //   }
-  // };
   useEffect(() => {});
   const emailDOM = (
     <>
@@ -204,23 +161,7 @@ const Mypage = ({ type, contract2, user, contract }) => {
       </div>
     </>
   );
-  // const nameDOM = (
-  //   <>
-  //     <div className="mypage--DOM--title">이름</div>
-  //     <input
-  //       className="mypage--input"
-  //       type="text"
-  //       id="username"
-  //       onChange={onchange}
-  //       value={user.username}
-  //     />
-  //     <div className="validate--label">
-  //       이름은 1글자 이상 10글자 미만의 영어, 한글만 입력가능합니다.
-  //     </div>
-  //   </>
-  // );
 
-  // 수정
   const walletAddressDOM = (
     <>
       <div className="mypage--DOM--title">지갑 주소</div>
@@ -266,20 +207,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
     </>
   );
 
-  /*
-  const passwordDOM = (
-    <>
-      <div>비밀번호</div>
-      <input
-        className="mypage--input"
-        type="password"
-        id="password"
-        onChange={onchange}
-        value={user.password}
-      />
-    </>
-  );
-  */
   const toggleMyNFTTab = () => {
     setIsMyNFTTabOpen(!isMyNFTTabOpen);
   };
@@ -299,12 +226,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
       )}
 
       <div className="mypage">
-        {/* <Breadcrumb className="mypage--breadcrumb" separator=">">
-        <Breadcrumb.Item href="/">홈</Breadcrumb.Item>
-        <Breadcrumb.Item href="/mypage">정보 수정</Breadcrumb.Item>
-      </Breadcrumb> */}
-        {/* <div className="mypage--description">{type}의 정보를 수정합니다.</div> */}
-
         <div className="mypageContainer">
           <div className="mypage--form">
             <Spin spinning={isLoading} tip="로딩중..." size="large">
@@ -335,13 +256,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
               </Row>
               <Row>
                 <Col span={6} offset={9}>
-                  {/* <button className="mypage--submit" onClick={updateInfo}>
-                정보 수정
-              </button> */}
-                  {/* <button className="mypage--submit" >
-                정보 수정
-              </button> */}
-
                   <button className="mypage--submit" onClick={toggleMyNFTTab}>
                     {isMyNFTTabOpen ? "NFT닫기" : "NFT열기"}
                   </button>

@@ -37,11 +37,6 @@ const Player = ({
   const [lockedTime, setLockedTime] = useState(null);
   const [isLocked, setIsLocked] = useState(false);
 
-  // if(songs[selectedSongId] !== 'undefined' && songs[selectedSongId] != null)
-  // {
-  //      src= songs[selectedSongId].url;
-  // }
-
   if (user.user !== "undefined" && user.user != null) {
   }
 
@@ -74,24 +69,6 @@ const Player = ({
       setIsLocked(lockedTime > currentTime);
     }
   }, [lockedTime]);
-
-  // useEffect(()=>{
-
-  //     if(songs.songs !== 'undefined' && songs.songs != null)
-  //     {
-  //       nftData.tokenId=selectedSongId
-  //       songOwnerSender(nftData.tokenId)
-  //       dispatch({ type: "SET_NFT_DATA", payload:nftData });
-
-  //       //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
-  //     }
-
-  // },[selectedSongId])
-
-  // if(songs.songs !== 'undefined' && songs.songs != null)
-  // {
-  //      src= songs.songs[selectedSongId].url;
-  // }
 
   const spaceDownFunc = (event) => {
     if (event.keyCode === 32 && !clicked) {
@@ -165,19 +142,6 @@ const Player = ({
             console.log(error);
           }
         });
-
-        //  const output = await contract2.methods.sendTransaction("0x6b8382F08b33B95e89D315AFd7fB8ddD31408332",100000000000000,contract._address,1).send({from:account[0], gas: 1000000000});
-        // console.log(output) < 서명받는 tr 2023 7/21
-
-        //const isexist1=await contract2.methods.playerList(1).call();
-        //console.log(isexist1);
-
-        //   initTransaction(accounts);
-        // 불완전하긴한데.. 아까꺼보다 호ㅝㄹ씬나음 playerlist for문 돌려서 msg.sender가 보낸거랑 일치하는 인덱스 리턴시키고
-        // 그 index transfertoken~ 함수에 파라미터로 박아라. 그러면 가능 지금 timelock 된거 확인햇음
-        // 그리고 되는함수 player list뿐임 내가원한건 상태변수 player 숫자 리턴받고 그 숫자를 playerlist에 넣는건데..
-        // player 상태변수를 리턴하는건 다시해야함 <<transaction count느낌이지 그변수로 대체해도될거같고..
-        // 2022 9/4 여기까지하자 2022
       }
     } else {
       audioRef.current.pause();
@@ -213,16 +177,6 @@ const Player = ({
   return (
     <div id="player">
       <SongTime />
-      {/* <div
-                className="control"
-                id={shuffled ? `active` : null}
-                onClick={() => {
-                    setShuffled(!shuffled);
-                    // console.log("shuffle: " + !shuffled);
-                }}
-            >
-                {shuffleSvg}
-            </div> */}
       <div className="control" onClick={onBackwardClick}>
         {backwardsSvg}
       </div>
@@ -243,7 +197,7 @@ const Player = ({
           selectSongById(
             shuffled
               ? Math.round(Math.random() * songs.length)
-              : selectedSongId + 1,
+              : selectedSongId + 1
           );
         }}
         onLoadedMetadata={() => {

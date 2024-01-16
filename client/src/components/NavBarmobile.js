@@ -17,25 +17,20 @@ const NavBarmobile = ({ logout, type }) => {
   const [hoveredChart, setHoveredChart] = useState(false);
   const [hoveredFooter, setHoveredFooter] = useState(false);
 
-  // SIGNUP버튼이 사이즈가 줄어들면 없어지도록 한다.
-  // useEffect(() => {
-  //     showButton();
-  // }, []);
-  // window.addEventListener('resize', showButton);
   const [isMobile, setIsMobile] = useState(false);
   // 화면 크기에 따라 모바일 여부 결정
   const checkMobile = () => {
     const siderElement = document.querySelector(
-      "#root > div.navbarmobile > ul  > li:nth-child(4)> aside",
+      "#root > div.navbarmobile > ul  > li:nth-child(4)> aside"
     );
     const menuItem = document.querySelector(
-      "#root > div.navbarmobile > ul > li:nth-child(4) > aside > div > ul > li",
+      "#root > div.navbarmobile > ul > li:nth-child(4) > aside > div > ul > li"
     );
     const menuTitleContentElement = document.querySelector(
-      "#root > div.navbarmobile > ul> li:nth-child(4)  > aside > div > ul > li > span",
+      "#root > div.navbarmobile > ul> li:nth-child(4)  > aside > div > ul > li > span"
     );
     const menuElement = document.querySelector(
-      "#root > div.navbarmobile > ul > li:nth-child(4)>  aside > div > ul",
+      "#root > div.navbarmobile > ul > li:nth-child(4)>  aside > div > ul"
     );
 
     if (siderElement) {
@@ -75,15 +70,6 @@ const NavBarmobile = ({ logout, type }) => {
       menuElement.style.height = "70px";
     }
   };
-
-  // useEffect(() => {
-  //     setIsMobile(window.innerWidth <= 768); // 예시 값, 모바일 화면 크기 조정 가능
-  //     checkMobile();
-
-  //     return () => {
-  //         window.removeEventListener('resize', checkMobile);
-  //     };
-  // }, []);
 
   return (
     <div className="navbarmobile">
@@ -149,13 +135,6 @@ const NavBarmobile = ({ logout, type }) => {
             </Link>
           </li>
         )}
-
-        {/* <li className='nav-item'>
-                        <Sider  >
-                            <SideMenu type={type} logout={logout} />
-                        </Sider>
-
-                    </li> */}
       </ul>
     </div>
   );

@@ -28,10 +28,10 @@ const SignIn = ({ type, setType, setUser }) => {
   };
 
   const signinelement = document.querySelector(
-    "#root > div.Deploys > div > div > div > div ",
+    "#root > div.Deploys > div > div > div > div "
   );
   const signinbox = document.querySelector(
-    "#root > div.Deploys > div > div > div > div > div",
+    "#root > div.Deploys > div > div > div > div > div"
   );
 
   if (signinelement) {
@@ -42,10 +42,6 @@ const SignIn = ({ type, setType, setUser }) => {
   if (signinbox) {
     signinbox.style.marginInlineStart = "0%";
   }
-
-  // const changeWay = (e) => {
-  //   setWay(e.target.value);
-  // };
 
   const messageInfo = (msg) => {
     message.success(msg);
@@ -62,11 +58,8 @@ const SignIn = ({ type, setType, setUser }) => {
       message.error("비밀번호를 입력해주세요.");
     } else {
       // login
-      //   setIsLoading(true);
       axios({
         url: `https://schoolnftproject.com:3001/api/login-client`,
-
-        // url: `http://localhost:3001/api/login-client`,
         method: "POST",
         data: {
           email: signinObj.email,
@@ -77,8 +70,6 @@ const SignIn = ({ type, setType, setUser }) => {
         .then((data) => {
           axios({
             url: `https://schoolnftproject.com:3001/api/accesstoken`,
-
-            // url: `http://localhost:3001/api/accesstoken`,
             method: "GET",
             withCredentials: true,
           })
@@ -86,11 +77,8 @@ const SignIn = ({ type, setType, setUser }) => {
               const userData = JSON.stringify({
                 _id: userObj.data.user._id,
                 email: userObj.data.user.email,
-                // username: userObj.data.user.username,
                 walletAddress: userObj.data.user.walletAddress,
                 name: userObj.data.user.name,
-
-                // desc: userObj.data.user.desc,
                 type: userObj.data.type,
               });
               setUser(JSON.parse(userData));
@@ -126,19 +114,7 @@ const SignIn = ({ type, setType, setUser }) => {
               <div className="signin--right">
                 <div className="signin--canvas">
                   <span className="signin--title">🔐 로그인</span>
-                  {/* <Radio.Group
-                  defaultValue="holder"
-                  buttonStyle="solid"
-                  size="large"
-                >
-                  <Row className="signin--shadow">
-                    
-                    <Radio.Button value="client" onClick={changeWay}>
-                    client
-                    </Radio.Button>
-                    
-                  </Row>
-                </Radio.Group> */}
+
                   <input
                     type="text"
                     className="signin--id"

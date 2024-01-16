@@ -128,7 +128,7 @@ function MyNFTPage({ contract, user }) {
         },
         {
           withCredentials: true,
-        },
+        }
       );
 
       // 성공적인 응답 처리
@@ -163,7 +163,7 @@ function MyNFTPage({ contract, user }) {
                   width={"70%"}
                   onClick={() =>
                     window.open(
-                      `https://testnets.opensea.io/assets/baobab/0x8c2f28afe28d208d153283355d855c7f2a73dc62/${UserNFTid}`,
+                      `https://testnets.opensea.io/assets/baobab/0x8c2f28afe28d208d153283355d855c7f2a73dc62/${UserNFTid}`
                     )
                   }
                 >
@@ -178,16 +178,6 @@ function MyNFTPage({ contract, user }) {
                 src="randomboxlogo.png"
                 alt="randomboxlogo"
               />
-              {/* <div>
-                                <input
-                                    type="file"
-                                    id="input-image"
-                                    accept="image/*"
-                                    onChange={changeOwnership}
-                                    style={{ display: "none" }}
-                                />
-                                <label for="input-image" className='custom-btn' style={{ color: 'black' }}>UPLOAD IMAGE</label>
-                                    </div> */}
             </div>
           )}
 

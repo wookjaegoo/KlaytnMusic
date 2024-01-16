@@ -14,29 +14,10 @@ const NavBar = ({ logout, type }) => {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  // const [user, setUser] = useState({});
-  // const [type, setType] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const { Sider } = Layout;
 
-  // const navigate = useNavigate();
-
-  // const showButton = () => {
-  //     if (window.innerWidth <= 960) {
-  //         setButton(false)
-  //     }
-  //     else {
-  //         setButton(true);
-  //     }
-  // };
-
-  // SIGNUP버튼이 사이즈가 줄어들면 없어지도록 한다.
-  // useEffect(() => {
-  //     showButton();
-  // }, []);
-
-  // window.addEventListener('resize', showButton);
   const [isMobile, setIsMobile] = useState(false);
 
   // 화면 크기에 따라 모바일 여부 결정
@@ -49,20 +30,20 @@ const NavBar = ({ logout, type }) => {
   }, []);
 
   const siderElement = document.querySelector(
-    "#root > div.navbar > div > aside",
+    "#root > div.navbar > div > aside"
   );
 
   const menuItem = document.querySelector(
-    "#root > div.navbar > div > aside > div > ul > li",
+    "#root > div.navbar > div > aside > div > ul > li"
   );
   const menuTitleContentElement = document.querySelector(
-    "#root > div.navbar > div > aside > div > ul > li > span",
+    "#root > div.navbar > div > aside > div > ul > li > span"
   );
   const menuElement = document.querySelector(
-    "#root > div.navbar > div > aside > div > ul",
+    "#root > div.navbar > div > aside > div > ul"
   );
   const mypage = document.querySelector(
-    "#root > div.navbarmobile > ul > li:nth-child(4) > a",
+    "#root > div.navbarmobile > ul > li:nth-child(4) > a"
   );
   if (siderElement) {
     siderElement.style.minWidth = "70px";
@@ -151,18 +132,6 @@ const NavBar = ({ logout, type }) => {
           </Link>
         </li>
 
-        {/* <li className='nav-item'>
-                        <Link to="/Profile" className='nav-links' onClick = {closeMobileMenu}>
-                            Profile
-                        </Link>
-                    </li> */}
-
-        {/* <li className='nav-item'>
-                    <Link to='/Topchart' className='nav-links' onClick={closeMobileMenu}>
-                        Topchart
-                    </Link>
-                </li> */}
-
         {type && (
           <li className="nav-item">
             <Link to="/Mypage" className="nav-links" onClick={closeMobileMenu}>
@@ -170,18 +139,6 @@ const NavBar = ({ logout, type }) => {
             </Link>
           </li>
         )}
-
-        {/* <li className='nav-item'>
-                        <Link to='/Register' className='nav-links' onClick ={closeMobileMenu}>
-                        Register
-                        </Link>
-                    </li>
-
-                    <li className='nav-item'>
-                        <Link to='/SignIn' className='nav-links' onClick ={closeMobileMenu} >
-                        SignIn
-                        </Link>
-                    </li> */}
       </ul>
     </div>
   );

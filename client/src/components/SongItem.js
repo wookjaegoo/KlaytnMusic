@@ -72,21 +72,6 @@ const SongItem = ({
     }
   };
 
-  // useEffect(()=>{
-
-  //     if(song !== 'undefined' && song != null)
-  //     {
-  //       nftData.tokenId=song.id
-  //       songOwnerSender(nftData.tokenId)
-  //       console.log(nftData)
-  //     //   dispatch({ type: "SET_NFT_DATA", payload:nftData });
-
-  //       //개인키 넘겨주는 로직만 남음 토큰 개수는 일단보류 7/18
-
-  //     }
-
-  // },[selectedSongId,dispatch])
-
   // set the gif
   const phaser = () => {
     if (selectedSongId === song.id && playerState) {
@@ -129,7 +114,6 @@ const SongItem = ({
           axios({
             url: `https://schoolnftproject.com:3001/api/play-transaction`,
 
-            // url:`http://localhost:3001/api/play-transaction`,
             method: "POST",
             data: {
               receiver_address: nftData.receiver_address,
@@ -153,7 +137,6 @@ const SongItem = ({
       {phaser()}
       <div className="name">{song.name}</div>
       <div className="author">{song.author}</div>
-      {/* <div className="selector">{selector()}</div> */}
       <div>HowManyListen:{song.listenCount}</div>
     </div>
   );
