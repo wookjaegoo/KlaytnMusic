@@ -6,22 +6,13 @@ import axios from "axios";
 
 const SignIn = ({ type, setType, setUser }) => {
   const navigate = useNavigate();
-  //   useEffect(() => {
-  //     if (type !== "") {
-  //       setIsLoading(false);
-  //       navigate("/");
-  //     } else {
-  //       setIsLoading(false);
-  //     }
-  //   }, [navigate, type]);
-  type = "client";
-
-  const [way, setWay] = useState("client");
   const [isLoading, setIsLoading] = useState(false);
   const [signinObj, setSigninObj] = useState({
     email: "",
     password: "",
   });
+  type = "client";
+
   const onchange = (e) => {
     signinObj[e.target.id] = e.target.value;
     setSigninObj(signinObj);

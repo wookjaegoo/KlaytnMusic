@@ -6,8 +6,6 @@ import "./Mypage.css";
 import caver from "../klaytn/caver";
 import MyNFTPage from "./MyNFTPage";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
 const Mypage = ({ type, contract2, user, contract }) => {
   const [userAmount, setUserAmount] = useState({
     balance: 0,
@@ -15,9 +13,7 @@ const Mypage = ({ type, contract2, user, contract }) => {
   });
 
   const [pageTitle, setPageTitle] = useState("");
-  const [requiredVC, setRequiredVC] = useState([]);
   const navigate = useNavigate();
-  const requiredVCList = ["이메일", "지갑주소"];
 
   const [isLoading, setIsLoading] = useState(true);
   const [isMyNFTTabOpen, setIsMyNFTTabOpen] = useState(false);

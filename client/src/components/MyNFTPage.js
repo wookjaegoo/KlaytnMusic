@@ -121,7 +121,6 @@ function MyNFTPage({ contract, user }) {
     try {
       const response = await axios.post(
         "https://schoolnftproject.com:3001/api/change-ownership",
-        // 'http://localhost:3001/api/change-ownership',
         {
           receiver_address: user.walletAddress,
           tokenId: AdminNFTid,

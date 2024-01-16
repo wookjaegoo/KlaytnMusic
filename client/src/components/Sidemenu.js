@@ -1,25 +1,8 @@
-import {
-  HomeOutlined,
-  LoginOutlined,
-  LogoutOutlined,
-  UserAddOutlined,
-} from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
 const SideMenu = ({ type, logout }) => {
   const commonItems = [
-    //   type !== ""
-    //     ? {
-    //         label: (
-    //           <Link className="sider--link" to="/mypage">
-    //             <SettingOutlined />
-    //             {`\u00A0 정보수정`}
-    //           </Link>
-    //         ),
-    //         key: "mypage",
-    //       }
-    //     : "",
     type !== ""
       ? {
           label: (

@@ -26,10 +26,6 @@ const Player = ({
   nftData,
   user,
 }) => {
-  //대안임 이함수는 solidity에서 ㄴ정의한 transfer이하의 setaddr 이하메소드가
-  //처음 트랜잭션을 진행하는 계정에 대해서는 진행이 안되는 문제가있음
-  //hashed트랜잭션도 마찬가지고 unsigned트랜잭션도 마찬가지인데 전자함수 nonce를 바꾸면 해결이될지도
-  //이런식의 메소드를 쓰면 존나 조잡해짐 오류가 많아진다고
   const dispatch = useDispatch();
   const [shuffled, setShuffled] = useState(false);
   const audioRef = useRef();
@@ -103,9 +99,6 @@ const Player = ({
     if (!playerState) {
       audioRef.current.play();
       dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
-      // const output = await contract2.methods.approve(account[0],1000000000000000).send({from:account[0], gas: 10000000});
-
-      //여기서 axios 로직 7/9
       console.log(selectedSongId);
 
       nftData.tokenId = selectedSongId;
@@ -130,7 +123,7 @@ const Player = ({
             receiver_address: nftData.receiver_address,
             amount: nftData.amount,
             tokenId: nftData.tokenId,
-            // signKey:"0x76525b538ac7d3e002b58084ba19e4b5b6a6d85160bcef807cf3cdd0245061ef",
+            // signKey:"",
             clientId: user.user._id,
           },
           withCredentials: true,
@@ -164,9 +157,7 @@ const Player = ({
     dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
 
     audioRef.current.play();
-    // tryInit();
     document.getElementById("focus-link").click();
-    // window.history.pushState({}, "", "/");
   }, [selectedSongId, dispatch]);
 
   useEffect(() => {
@@ -186,7 +177,6 @@ const Player = ({
       <div className="control" onClick={onForwardClick}>
         {forwardsSvg}
       </div>
-      {/* <Progress /> */}
 
       <audio
         id="main-track"

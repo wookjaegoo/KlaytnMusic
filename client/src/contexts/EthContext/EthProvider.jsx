@@ -3,7 +3,6 @@ import Web3 from "web3";
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
 import caver from "../../klaytn/caver";
-// import { prepare, request, getResult, getCardList } from 'klip-sdk'
 
 export function EthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -30,10 +29,6 @@ export function EthProvider({ children }) {
         const hexval = bal.toString();
         const decimal = parseInt(hexval, 16);
         const yourclay = await caver.utils.convertFromPeb(decimal, "KLAY");
-        console.log("당신이 보유한 klAY:", yourclay);
-
-        // contract = new caver.klay.Contract(abi,'0x487dafee9b64044a04a2577f388eb2c8e2fea14a');
-
         const num = await contract.methods.totalSupply().call();
 
         for (let i = 0; i < num; i++) {
@@ -70,23 +65,12 @@ export function EthProvider({ children }) {
   const init2 = useCallback(async (artifact2) => {
     if (artifact2) {
       const { abi } = artifact2;
-      let address2, contract2;
+      let contract2;
       try {
         contract2 = new caver.contract(
           abi,
           "0x219d8d386f2b377255db99d634e920ca482ba281"
         );
-
-        const res = await contract2.methods
-          .getLockedUntil("0x6aee013da3ccda73ed28122cd7c984e538301481")
-          .call();
-        console.log(res, "lockeuntil시간 이걸활용해야함 11/1");
-        let currentTime = Math.floor(Date.now() / 1000); // 현재 시간을 초 단위로 얻기
-        console.log(currentTime);
-
-        const amount = await contract2.methods
-          .balanceOf("0x7137201f7617a680b98f1b21242cc8f2030ac40e")
-          .call();
       } catch (err) {
         console.error(err);
       }

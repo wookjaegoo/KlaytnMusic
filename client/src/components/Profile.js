@@ -67,10 +67,7 @@ function Profile() {
       if (autsrc.url.length > 0 || json1.links.images[1].length > 0) {
         setExist(true);
       }
-    } catch (error) {
-      //일단 증명서 업로드 된거 확인했고 선택해서 볼수있게끔 코딩하고 개인정보 세부사항에 대해 어떻게 할지 생각해보자
-      //이미지 인식해서 정보들 파싱하는 툴있으면 그거 사용해서 개인정보 원하는거만 리턴하게끔 하면 최고임
-    }
+    } catch (error) {}
 
     authentifier();
   }
@@ -141,9 +138,6 @@ function Profile() {
       </div>
     );
   }
-
-  //23/0101 추가할거 공증마크가 위변조 되어지지 않았다는것 그리고 pdf 혹은  png에서 원하는 정보 파싱하는거
-  //후자부분은 표준화된 증명서가 있으면 가능할거같음 예시를들어서 내가 해야할 부분인거같다. 이거만 추가하면 완벽함
 
   return <React.Fragment>{authentifier()}</React.Fragment>;
 }

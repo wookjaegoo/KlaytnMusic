@@ -2,8 +2,6 @@ import React from "react";
 import SongDetail from "./SongDetail";
 import SongListHeader from "./SongListHeader";
 import SongList from "./SongList";
-// import songs from "../data/songs.json"
-import useEth from "../contexts/EthContext/useEth";
 
 function Main({ user, contract, songs, contract2 }) {
   return (

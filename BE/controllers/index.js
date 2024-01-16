@@ -19,18 +19,10 @@ const sendTokenTransaction = async (req, res, next) => {
         const { receiver_address } = req.body;
         const { amount } = req.body;
         const { tokenId } = req.body;
-        // const signKey=req.body.signKey;
-
         const clientWallet = await Wallet.findOne({
             ownerOf: req.body.clientId
         });
 
-        // await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
-        //     res.json(result);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error)
-        //   });
         const result = await sendTransaction(
             receiver_address,
             amount,
@@ -53,12 +45,6 @@ const sendNftTransaction = async (req, res, next) => {
             ownerOf: req.body.clientId
         });
 
-        // await sendTransaction(receiver_address,amount,tokenId,clientWallet.privateKey).then((result) => {
-        //     res.json(result);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error)
-        //   });
         const result = await sendNftTr(
             sender_adress,
             nftUrl,
@@ -93,9 +79,6 @@ const registerClient = async (req, res, next) => {
             password: hashedPassword,
             walletAddress: WalletPublicKey
         });
-
-        // 블록체인 접근
-        // 테스트넷의 지갑주소 생성
 
         // methods.function.send({from : 배포 월렛 주소})
 
@@ -193,10 +176,7 @@ const getClient = async (req, res, next) => {
 const changeNftOwnership = async (req, res, next) => {
     try {
         const { receiver_address } = req.body;
-        // const sender_address=req.body.sender_address;
         const { tokenId } = req.body;
-        // const signKey=req.body.signKey;
-        // const clientWallet = await Wallet.findOne({ownerOf: req.body.clientId});
         const result = await transferOwnership(receiver_address, tokenId);
         res.json(result);
     } catch (error) {

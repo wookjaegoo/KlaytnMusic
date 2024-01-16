@@ -34,24 +34,6 @@ router.post("/logout", verifyToken, logout);
 
 router.post("/change-ownership", changeNftOwnership);
 
-// router.post('/play-transaction', (req, res) => {
-//   console.log(req.body)
-//   sendTransaction(req.body.receiver_address,req.body.amount,req.body.tokenId,req.body.signKey)
-//     .then((result) => {
-//       res.json(result);
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//     });
-// });
-
-/*
-    @ dev : Get AccessToken
-    @ desc : 
-         - 현재 로그인한 사용자의 AccessToken을 반환합니다.
-         - Front에서 로그인을 유지하기 위해 사용됩니다.
-    @ subject : Issuer, Holder, Verifier
-*/
 router.get("/accesstoken", verifyToken, getAccessToken);
 
 module.exports = router;

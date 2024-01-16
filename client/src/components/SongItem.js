@@ -92,7 +92,6 @@ const SongItem = ({
       onMouseLeave={() => setHovered(false)}
       onClick={() => {
         selectSong(song);
-        //노래 songitem클릭하면 시작하는 부분 player.js의 play버튼과 똑같은부분 여기서도 tr처리해주어야함
         dispatch({ type: "PLAYER_STATE_SELECTED", payload: 1 });
 
         nftData.tokenId = song.id;
@@ -119,7 +118,7 @@ const SongItem = ({
               receiver_address: nftData.receiver_address,
               amount: nftData.amount,
               tokenId: nftData.tokenId,
-              // signKey:"0xad14c45bac1c614a3bafabd4ff3a092e1a888a574990bfbb0621f919e2be8f56",
+              // signKey:"",
               clientId: user.user._id,
             },
             withCredentials: true,

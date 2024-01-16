@@ -11,8 +11,6 @@ const SongDetail = ({
   songs,
 }) => {
   if (songs[selectedSongId] !== "undefined" && songs[selectedSongId] != null) {
-    //  src1= songs[selectedSongId].links.images[0].url;
-    //  src2= songs[selectedSongId].links.images[1].url;
     defaultSong = songs[0];
   }
   if (songs.songs !== "undefined" && songs.songs != null) {
@@ -46,18 +44,7 @@ const SongDetail = ({
     }
   };
 
-  return (
-    <div
-      className="song-detail"
-      // style={{
-      //   backgroundImage: `url(
-      //     ${src2}
-      //   )`,
-      // }}
-    >
-      {songData()}
-    </div>
-  );
+  return <div className="song-detail">{songData()}</div>;
 };
 
 const mapStateToProps = (state) => {
