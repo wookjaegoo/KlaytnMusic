@@ -203,7 +203,7 @@ While previous projects communicated with the blockchain by connecting virtual w
 ### Problem Solving
 I realized the importance of system architecture design in the communication process between the backend and frontend. Especially when deploying to AWS, a design that does not consider the cloud environment leads to significant time consumption.
 
-###Limitations
+### Limitations
 The project still relies on IPFS for storing music files.
 
 Issues with resolving GAS FEE when deploying actual contracts.
