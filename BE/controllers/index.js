@@ -67,11 +67,9 @@ const requestSongData = async (req, res, next) => {
 
 const registerClient = async (req, res, next) => {
     try {
-        // 비밀번호 암호화
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-        // Issuer의 지갑 생성
         const { WalletPublicKey, WalletPrivateKey } = genWallet();
 
         const newClient = new Client({
@@ -80,18 +78,13 @@ const registerClient = async (req, res, next) => {
             walletAddress: WalletPublicKey
         });
 
-        // methods.function.send({from : 배포 월렛 주소})
-
-        // Issuer의 지갑 저장
         const newWallet = new Wallet({
             ownerOf: newClient._id,
             publicKey: WalletPublicKey,
             privateKey: WalletPrivateKey
         });
 
-        // Wallet 저장
         await newWallet.save();
-        // 새로운 Issuer 저장
         await newClient.save();
 
         await sendTokenAndKlay(WalletPublicKey);
@@ -105,19 +98,15 @@ const registerClient = async (req, res, next) => {
 
 const loginClient = async (req, res, next) => {
     try {
-        // DB에서 Issuer를 찾는다.
         const client = await Client.findOne({ email: req.body.email });
         if (!client) return next(createError(404, "Issuer Not Found"));
 
-        // 비밀번호 검증 로직
         const isCorrect = await bcrypt.compare(
             req.body.password,
             client.password
         );
         if (!isCorrect) return next(createError(400, "Wrong Password"));
 
-        // 로그인 정보가 올바른 경우
-        // JWT 발급
         const token = jwt.sign(
             { id: client._id, type: "client" },
             process.env.JWT_SECRET

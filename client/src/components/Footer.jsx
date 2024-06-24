@@ -3,7 +3,6 @@ import { create } from "ipfs-http-client";
 import React from "react";
 import "./Footer.css";
 import useEth from "../contexts/EthContext/useEth";
-// const client2= create('/ip4/127.0.0.1/tcp/5001')
 import Caver from "caver-js";
 import axios from "axios";
 import { message, Spin } from "antd";
@@ -67,12 +66,9 @@ function Footer({ user }) {
     try {
       const addedImage = await client2.add(imageFile);
       const url = `https://prnftmusic.infura-ipfs.io/ipfs/${addedImage.path}`;
-      // 여기서 imageUrl을 사용하여 업로드 된 이미지를 활용할 수 있습니다.
       songimageurl = url;
       console.log(songimageurl);
       updateImageUrl(url);
-
-      // 아래에 추가적으로 원하는 작업을 수행할 수 있습니다.
     } catch (error) {
       console.error("이미지 업로드 중 오류 발생: ", error);
     }
@@ -101,19 +97,15 @@ function Footer({ user }) {
   const handleUpload = () => {
     if (selectedFile) {
       setUploading(true);
-      // 파일 업로드 로직을 이곳에 작성합니다.
-      // ...
-      // 업로드가 완료되면 아래와 같이 호출합니다.
       setUploading(false);
-      // setSelectedFile(null);
     }
   };
 
   async function onChange2(e) {
     const { value, name } = e.target;
     setInputs({
-      ...inputs, // 기존의 input 객체를 복사한 뒤
-      [name]: value, // name 키를 가진 값을 value 로 설정
+      ...inputs,
+      [name]: value,
     });
   }
 
@@ -142,7 +134,6 @@ function Footer({ user }) {
       axios({
         url: `https://schoolnftproject.com:3001/api/nft-transaction`,
 
-        // url:`http://localhost:3001/api/nft-transaction`,
         method: "POST",
         data: {
           sender_adress: user.user.walletAddress,
@@ -153,7 +144,6 @@ function Footer({ user }) {
       }).catch((error) => {
         console.log(error);
         if (error.response.status) {
-          message.error("onlyowner메소드 때문인듯");
         } else {
           message.error("미확인오류");
         }

@@ -48,7 +48,6 @@ const SignIn = ({ type, setType, setUser }) => {
     } else if (signinObj.password === "") {
       message.error("비밀번호를 입력해주세요.");
     } else {
-      // login
       axios({
         url: `https://schoolnftproject.com:3001/api/login-client`,
         method: "POST",

@@ -56,7 +56,7 @@ const Player = ({
 
     fetchLockedTime();
   }, [
-    /* 필요한 의존성 배열을 여기에 추가하세요 (만약 필요하다면) */ selectedSongId,
+   selectedSongId,
   ]);
 
   useEffect(() => {
@@ -111,19 +111,16 @@ const Player = ({
           user.user.walletAddress.toLowerCase() ||
         isLocked
       ) {
-        // 만약 주소가 일치하면 함수를 중지합니다.
         return;
       } else {
         axios({
           url: `https://schoolnftproject.com:3001/api/play-transaction`,
 
-          // url:`http://localhost:3001/api/play-transaction`,
           method: "POST",
           data: {
             receiver_address: nftData.receiver_address,
             amount: nftData.amount,
             tokenId: nftData.tokenId,
-            // signKey:"",
             clientId: user.user._id,
           },
           withCredentials: true,
@@ -216,9 +213,7 @@ const Player = ({
 const mapStateToProps = (state) => {
   return {
     selectedSongId: state.selectedSongId,
-    // defaultSong:state.songs.songs[0],
     playerState: state.playerState,
-    // songs: state.songs,
     volume: state.volume,
     nftData: state.nftData,
   };

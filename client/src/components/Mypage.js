@@ -114,7 +114,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
   };
 
   useEffect(() => {
-    // 잔액을 가져오는 함수를 정의합니다.
     const fetchBalance = async () => {
       try {
         const yourclay = await getBalance(user.walletAddress);
@@ -124,7 +123,6 @@ const Mypage = ({ type, contract2, user, contract }) => {
       }
     };
 
-    // 컴포넌트가 처음 마운트될 때와 user.walletAddress가 변경될 때마다 fetchBalance 함수를 호출합니다.
     fetchBalance();
   }, [user.walletAddress]);
 

@@ -32,7 +32,7 @@ const SongItem = ({
 
     fetchLockedTime();
   }, [
-    /* 필요한 의존성 배열을 여기에 추가하세요 (만약 필요하다면) */ selectedSongId,
+   selectedSongId,
   ]);
 
   useEffect(() => {
@@ -61,18 +61,15 @@ const SongItem = ({
     );
   };
 
-  // Set song as active
   const now_selected = selectedSongId === song.id ? "active" : "";
 
   const songOwnerSender = async (tokenId) => {
     if (tokenId !== "undefined") {
       const owner_Address = await contract.methods.owner(tokenId).call();
       nftData.receiver_address = owner_Address;
-      // dispatch({ type: "SET_NFT_DATA", payload:nftData });
     }
   };
 
-  // set the gif
   const phaser = () => {
     if (selectedSongId === song.id && playerState) {
       return (
@@ -107,7 +104,6 @@ const SongItem = ({
             user.user.walletAddress.toLowerCase() ||
           isLocked
         ) {
-          // 만약 주소가 일치하면 함수를 중지합니다.
           return;
         } else {
           axios({
@@ -118,7 +114,6 @@ const SongItem = ({
               receiver_address: nftData.receiver_address,
               amount: nftData.amount,
               tokenId: nftData.tokenId,
-              // signKey:"",
               clientId: user.user._id,
             },
             withCredentials: true,

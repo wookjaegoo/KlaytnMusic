@@ -14,7 +14,6 @@ function Main({ user, contract, songs, contract2 }) {
         contract2={contract2}
       />
       <SongDetail songs={{ songs }} />
-      {/* <Player /> */}
       <a href="#focused" id="focus-link" hidden>
         Go to playing element
       </a>

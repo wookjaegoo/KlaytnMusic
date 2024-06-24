@@ -76,24 +76,16 @@ function MyNFTPage({ contract, user }) {
   }
 
   useEffect(() => {
-    // useEffect를 활용하여 컴포넌트가 렌더링된 후에 getOwnerNFT 함수 실행
     getOwnerNFT();
     getAdminNFT();
-  }, [AdminNFTid]); // 두 번째 매개변수로 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때 한 번만 실행
-
-  // 얻은 결과를 출력
-  // console.log('Owner Address:', UserNFT);
+  }, [AdminNFTid]);
 
   useEffect(() => {
-    // hasPublishedNFT 값이 변경될 때 이미지를 다시 렌더링
-    // 여기서 필요에 따라 이미지 로딩 등의 로직을 추가할 수 있습니다.
     visibleImage();
   }, [hasPublishedNFT]);
 
   const handlePublishNFT = () => {
     if (!hasPublishedNFT) {
-      // NFT를 발행하는 로직을 추가합니다.
-      // 발행이 성공하면 setHasPublishedNFT(true)를 호출합니다.
       setHasPublishedNFT(true);
     }
   };
@@ -104,8 +96,8 @@ function MyNFTPage({ contract, user }) {
     changeOwnership();
 
     setTimeout(() => {
-      setTimeout(visibleImage, 1000); // handlePublishNFT 실행 후 3초 뒤에 visibleImage 함수를 호출합니다.
-    }, 3000); // 3초 후에 실행됩니다.
+      setTimeout(visibleImage, 1000);
+    }, 3000);
   }
 
   function visibleImage() {
@@ -129,12 +121,7 @@ function MyNFTPage({ contract, user }) {
           withCredentials: true,
         }
       );
-
-      // 성공적인 응답 처리
-      console.log(response.data);
-      // 추가로 원하는 작업 수행 가능
     } catch (error) {
-      // 에러 처리
       if (error) {
         console.log(error);
         message.error("Transaction is locked");
@@ -147,8 +134,6 @@ function MyNFTPage({ contract, user }) {
   return (
     <div className="mynftpageContainer">
       <div className="mynftpage open">
-        {/* MY NFT 페이지 내용을 작성하세요 */}
-
         <div className="content">
           <h1>MY NFT Page</h1>
 
